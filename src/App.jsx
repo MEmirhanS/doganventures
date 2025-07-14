@@ -578,6 +578,71 @@ const ServiceCard = memo(({ service }) => {
 
 const TestimonialCard = memo(({ testimonial }) => {
   const [ref, isVisible] = useIntersectionObserver();
+  
+  // Professional business photos array for random backgrounds
+  const professionalBackgrounds = [
+    // Use existing testimonial photos as base (different combinations)
+    "/testimonials/mehmet-ozkan.jpg",
+    "/testimonials/ayse-demir.jpg", 
+    "/testimonials/can-yilmaz.jpg",
+    "/testimonials/zeynep-kaya.jpg",
+    "/testimonials/ahmet-yildiz.jpg",
+    "/testimonials/elif-sahin.jpg",
+    "/testimonials/burak-demir.jpg",
+    "/testimonials/selin-aydin.jpg",
+    "/testimonials/murat-ozturk.jpg",
+    // Add business/office themed images from other assets
+    "/assets/proofs/training-1.jpg",
+    "/assets/proofs/training-2.jpg",
+    // Professional stock images for variety
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face",
+    // Additional professional variety
+    "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=150&h=150&fit=crop&crop=face",
+    "https://images.unsplash.com/photo-1584999734482-0361aecad844?w=150&h=150&fit=crop&crop=face"
+  ];
+  
+  // Get consistent random background for each testimonial
+  const getConsistentBackground = (name) => {
+    // Use name hash to get consistent random selection
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      const char = name.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    
+    // Filter out the testimonial's own image path
+    const normalizedName = name.toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/ş/g, 's')
+      .replace(/ç/g, 'c')
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ö/g, 'o')
+      .replace(/ı/g, 'i');
+    
+    const availablePhotos = professionalBackgrounds.filter(photo => 
+      !photo.includes(normalizedName)
+    );
+    
+    const index = Math.abs(hash) % availablePhotos.length;
+    return availablePhotos[index];
+  };
+  
+  const backgroundImage = getConsistentBackground(testimonial.name);
+
+  // State for image loading
+  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const [testimonialLoaded, setTestimonialLoaded] = useState(false);
 
   return (
     <div
@@ -606,16 +671,96 @@ const TestimonialCard = memo(({ testimonial }) => {
             boxShadow: "0 0 15px rgba(212, 175, 55, 0.3)",
           }}
         >
+          {/* Background layer with professional image */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              zIndex: 1,
+              filter: "brightness(0.9) contrast(1.1)",
+              opacity: backgroundLoaded ? 1 : 0,
+              transition: "opacity 0.3s ease",
+            }}
+            onLoad={() => setBackgroundLoaded(true)}
+          />
+          
+          {/* Loading placeholder */}
+          {!backgroundLoaded && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(30, 30, 35, 0.2))",
+                zIndex: 1,
+              }}
+            />
+          )}
+          
+          {/* Hidden image for loading detection */}
+          <img
+            src={backgroundImage}
+            alt=""
+            style={{ display: "none" }}
+            onLoad={() => setBackgroundLoaded(true)}
+            onError={() => setBackgroundLoaded(true)}
+          />
+          
+          {/* Color overlay for brand consistency */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 30, 35, 0.25) 100%)",
+              zIndex: 2,
+            }}
+          />
+          
+          {/* Blurred testimonial photo overlay */}
           <img
             src={testimonial.image}
             alt={testimonial.name}
             loading="lazy"
             style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              filter: "blur(5px)",
-              transform: "scale(1.1)", // Slightly scale up to avoid blur cutting off edges
+              filter: "blur(4px) brightness(0.7) saturate(0.8)",
+              transform: "scale(1.2)",
+              zIndex: 3,
+              opacity: testimonialLoaded ? 0.5 : 0, // More transparency to show background blend
+              mixBlendMode: "soft-light", // Softer blend for more natural look
+              transition: "opacity 0.3s ease",
+            }}
+            onLoad={() => setTestimonialLoaded(true)}
+            onError={() => setTestimonialLoaded(true)}
+          />
+          
+          {/* Final glow accent */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.3) 0%, transparent 60%)",
+              zIndex: 4,
+              opacity: 0.6,
             }}
           />
         </div>
