@@ -1883,7 +1883,7 @@ function App() {
       <section
         className="section"
         style={{
-          background: "linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(184, 134, 11, 0.95) 100%)",
+          background: "var(--bg-card)",
           position: "relative",
           overflow: "hidden",
           padding: "3rem 0",
@@ -1897,7 +1897,7 @@ function App() {
             right: "5%",
             width: "200px",
             height: "200px",
-            background: "radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
             borderRadius: "50%",
             pointerEvents: "none",
           }}
@@ -1909,7 +1909,7 @@ function App() {
             left: "10%",
             width: "150px",
             height: "150px",
-            background: "radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
             borderRadius: "50%",
             pointerEvents: "none",
           }}
@@ -1921,7 +1921,6 @@ function App() {
               className="mb-3"
               style={{
                 color: "var(--primary-white)",
-                textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
                 fontSize: "2.5rem",
                 fontWeight: "700",
               }}
@@ -1933,8 +1932,7 @@ function App() {
                 maxWidth: "600px",
                 margin: "0 auto",
                 fontSize: "1.1rem",
-                color: "rgba(255, 255, 255, 0.9)",
-                textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
+                color: "var(--text-light)",
               }}
             >
               Türkiye'nin önde gelen markalarının güvendiği çözüm ortağıyız
@@ -1946,12 +1944,12 @@ function App() {
             style={{
               position: "relative",
               overflow: "hidden",
-              background: "rgba(255, 255, 255, 0.15)",
+              background: "rgba(26, 26, 26, 0.6)",
               borderRadius: "20px",
               padding: "2rem 0",
               backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+              border: "1px solid rgba(212, 175, 55, 0.2)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
             }}
           >
             <div
@@ -1984,20 +1982,27 @@ function App() {
                   <div
                     key={`first-${index}`}
                     style={{
-                      background: "rgba(255, 255, 255, 0.9)",
+                      background: "linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(184, 134, 11, 0.95) 100%)",
                       borderRadius: "12px",
                       padding: "1rem",
                       margin: "0 0.5rem",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-                      transition: "transform 0.3s ease",
+                      boxShadow: "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)",
+                      transition: "all 0.3s ease",
                       minWidth: "120px",
                       height: "80px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      border: "1px solid rgba(212, 175, 55, 0.4)",
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.05)";
+                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)";
+                    }}
                   >
                     <img
                       src={`/assets/company-logos/${logo}`}
@@ -2036,20 +2041,27 @@ function App() {
                   <div
                     key={`second-${index}`}
                     style={{
-                      background: "rgba(255, 255, 255, 0.9)",
+                      background: "linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(184, 134, 11, 0.95) 100%)",
                       borderRadius: "12px",
                       padding: "1rem",
                       margin: "0 0.5rem",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-                      transition: "transform 0.3s ease",
+                      boxShadow: "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)",
+                      transition: "all 0.3s ease",
                       minWidth: "120px",
                       height: "80px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      border: "1px solid rgba(212, 175, 55, 0.4)",
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.05)";
+                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)";
+                    }}
                   >
                     <img
                       src={`/assets/company-logos/${logo}`}
