@@ -2072,8 +2072,9 @@ function App() {
               style={{
                 position: "relative",
                 overflow: "hidden",
-                mask: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
-                WebkitMask: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
+                mask: "linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%)",
+                WebkitMask: "linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%)",
+                padding: "1rem 0",
               }}
             >
               <div
@@ -2082,17 +2083,19 @@ function App() {
                   display: "flex",
                   animation: "marqueeScroll 60s linear infinite",
                   width: "200%",
-                  gap: "3rem",
+                  gap: "4rem",
+                  alignItems: "center",
                 }}
               >
                 {/* First set of premium logo cards */}
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-around",
+                    justifyContent: "space-between",
                     alignItems: "center",
                     width: "50%",
-                    gap: "2rem",
+                    gap: "2.5rem",
+                    padding: "0 1rem",
                   }}
                 >
                   {[
@@ -2107,42 +2110,44 @@ function App() {
                     <div
                       key={`premium-first-${index}`}
                       style={{
-                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(244, 228, 188, 0.1))",
+                        background: "linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.9))",
                         borderRadius: "16px",
-                        padding: "1.5rem",
-                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        padding: "1.2rem",
+                        border: "1px solid rgba(212, 175, 55, 0.4)",
                         boxShadow: `
-                          0 8px 32px rgba(0, 0, 0, 0.3),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                          0 0 0 1px rgba(212, 175, 55, 0.2),
-                          0 0 20px rgba(212, 175, 55, 0.1)
+                          0 8px 32px rgba(0, 0, 0, 0.15),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                          0 0 0 1px rgba(212, 175, 55, 0.3),
+                          0 0 15px rgba(212, 175, 55, 0.2)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "140px",
-                        height: "90px",
+                        minWidth: "120px",
+                        width: "120px",
+                        height: "85px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         position: "relative",
                         backdropFilter: "blur(10px)",
                         overflow: "hidden",
+                        flexShrink: 0,
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-8px) scale(1.05)";
+                        e.currentTarget.style.transform = "translateY(-6px) scale(1.03)";
                         e.currentTarget.style.boxShadow = `
-                          0 20px 40px rgba(0, 0, 0, 0.4),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                          0 0 0 1px rgba(212, 175, 55, 0.4),
-                          0 0 30px rgba(212, 175, 55, 0.3)
+                          0 15px 35px rgba(0, 0, 0, 0.25),
+                          inset 0 1px 0 rgba(255, 255, 255, 1),
+                          0 0 0 1px rgba(212, 175, 55, 0.5),
+                          0 0 25px rgba(212, 175, 55, 0.3)
                         `;
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = "translateY(0) scale(1)";
                         e.currentTarget.style.boxShadow = `
-                          0 8px 32px rgba(0, 0, 0, 0.3),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                          0 0 0 1px rgba(212, 175, 55, 0.2),
-                          0 0 20px rgba(212, 175, 55, 0.1)
+                          0 8px 32px rgba(0, 0, 0, 0.15),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                          0 0 0 1px rgba(212, 175, 55, 0.3),
+                          0 0 15px rgba(212, 175, 55, 0.2)
                         `;
                       }}
                     >
@@ -2165,10 +2170,10 @@ function App() {
                         src={`/assets/company-logos/${logo}`}
                         alt={`${logo.replace('.png', '')} Premium Partner`}
                         style={{
-                          maxWidth: "100%",
-                          maxHeight: "100%",
+                          maxWidth: "90%",
+                          maxHeight: "90%",
                           objectFit: "contain",
-                          filter: "brightness(1.1) saturate(1.1) contrast(1.1)",
+                          filter: "brightness(1) saturate(1.1) contrast(1.1)",
                           transition: "filter 0.3s ease",
                         }}
                         loading="lazy"
@@ -2181,10 +2186,11 @@ function App() {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-around",
+                    justifyContent: "space-between",
                     alignItems: "center",
                     width: "50%",
-                    gap: "2rem",
+                    gap: "2.5rem",
+                    padding: "0 1rem",
                   }}
                 >
                   {[
@@ -2199,42 +2205,44 @@ function App() {
                     <div
                       key={`premium-second-${index}`}
                       style={{
-                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(244, 228, 188, 0.1))",
+                        background: "linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.9))",
                         borderRadius: "16px",
-                        padding: "1.5rem",
-                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        padding: "1.2rem",
+                        border: "1px solid rgba(212, 175, 55, 0.4)",
                         boxShadow: `
-                          0 8px 32px rgba(0, 0, 0, 0.3),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                          0 0 0 1px rgba(212, 175, 55, 0.2),
-                          0 0 20px rgba(212, 175, 55, 0.1)
+                          0 8px 32px rgba(0, 0, 0, 0.15),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                          0 0 0 1px rgba(212, 175, 55, 0.3),
+                          0 0 15px rgba(212, 175, 55, 0.2)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "140px",
-                        height: "90px",
+                        minWidth: "120px",
+                        width: "120px",
+                        height: "85px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         position: "relative",
                         backdropFilter: "blur(10px)",
                         overflow: "hidden",
+                        flexShrink: 0,
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-8px) scale(1.05)";
+                        e.currentTarget.style.transform = "translateY(-6px) scale(1.03)";
                         e.currentTarget.style.boxShadow = `
-                          0 20px 40px rgba(0, 0, 0, 0.4),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                          0 0 0 1px rgba(212, 175, 55, 0.4),
-                          0 0 30px rgba(212, 175, 55, 0.3)
+                          0 15px 35px rgba(0, 0, 0, 0.25),
+                          inset 0 1px 0 rgba(255, 255, 255, 1),
+                          0 0 0 1px rgba(212, 175, 55, 0.5),
+                          0 0 25px rgba(212, 175, 55, 0.3)
                         `;
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = "translateY(0) scale(1)";
                         e.currentTarget.style.boxShadow = `
-                          0 8px 32px rgba(0, 0, 0, 0.3),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                          0 0 0 1px rgba(212, 175, 55, 0.2),
-                          0 0 20px rgba(212, 175, 55, 0.1)
+                          0 8px 32px rgba(0, 0, 0, 0.15),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                          0 0 0 1px rgba(212, 175, 55, 0.3),
+                          0 0 15px rgba(212, 175, 55, 0.2)
                         `;
                       }}
                     >
@@ -2257,10 +2265,10 @@ function App() {
                         src={`/assets/company-logos/${logo}`}
                         alt={`${logo.replace('.png', '')} Premium Partner`}
                         style={{
-                          maxWidth: "100%",
-                          maxHeight: "100%",
+                          maxWidth: "90%",
+                          maxHeight: "90%",
                           objectFit: "contain",
-                          filter: "brightness(1.1) saturate(1.1) contrast(1.1)",
+                          filter: "brightness(1) saturate(1.1) contrast(1.1)",
                           transition: "filter 0.3s ease",
                         }}
                         loading="lazy"
