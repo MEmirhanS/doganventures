@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { sendTelegramNotification } from "../lib/sendTelegramNotification";
+import { supabase } from "../lib/supabaseClient";
 
 export default function LeadForm() {
   const initialFormState = {
@@ -118,6 +119,25 @@ export default function LeadForm() {
         } catch (altError) {
           console.warn("⚠️ Alternative tracking çalışmadı:", altError.message);
         }
+      }
+
+      // Supabase'e veri gönderme
+      try {
+        console.log("📊 Supabase'e veri gönderiliyor...");
+        const { data: supabaseData, error: supabaseError } = await supabase
+          .from('leads')
+          .insert([payload]);
+
+        if (supabaseError) {
+          console.error("❌ Supabase hatası:", supabaseError);
+          throw new Error(`Veritabanı hatası: ${supabaseError.message}`);
+        }
+        
+        console.log("✅ Supabase'e veri başarıyla kaydedildi:", supabaseData);
+      } catch (supabaseErr) {
+        console.error("❌ Supabase bağlantı hatası:", supabaseErr);
+        // Supabase hatası form gönderimini engellemez, sadece log'lar
+        console.warn("⚠️ Veri veritabanına kaydedilemedi, ancak diğer işlemler devam ediyor");
       }
 
       try {

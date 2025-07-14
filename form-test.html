@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test - DoganVentures</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background: #0056b3; }
+        .log { 
+            background: #f8f8f8; 
+            padding: 15px; 
+            border-radius: 5px; 
+            white-space: pre-wrap; 
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .warning { color: #ffc107; }
+        .info { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 DoganVentures Form Test</h1>
+        <p>Bu sayfa form gönderimini ve API bağlantılarını test etmek için oluşturulmuştur.</p>
+        
+        <div class="test-form">
+            <h3>📝 Test Form</h3>
+            <form id="testForm">
+                <label>Ad Soyad:</label>
+                <input type="text" id="fullName" value="Test User" required>
+                
+                <label>E-posta:</label>
+                <input type="email" id="email" value="test@example.com" required>
+                
+                <label>Telefon:</label>
+                <input type="tel" id="phone" value="+90555000000" required>
+                
+                <label>Şirket:</label>
+                <input type="text" id="company" value="Test Company">
+                
+                <label>Sektör:</label>
+                <select id="sector">
+                    <option value="Technology">Technology</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Healthcare">Healthcare</option>
+                </select>
+                
+                <label>Aylık Bütçe:</label>
+                <select id="budget">
+                    <option value="5000-10000">5.000 - 10.000 TL</option>
+                    <option value="10000-25000">10.000 - 25.000 TL</option>
+                    <option value="25000+">25.000+ TL</option>
+                </select>
+                
+                <label>İhtiyaç Açıklaması:</label>
+                <textarea id="description" rows="3">Test form submission for debugging purposes.</textarea>
+                
+                <button type="submit">🚀 Test Gönder</button>
+            </form>
+        </div>
+        
+        <div class="test-form">
+            <h3>🔧 Test Butonları</h3>
+            <button onclick="testTelegram()">📱 Telegram API Test</button>
+            <button onclick="testSupabase()">🗄️ Supabase Test</button>
+            <button onclick="testFacebookPixel()">📊 Facebook Pixel Test</button>
+            <button onclick="clearLog()">🗑️ Log Temizle</button>
+        </div>
+        
+        <div class="test-form">
+            <h3>📋 Test Sonuçları</h3>
+            <div id="log" class="log">Test başlamadı...\n</div>
+        </div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+        
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type;
+            log.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function clearLog() {
+            log.innerHTML = 'Log temizlendi...\n';
+        }
+        
+        // Test Telegram API
+        async function testTelegram() {
+            addLog('🔄 Telegram API test başlıyor...', 'info');
+            
+            try {
+                const testData = {
+                    full_name: 'Form Test User',
+                    email: 'formtest@example.com',
+                    phone: '+90555000000',
+                    company_name: 'Test Company',
+                    sector: 'Technology',
+                    monthly_budget: '10000-25000',
+                    need_description: 'Test notification from form test page',
+                    services: ['dijital-pazarlama'],
+                    utm_source: 'form_test',
+                    utm_medium: 'test_page',
+                    utm_campaign: 'debug_test'
+                };
+                
+                // Telegram API doğrudan test
+                const botToken = 'VITE_TELEGRAM_BOT_TOKEN_HERE'; // Güvenlik için hardcode etmeyin
+                const chatId = 'VITE_TELEGRAM_CHAT_ID_HERE';
+                
+                if (!botToken.startsWith('VITE_')) {
+                    const message = encodeURIComponent(`🧪 FORM TEST\\n${JSON.stringify(testData, null, 2)}`);
+                    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`;
+                    
+                    const response = await fetch(telegramUrl);
+                    const result = await response.json();
+                    
+                    if (result.ok) {
+                        addLog('✅ Telegram API test başarılı', 'success');
+                    } else {
+                        addLog(`❌ Telegram API hatası: ${result.description}`, 'error');
+                    }
+                } else {
+                    addLog('⚠️ Telegram API anahtarları bu test sayfasında mevcut değil', 'warning');
+                }
+                
+            } catch (error) {
+                addLog(`❌ Telegram test hatası: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test Supabase connection
+        async function testSupabase() {
+            addLog('🔄 Supabase bağlantı testi başlıyor...', 'info');
+            addLog('⚠️ Supabase test sadece ana uygulamada çalışır (CORS)', 'warning');
+        }
+        
+        // Test Facebook Pixel
+        function testFacebookPixel() {
+            addLog('🔄 Facebook Pixel test başlıyor...', 'info');
+            
+            if (typeof fbq !== 'undefined') {
+                try {
+                    fbq('track', 'Lead', {
+                        content_name: 'Form Test Lead',
+                        value: 1000,
+                        currency: 'TRY'
+                    });
+                    addLog('✅ Facebook Pixel test event gönderildi', 'success');
+                } catch (error) {
+                    addLog(`❌ Facebook Pixel hatası: ${error.message}`, 'error');
+                }
+            } else {
+                addLog('⚠️ Facebook Pixel bu test sayfasında yüklü değil', 'warning');
+            }
+        }
+        
+        // Form submission test
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            addLog('🚀 Form gönderimi test ediliyor...', 'info');
+            
+            const formData = {
+                full_name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company_name: document.getElementById('company').value,
+                sector: document.getElementById('sector').value,
+                monthly_budget: document.getElementById('budget').value,
+                need_description: document.getElementById('description').value,
+                services: ['test-service'],
+                utm_source: 'form_test',
+                utm_medium: 'test_page',
+                utm_campaign: 'debug_test',
+                created_at: new Date().toISOString()
+            };
+            
+            addLog(`📝 Form verisi hazırlandı: ${JSON.stringify(formData, null, 2)}`, 'info');
+            
+            // Simulate form submission
+            try {
+                addLog('✅ Form test tamamlandı - gerçek gönderim ana sayfada yapılmalı', 'success');
+            } catch (error) {
+                addLog(`❌ Form test hatası: ${error.message}`, 'error');
+            }
+        });
+        
+        // Sayfa yüklendiğinde
+        addLog('🧪 Form test sayfası hazır', 'success');
+        addLog('ℹ️ Gerçek API testleri için ana siteyi kullanın', 'info');
+        addLog(`🌐 Ana site: ${window.location.origin}`, 'info');
+    </script>
+</body>
+</html>
