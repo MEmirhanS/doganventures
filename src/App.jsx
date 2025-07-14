@@ -2121,9 +2121,9 @@ function App() {
                           0 0 15px rgba(212, 175, 55, 0.2)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "120px",
-                        width: "120px",
-                        height: "85px",
+                        minWidth: "150px",
+                        width: "150px",
+                        height: "100px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -2170,8 +2170,8 @@ function App() {
                         src={`/assets/company-logos/${logo}`}
                         alt={`${logo.replace('.png', '')} Premium Partner`}
                         style={{
-                          maxWidth: "90%",
-                          maxHeight: "90%",
+                          maxWidth: "100%",
+                          maxHeight: "100%",
                           objectFit: "contain",
                           filter: "brightness(1) saturate(1.1) contrast(1.1)",
                           transition: "filter 0.3s ease",
@@ -2216,9 +2216,9 @@ function App() {
                           0 0 15px rgba(212, 175, 55, 0.2)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "120px",
-                        width: "120px",
-                        height: "85px",
+                        minWidth: "150px",
+                        width: "150px",
+                        height: "100px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -2265,8 +2265,8 @@ function App() {
                         src={`/assets/company-logos/${logo}`}
                         alt={`${logo.replace('.png', '')} Premium Partner`}
                         style={{
-                          maxWidth: "90%",
-                          maxHeight: "90%",
+                          maxWidth: "100%",
+                          maxHeight: "100%",
                           objectFit: "contain",
                           filter: "brightness(1) saturate(1.1) contrast(1.1)",
                           transition: "filter 0.3s ease",
