@@ -3,9 +3,11 @@
 ## 📋 ADIM ADIM GITHUB REPO OLUŞTURMA:
 
 ### 1️⃣ GitHub'a Git:
+
 **URL:** https://github.com/theyunusdogan
 
 ### 2️⃣ Yeni Repo Oluştur:
+
 - **Sağ üstte "+" ikonu** → **"New repository"**
 - **Repository name:** `doganventures`
 - **Description:** `DOGANVENTURES Lead Generation Website with Facebook Pixel`
@@ -16,6 +18,7 @@
 - **"Create repository"** butonuna bas
 
 ### 3️⃣ Repo Oluşturduktan Sonra:
+
 Aşağıdaki komutları çalıştır:
 
 ```bash
@@ -26,6 +29,7 @@ git push --set-upstream origin main
 ```
 
 ### 4️⃣ Vercel Deploy:
+
 - **vercel.com** → Login (GitHub ile)
 - **"Import Git Repository"**
 - **GitHub** → **"doganventures"** seç
@@ -34,6 +38,7 @@ git push --set-upstream origin main
 ---
 
 ## ✅ HAZIR OLAN ŞEYLER:
+
 - [x] Facebook Pixel kodu optimize edildi
 - [x] Build başarılı alındı
 - [x] Vercel config hazır
@@ -41,6 +46,7 @@ git push --set-upstream origin main
 - [x] Git commits hazır
 
 ## 🚨 SADECE EKSİK:
+
 - [ ] GitHub'da repo oluştur
 - [ ] Git push yap
 - [ ] Vercel'e deploy et

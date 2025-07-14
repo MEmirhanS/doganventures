@@ -1591,7 +1591,7 @@ function App() {
                 autoPlay={false}
                 muted
                 preload="metadata"
-                poster="/assets/video-thumbnail.jpg"
+                poster="/assets/proofs/funnel-1.gif"
                 onPlay={() => trackVideoPlay()}
                 style={{
                   position: "absolute",
@@ -1922,7 +1922,7 @@ function App() {
                         autoPlay={false}
                         muted
                         preload="metadata"
-                        poster="/assets/video-thumbnail.jpg"
+                        poster="/assets/proofs/funnel-1.gif"
                         onPlay={() => trackVideoPlay()}
                         style={{
                           width: "100%",
