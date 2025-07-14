@@ -2194,9 +2194,8 @@ function App() {
                   }}
                 >
                   {[
-                    "metinbingöl.png",
                     "mialosi.png",
-                    "nortsofa.png",
+                    "nortsofa.png", 
                     "özgüvenakademi.png",
                     "pelda.png",
                     "personaljesus.png",
