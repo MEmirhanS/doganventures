@@ -2083,7 +2083,7 @@ function App() {
                   display: "flex",
                   animation: "marqueeScroll 60s linear infinite",
                   width: "200%",
-                  gap: "4rem",
+                  gap: "1.5rem",
                   alignItems: "center",
                 }}
               >
@@ -2091,11 +2091,11 @@ function App() {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "space-evenly",
                     alignItems: "center",
                     width: "50%",
-                    gap: "2.5rem",
-                    padding: "0 1rem",
+                    gap: "1rem",
+                    padding: "0 0.5rem",
                   }}
                 >
                   {[
@@ -2112,7 +2112,7 @@ function App() {
                       style={{
                         background: "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
                         borderRadius: "16px",
-                        padding: "1.2rem",
+                        padding: "1rem",
                         border: "1px solid rgba(212, 175, 55, 0.6)",
                         boxShadow: `
                           0 8px 32px rgba(0, 0, 0, 0.15),
@@ -2121,9 +2121,9 @@ function App() {
                           0 0 15px rgba(212, 175, 55, 0.3)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "150px",
-                        width: "150px",
-                        height: "100px",
+                        minWidth: "130px",
+                        width: "130px",
+                        height: "90px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -2186,11 +2186,11 @@ function App() {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "space-evenly",
                     alignItems: "center",
                     width: "50%",
-                    gap: "2.5rem",
-                    padding: "0 1rem",
+                    gap: "1rem",
+                    padding: "0 0.5rem",
                   }}
                 >
                   {[
@@ -2207,7 +2207,7 @@ function App() {
                       style={{
                         background: "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
                         borderRadius: "16px",
-                        padding: "1.2rem",
+                        padding: "1rem",
                         border: "1px solid rgba(212, 175, 55, 0.6)",
                         boxShadow: `
                           0 8px 32px rgba(0, 0, 0, 0.15),
@@ -2216,9 +2216,9 @@ function App() {
                           0 0 15px rgba(212, 175, 55, 0.3)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "150px",
-                        width: "150px",
-                        height: "100px",
+                        minWidth: "130px",
+                        width: "130px",
+                        height: "90px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
