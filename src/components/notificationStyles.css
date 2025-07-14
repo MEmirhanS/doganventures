@@ -1,0 +1,131 @@
+/* notificationStyles.css - Bildirim sistemi için temel stiller */
+
+.notification-container {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  top: auto !important;
+  right: auto !important;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification {
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 16px 24px;
+  min-width: 240px;
+  font-size: 1rem;
+  font-family: inherit;
+  border-left: 5px solid #38bdf8;
+  animation: fadeIn 0.3s;
+}
+
+.notification.success {
+  border-left-color: #22c55e;
+}
+
+.notification.error {
+  border-left-color: #ef4444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive notification adjustments */
+@media (max-width: 768px) {
+  .notification-container {
+    bottom: 15px !important;
+    left: 15px !important;
+    max-width: 280px !important;
+    width: calc(100vw - 30px) !important;
+  }
+
+  .notification {
+    padding: 12px 16px;
+    min-width: auto;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-container {
+    bottom: 10px !important;
+    left: 10px !important;
+    max-width: 260px !important;
+    width: calc(100vw - 20px) !important;
+  }
+
+  .notification {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    min-height: 60px;
+  }
+}
+
+/* Animation enhancements for mobile */
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 175, 55, 0.6);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Optimize for very small screens (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .notification-container {
+    bottom: 8px !important;
+    left: 8px !important;
+    max-width: 240px !important;
+    width: calc(100vw - 16px) !important;
+  }
+}
+
+/* Ensure notifications don't interfere with navigation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .notification-container {
+    bottom: 8px !important;
+    max-width: 250px !important;
+  }
+}
+
+/* Dark mode optimization for better visibility */
+@media (prefers-color-scheme: dark) {
+  .notification {
+    background: linear-gradient(
+      145deg,
+      rgba(25, 25, 30, 0.98),
+      rgba(15, 15, 20, 0.98)
+    );
+    backdrop-filter: blur(12px);
+  }
+}
