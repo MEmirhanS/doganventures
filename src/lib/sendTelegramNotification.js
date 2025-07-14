@@ -30,10 +30,23 @@ export async function sendTelegramNotification(formData) {
   const encodedMessage = encodeURIComponent(message);
   const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodedMessage}`;
 
-  const response = await fetch(telegramUrl);
-  const result = await response.json();
+  try {
+    const response = await fetch(telegramUrl);
+    const result = await response.json();
 
-  if (!result.ok) {
-    throw new Error(`Telegram bildirimi başarısız: ${result.description}`);
+    if (!result.ok) {
+      throw new Error(`Telegram bildirimi başarısız: ${result.description}`);
+    }
+    
+    console.log("✅ Telegram bildirimi başarıyla gönderildi");
+    return result;
+  } catch (error) {
+    if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+      console.error("🌐 Network hatası - Telegram bildirimi gönderilemedi:", error.message);
+      throw new Error("İnternet bağlantısı sorunu - Telegram bildirimi gönderilemedi");
+    } else {
+      console.error("❌ Telegram bildirimi hatası:", error);
+      throw error;
+    }
   }
 }

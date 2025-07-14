@@ -107,7 +107,7 @@ export default function LeadForm() {
 
         // Alternative method - direct fetch to Facebook
         try {
-          fetch(
+          const response = await fetch(
             `https://www.facebook.com/tr?id=1049814317342355&ev=Lead&noscript=1&cd[content_name]=DOGANVENTURES Lead Form&cd[value]=1000&cd[currency]=TRY`,
             {
               method: "GET",
@@ -116,7 +116,7 @@ export default function LeadForm() {
           );
           console.log("📊 Alternative Facebook tracking sent");
         } catch (altError) {
-          console.warn("⚠️ Alternative tracking de çalışmadı:", altError);
+          console.warn("⚠️ Alternative tracking çalışmadı:", altError.message);
         }
       }
 
@@ -124,7 +124,8 @@ export default function LeadForm() {
         await sendTelegramNotification(payload);
         console.log("✅ Telegram bildirimi gönderildi");
       } catch (telegramErr) {
-        console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr);
+        console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr.message);
+        // Telegram hatası form gönderimini engellemez
       }
 
       alert("✅ Başvurunuz başarıyla alındı!");
