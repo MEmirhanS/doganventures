@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabaseClient";
 import { sendTelegramNotification } from "../lib/sendTelegramNotification";
 
 export default function LeadForm() {
@@ -66,17 +65,7 @@ export default function LeadForm() {
         created_at: new Date().toISOString(),
       };
 
-      const { data, error } = await supabase
-        .from("leads")
-        .insert([payload])
-        .select();
-
-      if (error) {
-        console.error("❌ Supabase hatası:", error);
-        throw new Error(error.message);
-      }
-
-      console.log("✅ Supabase'e kaydedildi:", data);
+      console.log("📝 Form data hazırlanıyor:", payload);
 
       // Facebook Pixel Lead Event - Potansiyel Müşteri Avlama
       if (typeof fbq !== "undefined") {
@@ -267,13 +256,8 @@ export default function LeadForm() {
           setIsSubmitting(true);
           setSubmitError(null);
           try {
-            const { data, error } = await supabase
-              .from("leads")
-              .insert([testData])
-              .select();
-            if (error) throw new Error(error.message);
             await sendTelegramNotification(testData);
-            alert("✅ Test başvurusu başarıyla gönderildi!");
+            alert("✅ Test başvurusu başarıyla Telegram'a gönderildi!");
           } catch (err) {
             setSubmitError(err.message);
             alert(`Test Hatası: ${err.message}`);

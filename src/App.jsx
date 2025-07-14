@@ -5,7 +5,6 @@ import { useState, useEffect, memo, useRef } from "react";
 import Slider from "react-slick";
 import PremiumBrandsSection from "./components/PremiumBrandsSection";
 import NotificationSystem from "./components/NotificationSystem";
-import { supabase } from "./lib/supabaseClient";
 import { sendTelegramNotification } from "./lib/sendTelegramNotification";
 
 const ServiceCarousel = memo(({ services }) => {
@@ -1346,21 +1345,6 @@ function App() {
   ];
 
   // Using the RemainingSlots component that's already defined at the top level
-
-  useEffect(() => {
-    async function testSupabase() {
-      const { data, error } = await supabase.from("leads").select("*");
-      if (error) {
-        // Hata detayını alert ve konsolda göster
-        alert("❌ Supabase Hatası: " + error.message);
-        console.error("❌ Supabase Hatası:", error);
-      } else {
-        // Başarıyla veri çekildiyse konsolda göster
-        console.log("✅ Supabase Bağlantısı Başarılı:", data);
-      }
-    }
-    testSupabase();
-  }, []);
 
   return (
     <div className="App">
