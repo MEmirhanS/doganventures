@@ -1879,27 +1879,49 @@ function App() {
       {/* Premium Brands Section - Danışmanlık Hizmetleri */}
       <PremiumBrandsSection />
       
-      {/* Bizimle Çalışan Markalar Section */}
+      {/* Premium Partner Brands Section */}
       <section
-        className="section"
         style={{
-          background: "var(--bg-card)",
+          background: "linear-gradient(135deg, rgba(5, 5, 15, 0.98) 0%, rgba(25, 25, 35, 0.98) 100%)",
+          padding: "6rem 0",
           position: "relative",
+          borderTop: "1px solid rgba(212, 175, 55, 0.15)",
+          borderBottom: "1px solid rgba(212, 175, 55, 0.15)",
           overflow: "hidden",
-          padding: "3rem 0",
         }}
       >
-        {/* Background decorations */}
+        {/* Premium Background Pattern */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `
+              linear-gradient(135deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%),
+              linear-gradient(225deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%),
+              linear-gradient(315deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%),
+              linear-gradient(45deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%)
+            `,
+            backgroundSize: "60px 60px",
+            opacity: 0.2,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Gold Accent Elements */}
         <div
           style={{
             position: "absolute",
             top: "10%",
             right: "5%",
-            width: "200px",
-            height: "200px",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
+            width: "300px",
+            height: "300px",
             borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
             pointerEvents: "none",
+            filter: "blur(40px)",
           }}
         />
         <div
@@ -1907,177 +1929,371 @@ function App() {
             position: "absolute",
             bottom: "15%",
             left: "10%",
-            width: "150px",
-            height: "150px",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
+            width: "250px",
+            height: "250px",
             borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%)",
             pointerEvents: "none",
+            filter: "blur(40px)",
           }}
         />
 
-        <div className="container">
-          <div className="text-center mb-4">
-            <h2 
-              className="mb-3"
+        {/* Top Accent Line */}
+        <div
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "1px",
+            top: "0",
+            background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
+            opacity: "0.8",
+          }}
+        />
+
+        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px", position: "relative", zIndex: 2 }}>
+          {/* Premium Header */}
+          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+            {/* Luxury Badge */}
+            <div
+              style={{
+                display: "inline-block",
+                padding: "8px 20px",
+                background: "linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.9))",
+                color: "#000",
+                fontSize: "0.8rem",
+                fontWeight: "bold",
+                borderRadius: "25px",
+                letterSpacing: "1.5px",
+                textTransform: "uppercase",
+                marginBottom: "1.5rem",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+              }}
+            >
+              Trusted Partners
+            </div>
+
+            <h2
               style={{
                 color: "var(--primary-white)",
-                fontSize: "2.5rem",
-                fontWeight: "700",
+                fontSize: "2.8rem",
+                marginBottom: "1.5rem",
+                fontWeight: "800",
+                textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+                letterSpacing: "0.5px",
+                background: "linear-gradient(to right, #ffffff, #f5e7a3, #ffffff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textAlign: "center",
               }}
             >
               Bizimle Çalışan Markalar
             </h2>
-            <p
+
+            {/* Ornamental Flourishes */}
+            <div
               style={{
-                maxWidth: "600px",
-                margin: "0 auto",
-                fontSize: "1.1rem",
-                color: "var(--text-light)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: "1.5rem auto",
+                maxWidth: "500px",
               }}
             >
-              Türkiye'nin önde gelen markalarının güvendiği çözüm ortağıyız
+              <div
+                style={{
+                  height: "1px",
+                  flex: "1",
+                  background: "linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5))",
+                }}
+              />
+              <div style={{ padding: "0 1rem" }}>
+                <span
+                  style={{
+                    fontSize: "1.8rem",
+                    color: "rgba(212, 175, 55, 0.8)",
+                    margin: "0 0.5rem",
+                  }}
+                >
+                  ✦
+                </span>
+              </div>
+              <div
+                style={{
+                  height: "1px",
+                  flex: "1",
+                  background: "linear-gradient(to left, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5))",
+                }}
+              />
+            </div>
+
+            <p
+              style={{
+                color: "rgba(255, 255, 255, 0.9)",
+                fontSize: "1.1rem",
+                fontWeight: "500",
+                letterSpacing: "0.05em",
+                maxWidth: "800px",
+                margin: "0 auto",
+                lineHeight: "1.6",
+              }}
+            >
+              Türkiye'nin önde gelen markalarının güvendiği çözüm ortağıyız. 
+              Sektör liderlerine özel, premium danışmanlık hizmetleri sunuyoruz.
             </p>
           </div>
 
-          {/* Logo Marquee Container */}
+          {/* Premium Logo Showcase Container */}
           <div
             style={{
+              background: "linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(25, 25, 40, 0.9), rgba(10, 10, 15, 0.9))",
+              borderRadius: "24px",
+              padding: "3rem 2rem",
+              border: "1px solid rgba(212, 175, 55, 0.3)",
+              backdropFilter: "blur(15px)",
+              boxShadow: "0 30px 100px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)",
               position: "relative",
               overflow: "hidden",
-              background: "rgba(26, 26, 26, 0.6)",
-              borderRadius: "20px",
-              padding: "2rem 0",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(212, 175, 55, 0.2)",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
             }}
           >
+            {/* Inner Top Accent */}
             <div
-              className="brands-marquee"
               style={{
-                display: "flex",
-                animation: "marqueeScroll 60s linear infinite",
-                width: "200%",
+                position: "absolute",
+                top: "0",
+                left: "0",
+                right: "0",
+                height: "1px",
+                background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
+              }}
+            />
+
+            {/* Premium Marquee Animation */}
+            <div
+              style={{
+                position: "relative",
+                overflow: "hidden",
+                mask: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
+                WebkitMask: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
               }}
             >
-              {/* First set of logos */}
               <div
+                className="brands-marquee"
                 style={{
                   display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  width: "50%",
-                  padding: "0 2rem",
+                  animation: "marqueeScroll 60s linear infinite",
+                  width: "200%",
+                  gap: "3rem",
                 }}
               >
-                {[
-                  "alkış.png",
-                  "artife.png", 
-                  "besttem.png",
-                  "freemen.png",
-                  "gülfem.png",
-                  "ispanyolcaonline.png",
-                  "kutsalhaber.png"
-                ].map((logo, index) => (
-                  <div
-                    key={`first-${index}`}
-                    style={{
-                      background: "linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(184, 134, 11, 0.95) 100%)",
-                      borderRadius: "12px",
-                      padding: "1rem",
-                      margin: "0 0.5rem",
-                      boxShadow: "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)",
-                      transition: "all 0.3s ease",
-                      minWidth: "120px",
-                      height: "80px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "1px solid rgba(212, 175, 55, 0.4)",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "scale(1.05)";
-                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)";
-                    }}
-                  >
-                    <img
-                      src={`/assets/company-logos/${logo}`}
-                      alt={`${logo.replace('.png', '')} Logo`}
+                {/* First set of premium logo cards */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    width: "50%",
+                    gap: "2rem",
+                  }}
+                >
+                  {[
+                    "alkış.png",
+                    "artife.png", 
+                    "besttem.png",
+                    "freemen.png",
+                    "gülfem.png",
+                    "ispanyolcaonline.png",
+                    "kutsalhaber.png"
+                  ].map((logo, index) => (
+                    <div
+                      key={`premium-first-${index}`}
                       style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: "contain",
-                        filter: "brightness(0.8) saturate(1.1)",
+                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(244, 228, 188, 0.1))",
+                        borderRadius: "16px",
+                        padding: "1.5rem",
+                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        boxShadow: `
+                          0 8px 32px rgba(0, 0, 0, 0.3),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                          0 0 0 1px rgba(212, 175, 55, 0.2),
+                          0 0 20px rgba(212, 175, 55, 0.1)
+                        `,
+                        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                        minWidth: "140px",
+                        height: "90px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "relative",
+                        backdropFilter: "blur(10px)",
+                        overflow: "hidden",
                       }}
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-8px) scale(1.05)";
+                        e.currentTarget.style.boxShadow = `
+                          0 20px 40px rgba(0, 0, 0, 0.4),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                          0 0 0 1px rgba(212, 175, 55, 0.4),
+                          0 0 30px rgba(212, 175, 55, 0.3)
+                        `;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "translateY(0) scale(1)";
+                        e.currentTarget.style.boxShadow = `
+                          0 8px 32px rgba(0, 0, 0, 0.3),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                          0 0 0 1px rgba(212, 175, 55, 0.2),
+                          0 0 20px rgba(212, 175, 55, 0.1)
+                        `;
+                      }}
+                    >
+                      {/* Premium Badge */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "6px",
+                          width: "8px",
+                          height: "8px",
+                          borderRadius: "50%",
+                          background: "linear-gradient(135deg, #d4af37, #f4e4bc)",
+                          boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                          opacity: "0.8",
+                        }}
+                      />
+                      
+                      <img
+                        src={`/assets/company-logos/${logo}`}
+                        alt={`${logo.replace('.png', '')} Premium Partner`}
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          objectFit: "contain",
+                          filter: "brightness(1.1) saturate(1.1) contrast(1.1)",
+                          transition: "filter 0.3s ease",
+                        }}
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
 
-              {/* Second set of logos */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  width: "50%",
-                  padding: "0 2rem",
-                }}
-              >
-                {[
-                  "metinbingöl.png",
-                  "mialosi.png",
-                  "nortsofa.png",
-                  "özgüvenakademi.png",
-                  "pelda.png",
-                  "personaljesus.png",
-                  "supx.png"
-                ].map((logo, index) => (
-                  <div
-                    key={`second-${index}`}
-                    style={{
-                      background: "linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(184, 134, 11, 0.95) 100%)",
-                      borderRadius: "12px",
-                      padding: "1rem",
-                      margin: "0 0.5rem",
-                      boxShadow: "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)",
-                      transition: "all 0.3s ease",
-                      minWidth: "120px",
-                      height: "80px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "1px solid rgba(212, 175, 55, 0.4)",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "scale(1.05)";
-                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.1)";
-                    }}
-                  >
-                    <img
-                      src={`/assets/company-logos/${logo}`}
-                      alt={`${logo.replace('.png', '')} Logo`}
+                {/* Second set of premium logo cards */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    width: "50%",
+                    gap: "2rem",
+                  }}
+                >
+                  {[
+                    "metinbingöl.png",
+                    "mialosi.png",
+                    "nortsofa.png",
+                    "özgüvenakademi.png",
+                    "pelda.png",
+                    "personaljesus.png",
+                    "supx.png"
+                  ].map((logo, index) => (
+                    <div
+                      key={`premium-second-${index}`}
                       style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: "contain",
-                        filter: "brightness(0.8) saturate(1.1)",
+                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(244, 228, 188, 0.1))",
+                        borderRadius: "16px",
+                        padding: "1.5rem",
+                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        boxShadow: `
+                          0 8px 32px rgba(0, 0, 0, 0.3),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                          0 0 0 1px rgba(212, 175, 55, 0.2),
+                          0 0 20px rgba(212, 175, 55, 0.1)
+                        `,
+                        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                        minWidth: "140px",
+                        height: "90px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "relative",
+                        backdropFilter: "blur(10px)",
+                        overflow: "hidden",
                       }}
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-8px) scale(1.05)";
+                        e.currentTarget.style.boxShadow = `
+                          0 20px 40px rgba(0, 0, 0, 0.4),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                          0 0 0 1px rgba(212, 175, 55, 0.4),
+                          0 0 30px rgba(212, 175, 55, 0.3)
+                        `;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "translateY(0) scale(1)";
+                        e.currentTarget.style.boxShadow = `
+                          0 8px 32px rgba(0, 0, 0, 0.3),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                          0 0 0 1px rgba(212, 175, 55, 0.2),
+                          0 0 20px rgba(212, 175, 55, 0.1)
+                        `;
+                      }}
+                    >
+                      {/* Premium Badge */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "6px",
+                          right: "6px",
+                          width: "8px",
+                          height: "8px",
+                          borderRadius: "50%",
+                          background: "linear-gradient(135deg, #d4af37, #f4e4bc)",
+                          boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                          opacity: "0.8",
+                        }}
+                      />
+                      
+                      <img
+                        src={`/assets/company-logos/${logo}`}
+                        alt={`${logo.replace('.png', '')} Premium Partner`}
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          objectFit: "contain",
+                          filter: "brightness(1.1) saturate(1.1) contrast(1.1)",
+                          transition: "filter 0.3s ease",
+                        }}
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Premium Bottom Note */}
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "3rem",
+              padding: "1.5rem",
+              background: "rgba(212, 175, 55, 0.08)",
+              borderRadius: "12px",
+              border: "1px solid rgba(212, 175, 55, 0.2)",
+            }}
+          >
+            <p
+              style={{
+                color: "rgba(255, 255, 255, 0.9)",
+                fontSize: "0.95rem",
+                fontStyle: "italic",
+                margin: "0",
+              }}
+            >
+              Her partneri, sektöründe öncü olan markalardan oluşur. Güven, 
+              kalite ve sürdürülebilir başarı odaklı işbirlikleri kuruyoruz.
+            </p>
           </div>
         </div>
       </section>
