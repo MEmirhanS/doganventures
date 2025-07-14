@@ -121,47 +121,73 @@ export default function LeadForm() {
         }
       }
 
-      // Supabase'e veri gönderme
+      // Supabase'e veri gönderme (TAMAMEN NON-BLOCKING)
+      let supabaseSuccess = false;
       try {
         console.log("📊 Supabase'e veri gönderiliyor...");
-        console.log("📊 Payload:", payload);
+        console.log("📊 Payload:", JSON.stringify(payload, null, 2));
         
-        // Test connection first
-        const { data: testData, error: testError } = await supabase
+        // Supabase bağlantısını test et
+        const { data: healthCheck, error: healthError } = await supabase
           .from('leads')
-          .select('count', { count: 'exact', head: true });
-          
-        if (testError) {
-          console.error("❌ Supabase table test failed:", testError);
-          throw new Error(`Tablo erişim hatası: ${testError.message}`);
+          .select('count')
+          .limit(1)
+          .single();
+        
+        if (healthError && healthError.code !== 'PGRST116') { // PGRST116 = no rows returned (tablo boş)
+          console.warn("⚠️ Supabase health check başarısız:", healthError);
+          throw new Error(`Bağlantı hatası: ${healthError.message}`);
         }
         
-        console.log("✅ Supabase table accessible");
+        console.log("✅ Supabase bağlantısı başarılı");
         
-        const { data: supabaseData, error: supabaseError } = await supabase
+        // Veriyi insert et (timeout ile)
+        const insertPromise = supabase
           .from('leads')
           .insert([payload])
           .select();
+          
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Supabase timeout')), 10000)
+        );
+        
+        const { data: supabaseData, error: supabaseError } = await Promise.race([
+          insertPromise,
+          timeoutPromise
+        ]);
 
         if (supabaseError) {
           console.error("❌ Supabase insert hatası:", supabaseError);
-          throw new Error(`Veritabanı kayıt hatası: ${supabaseError.message}`);
+          throw new Error(`Insert hatası: ${supabaseError.message}`);
         }
         
         console.log("✅ Supabase'e veri başarıyla kaydedildi:", supabaseData);
+        supabaseSuccess = true;
       } catch (supabaseErr) {
-        console.error("❌ Supabase işlem hatası:", supabaseErr);
-        console.warn("⚠️ Veri veritabanına kaydedilemedi:", supabaseErr.message);
-        // Supabase hatası form gönderimini engellemez, sadece log'lar
+        console.warn("⚠️ Supabase işlemi başarısız:", supabaseErr.message);
+        console.warn("ℹ️ Bu hata form gönderimini etkilemez - diğer işlemler devam ediyor");
+        // Supabase hatası form başarısını etkilemez
       }
 
+      // Telegram bildirimi (TAMAMEN NON-BLOCKING)
+      let telegramSuccess = false;
       try {
+        console.log("📱 Telegram bildirimi gönderiliyor...");
         await sendTelegramNotification(payload);
-        console.log("✅ Telegram bildirimi gönderildi");
+        console.log("✅ Telegram bildirimi başarıyla gönderildi");
+        telegramSuccess = true;
       } catch (telegramErr) {
         console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr.message);
+        console.warn("ℹ️ Bu hata form gönderimini etkilemez");
         // Telegram hatası form gönderimini engellemez
       }
+
+      // Son durum raporu
+      console.log("📊 İşlem Sonuç Raporu:");
+      console.log(`✅ Form Validation: Başarılı`);
+      console.log(`📊 Facebook Pixel: ${typeof fbq !== "undefined" ? "Başarılı" : "Alternatif method"}`);
+      console.log(`🗄️ Supabase: ${supabaseSuccess ? "Başarılı" : "Başarısız (Non-blocking)"}`);
+      console.log(`📱 Telegram: ${telegramSuccess ? "Başarılı" : "Başarısız (Non-blocking)"}`);
 
       alert("✅ Başvurunuz başarıyla alındı!");
       resetForm();

@@ -5,6 +5,7 @@ import { useState, useEffect, memo, useRef } from "react";
 import Slider from "react-slick";
 import { supabase } from "./lib/supabaseClient";
 import "./supabaseTest"; // Test Supabase connection
+import "./quickTest"; // Quick API tests
 // import PremiumBrandsSection from "./components/PremiumBrandsSection";
 // import NotificationSystem from "./components/NotificationSystem";
 // import { sendTelegramNotification } from "./lib/sendTelegramNotification";
