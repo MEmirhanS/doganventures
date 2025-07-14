@@ -1,36 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 
-// Lightweight intersection observer hook
-const useIntersectionObserver = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1, rootMargin: "50px" }
-    );
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  return [ref, isVisible];
-};
-
 const PremiumBrandsSection = () => {
-  const [ref, isVisible] = useIntersectionObserver();
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -97,7 +68,7 @@ const PremiumBrandsSection = () => {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: isVisible,
+    autoplay: true,
     autoplaySpeed: 6000,
     pauseOnHover: true,
     lazyLoad: "ondemand",
@@ -264,7 +235,6 @@ const PremiumBrandsSection = () => {
 
   return (
     <section
-      ref={ref}
       style={{
         background:
           "linear-gradient(135deg, rgba(5, 5, 15, 0.98) 0%, rgba(25, 25, 35, 0.98) 100%)",
@@ -272,9 +242,6 @@ const PremiumBrandsSection = () => {
         position: "relative",
         borderTop: "1px solid rgba(212, 175, 55, 0.15)",
         borderBottom: "1px solid rgba(212, 175, 55, 0.15)",
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.8s ease, transform 0.8s ease",
       }}
     >
       {/* Gold accent element */}
