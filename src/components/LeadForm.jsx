@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { sendTelegramNotification } from "../lib/sendTelegramNotification";
-import { supabase } from "../lib/supabaseClient";
 
 export default function LeadForm() {
   const initialFormState = {
@@ -108,7 +107,7 @@ export default function LeadForm() {
 
         // Alternative method - direct fetch to Facebook
         try {
-          const response = await fetch(
+          fetch(
             `https://www.facebook.com/tr?id=1049814317342355&ev=Lead&noscript=1&cd[content_name]=DOGANVENTURES Lead Form&cd[value]=1000&cd[currency]=TRY`,
             {
               method: "GET",
@@ -117,77 +116,16 @@ export default function LeadForm() {
           );
           console.log("📊 Alternative Facebook tracking sent");
         } catch (altError) {
-          console.warn("⚠️ Alternative tracking çalışmadı:", altError.message);
+          console.warn("⚠️ Alternative tracking de çalışmadı:", altError);
         }
       }
 
-      // Supabase'e veri gönderme (TAMAMEN NON-BLOCKING)
-      let supabaseSuccess = false;
       try {
-        console.log("📊 Supabase'e veri gönderiliyor...");
-        console.log("📊 Payload:", JSON.stringify(payload, null, 2));
-        
-        // Supabase bağlantısını test et
-        const { data: healthCheck, error: healthError } = await supabase
-          .from('leads')
-          .select('count')
-          .limit(1)
-          .single();
-        
-        if (healthError && healthError.code !== 'PGRST116') { // PGRST116 = no rows returned (tablo boş)
-          console.warn("⚠️ Supabase health check başarısız:", healthError);
-          throw new Error(`Bağlantı hatası: ${healthError.message}`);
-        }
-        
-        console.log("✅ Supabase bağlantısı başarılı");
-        
-        // Veriyi insert et (timeout ile)
-        const insertPromise = supabase
-          .from('leads')
-          .insert([payload])
-          .select();
-          
-        const timeoutPromise = new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Supabase timeout')), 10000)
-        );
-        
-        const { data: supabaseData, error: supabaseError } = await Promise.race([
-          insertPromise,
-          timeoutPromise
-        ]);
-
-        if (supabaseError) {
-          console.error("❌ Supabase insert hatası:", supabaseError);
-          throw new Error(`Insert hatası: ${supabaseError.message}`);
-        }
-        
-        console.log("✅ Supabase'e veri başarıyla kaydedildi:", supabaseData);
-        supabaseSuccess = true;
-      } catch (supabaseErr) {
-        console.warn("⚠️ Supabase işlemi başarısız:", supabaseErr.message);
-        console.warn("ℹ️ Bu hata form gönderimini etkilemez - diğer işlemler devam ediyor");
-        // Supabase hatası form başarısını etkilemez
-      }
-
-      // Telegram bildirimi (TAMAMEN NON-BLOCKING)
-      let telegramSuccess = false;
-      try {
-        console.log("📱 Telegram bildirimi gönderiliyor...");
         await sendTelegramNotification(payload);
-        console.log("✅ Telegram bildirimi başarıyla gönderildi");
-        telegramSuccess = true;
+        console.log("✅ Telegram bildirimi gönderildi");
       } catch (telegramErr) {
-        console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr.message);
-        console.warn("ℹ️ Bu hata form gönderimini etkilemez");
-        // Telegram hatası form gönderimini engellemez
+        console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr);
       }
-
-      // Son durum raporu
-      console.log("📊 İşlem Sonuç Raporu:");
-      console.log(`✅ Form Validation: Başarılı`);
-      console.log(`📊 Facebook Pixel: ${typeof fbq !== "undefined" ? "Başarılı" : "Alternatif method"}`);
-      console.log(`🗄️ Supabase: ${supabaseSuccess ? "Başarılı" : "Başarısız (Non-blocking)"}`);
-      console.log(`📱 Telegram: ${telegramSuccess ? "Başarılı" : "Başarısız (Non-blocking)"}`);
 
       alert("✅ Başvurunuz başarıyla alındı!");
       resetForm();

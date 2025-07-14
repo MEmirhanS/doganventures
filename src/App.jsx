@@ -3,12 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect, memo, useRef } from "react";
 import Slider from "react-slick";
-import { supabase } from "./lib/supabaseClient";
-import "./supabaseTest"; // Test Supabase connection
-import "./quickTest"; // Quick API tests
-// import PremiumBrandsSection from "./components/PremiumBrandsSection";
-// import NotificationSystem from "./components/NotificationSystem";
-// import { sendTelegramNotification } from "./lib/sendTelegramNotification";
+import PremiumBrandsSection from "./components/PremiumBrandsSection";
+import NotificationSystem from "./components/NotificationSystem";
+import { sendTelegramNotification } from "./lib/sendTelegramNotification";
 
 const ServiceCarousel = memo(({ services }) => {
   const settings = {
@@ -1119,7 +1116,6 @@ const RemainingSlots = () => {
 };
 
 function App() {
-  console.log("App component loading...");
   const INITIAL_SLOTS = 50;
   const CAMPAIGN_END_TIME = new Date("2025-07-05T23:59:59").getTime();
 
@@ -1150,19 +1146,18 @@ function App() {
         currency: "TRY",
       });
 
-      // Önemli CTA'lar için ViewContent tracking (Lead değil)
+      // Önemli CTA'lar için Lead Intent tracking
       if (
         ctaName.includes("Ücretsiz Analiz") ||
         ctaName.includes("Strateji Analizi") ||
         ctaName.includes("Hediye Analiz")
       ) {
-        fbq("track", "ViewContent", {
-          content_name: `CTA Interest - ${ctaName}`,
-          content_category: "Lead Form Interest",
-          value: 100,
+        fbq("track", "Lead", {
+          content_name: `Lead Intent - ${ctaName}`,
+          value: 500,
           currency: "TRY",
         });
-        console.log(`🎯 CTA Interest tracked for: ${ctaName}`);
+        console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
       }
     }
   };
@@ -1337,11 +1332,10 @@ function App() {
       if (error) throw new Error(error.message);
       // Send Telegram notification
       try {
-        // const { sendTelegramNotification } = await import(
-        //   "./lib/sendTelegramNotification"
-        // );
-        // await sendTelegramNotification(payload);
-        console.log("Telegram notification would be sent:", payload);
+        const { sendTelegramNotification } = await import(
+          "./lib/sendTelegramNotification"
+        );
+        await sendTelegramNotification(payload);
       } catch (telegramErr) {
         // Telegram error is not fatal for user
         console.warn("Telegram bildirimi gönderilemedi:", telegramErr);
@@ -1500,10 +1494,13 @@ function App() {
   ];
 
   // Using the RemainingSlots component that's already defined at the top level
-  console.log("About to render App component...");
 
   return (
-    <div className="App">
+    <div className="App" style={{
+      minHeight: "100vh",
+      background: "linear-gradient(135deg, #1a1a1a 0%, #111111 50%, #0a0a0a 100%)",
+      color: "var(--text-light)"
+    }}>
       {/* Navigation Bar */}
       <nav
         style={{
@@ -1706,7 +1703,6 @@ function App() {
           </div>
         </div>
       </section>
-      
       {/* Services & Information Video Section */}
       <section
         className="section-narrow"
@@ -1855,404 +1851,7 @@ function App() {
         </div>
       </section>
       {/* Premium Brands Section - Danışmanlık Hizmetleri */}
-      {/* <PremiumBrandsSection /> */}
-      
-      {/* Bizimle Çalışan Markalar Section */}
-      <section
-        className="section"
-        style={{
-          background: "linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Background decoration */}
-        <div
-          style={{
-            position: "absolute",
-            top: "10%",
-            right: "5%",
-            width: "200px",
-            height: "200px",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
-            borderRadius: "50%",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "15%",
-            left: "10%",
-            width: "150px",
-            height: "150px",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
-            borderRadius: "50%",
-            pointerEvents: "none",
-          }}
-        />
-
-        <div className="container">
-          <div className="text-center mb-5">
-            <div
-              style={{
-                display: "inline-block",
-                background: "linear-gradient(to right, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.2))",
-                padding: "0.5rem 2rem",
-                borderRadius: "25px",
-                marginBottom: "1.5rem",
-                border: "1px solid rgba(212, 175, 55, 0.4)",
-                fontSize: "0.9rem",
-                fontWeight: "600",
-                color: "var(--primary-accent)",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-              }}
-            >
-              Güvenilen Partner
-            </div>
-            
-            <h2
-              style={{
-                fontSize: "2.8rem",
-                marginBottom: "1.5rem",
-                fontWeight: "800",
-                background: "linear-gradient(to right, #ffffff, #d4af37, #ffffff)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-              }}
-            >
-              Bizimle Çalışan Markalar
-            </h2>
-            
-            <p
-              style={{
-                maxWidth: "700px",
-                margin: "0 auto",
-                fontSize: "1.1rem",
-                color: "rgba(255, 255, 255, 0.85)",
-                lineHeight: "1.6",
-                fontWeight: "400",
-              }}
-            >
-              Sektöründe öncü olan markaların güvenini kazandık. Her biri kendi alanında lider olan bu şirketlerle birlikte büyüyor, başarılarına ortak oluyoruz.
-            </p>
-          </div>
-
-          {/* Brands Marquee */}
-          <div style={{ padding: "3rem 0" }}>
-            <div className="marquee-container">
-              <div 
-                className="marquee-content scroll-left" 
-                style={{ animationDuration: "60s" }}
-              >
-                {/* All brands in single row */}
-                {[
-                  {
-                    name: "Nord Sofa",
-                    logo: "/assets/company-logos/nortsofa.png",
-                  },
-                  {
-                    name: "Metin Bingöl",
-                    logo: "/assets/company-logos/metinbingöl.png",
-                  },
-                  {
-                    name: "İspanyolca Online",
-                    logo: "/assets/company-logos/ispanyolcaonline.png",
-                  },
-                  {
-                    name: "Özgüven Akademi",
-                    logo: "/assets/company-logos/özgüvenakademi.png",
-                  },
-                  {
-                    name: "Artife",
-                    logo: "/assets/company-logos/artife.png",
-                  },
-                  {
-                    name: "Besttem",
-                    logo: "/assets/company-logos/besttem.png",
-                  },
-                  {
-                    name: "Freemen",
-                    logo: "/assets/company-logos/freemen.png",
-                  },
-                  {
-                    name: "Mialosi",
-                    logo: "/assets/company-logos/mialosi.png",
-                  },
-                  {
-                    name: "Gülfem",
-                    logo: "/assets/company-logos/gülfem.png",
-                  },
-                  {
-                    name: "Kutsal Haber",
-                    logo: "/assets/company-logos/kutsalhaber.png",
-                  },
-                  {
-                    name: "Pelda",
-                    logo: "/assets/company-logos/pelda.png",
-                  },
-                  {
-                    name: "Personal Jesus",
-                    logo: "/assets/company-logos/personaljesus.png",
-                  },
-                ].map((brand, index) => (
-                  <div
-                    key={`brand-${index}`}
-                    className="marquee-item"
-                    onClick={() => trackCtaClick(`Brand Click - ${brand.name}`)}
-                  >
-                    <div className="marquee-logo-container">
-                      <img
-                        src={brand.logo}
-                        alt={brand.name}
-                        className="marquee-logo"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.target.style.display = "none";
-                          e.target.parentElement.innerHTML = `<div style="font-size: 0.7rem; color: #666; font-weight: 600; text-align: center;">${brand.name}</div>`;
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-                
-                {/* Duplicate set for seamless loop */}
-                {[
-                  {
-                    name: "Nord Sofa",
-                    logo: "/assets/company-logos/nortsofa.png",
-                  },
-                  {
-                    name: "Metin Bingöl",
-                    logo: "/assets/company-logos/metinbingöl.png",
-                  },
-                  {
-                    name: "İspanyolca Online",
-                    logo: "/assets/company-logos/ispanyolcaonline.png",
-                  },
-                  {
-                    name: "Özgüven Akademi",
-                    logo: "/assets/company-logos/özgüvenakademi.png",
-                  },
-                  {
-                    name: "Artife",
-                    logo: "/assets/company-logos/artife.png",
-                  },
-                  {
-                    name: "Besttem",
-                    logo: "/assets/company-logos/besttem.png",
-                  },
-                  {
-                    name: "Freemen",
-                    logo: "/assets/company-logos/freemen.png",
-                  },
-                  {
-                    name: "Mialosi",
-                    logo: "/assets/company-logos/mialosi.png",
-                  },
-                  {
-                    name: "Gülfem",
-                    logo: "/assets/company-logos/gülfem.png",
-                  },
-                  {
-                    name: "Kutsal Haber",
-                    logo: "/assets/company-logos/kutsalhaber.png",
-                  },
-                  {
-                    name: "Pelda",
-                    logo: "/assets/company-logos/pelda.png",
-                  },
-                  {
-                    name: "Personal Jesus",
-                    logo: "/assets/company-logos/personaljesus.png",
-                  },
-                ].map((brand, index) => (
-                  <div
-                    key={`brand-dup-${index}`}
-                    className="marquee-item"
-                    onClick={() => trackCtaClick(`Brand Click - ${brand.name}`)}
-                  >
-                    <div className="marquee-logo-container">
-                      <img
-                        src={brand.logo}
-                        alt={brand.name}
-                        className="marquee-logo"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.target.style.display = "none";
-                          e.target.parentElement.innerHTML = `<div style="font-size: 0.7rem; color: #666; font-weight: 600; text-align: center;">${brand.name}</div>`;
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Trust Indicators */}
-          <div
-            style={{
-              marginTop: "4rem",
-              textAlign: "center",
-              background: "rgba(30, 30, 35, 0.6)",
-              borderRadius: "20px",
-              padding: "2.5rem 1.5rem",
-              border: "1px solid rgba(212, 175, 55, 0.2)",
-              boxShadow: "0 15px 40px rgba(0, 0, 0, 0.3)",
-              maxWidth: "1000px",
-              margin: "4rem auto 0",
-            }}
-          >
-            <h3
-              style={{
-                fontSize: "1.5rem",
-                marginBottom: "2.5rem",
-                color: "var(--primary-accent)",
-                fontWeight: "700",
-              }}
-            >
-              <i className="fas fa-handshake" style={{ marginRight: "0.5rem" }}></i>
-              Güvenilir Ortaklık
-            </h3>
-            
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: "2rem",
-                maxWidth: "900px",
-                margin: "0 auto",
-              }}
-            >
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "800",
-                    color: "var(--primary-accent)",
-                    marginBottom: "0.5rem",
-                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  50+
-                </div>
-                <div
-                  style={{
-                    color: "rgba(255, 255, 255, 0.8)",
-                    fontSize: "0.9rem",
-                    lineHeight: "1.4",
-                    fontWeight: "500",
-                  }}
-                >
-                  Başarılı Marka<br />Ortaklığı
-                </div>
-              </div>
-              
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "800",
-                    color: "var(--primary-accent)",
-                    marginBottom: "0.5rem",
-                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  98%
-                </div>
-                <div
-                  style={{
-                    color: "rgba(255, 255, 255, 0.8)",
-                    fontSize: "0.9rem",
-                    lineHeight: "1.4",
-                    fontWeight: "500",
-                  }}
-                >
-                  Müşteri Memnuniyet<br />Oranı
-                </div>
-              </div>
-              
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "800",
-                    color: "var(--primary-accent)",
-                    marginBottom: "0.5rem",
-                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  5+
-                </div>
-                <div
-                  style={{
-                    color: "rgba(255, 255, 255, 0.8)",
-                    fontSize: "0.9rem",
-                    lineHeight: "1.4",
-                    fontWeight: "500",
-                  }}
-                >
-                  Yıllık Deneyim<br />Ortalaması
-                </div>
-              </div>
-              
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "800",
-                    color: "var(--primary-accent)",
-                    marginBottom: "0.5rem",
-                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  24/7
-                </div>
-                <div
-                  style={{
-                    color: "rgba(255, 255, 255, 0.8)",
-                    fontSize: "0.9rem",
-                    lineHeight: "1.4",
-                    fontWeight: "500",
-                  }}
-                >
-                  Destek ve<br />Danışmanlık
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
+      <PremiumBrandsSection />
       {/* Testimonials Section */}
       <section
         id="case-studies"
@@ -3490,7 +3089,7 @@ function App() {
         }
       `}</style>
       {/* Notification System */}
-      {/* <NotificationSystem /> */}
+      <NotificationSystem />
     </div>
   );
 }

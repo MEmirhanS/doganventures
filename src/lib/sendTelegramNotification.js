@@ -4,13 +4,8 @@ export async function sendTelegramNotification(formData) {
   const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
   const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
-  console.log("🔧 Telegram Config Check:");
-  console.log("Bot Token exists:", !!botToken);
-  console.log("Chat ID exists:", !!chatId);
-
   if (!botToken || !chatId) {
-    console.error("❌ Telegram yapılandırma hatası - Bot token veya chat ID eksik");
-    throw new Error("Telegram yapılandırma hatası - Lütfen tekrar deneyin");
+    throw new Error("Telegram bot bilgileri eksik");
   }
 
   const message = `
@@ -35,48 +30,10 @@ export async function sendTelegramNotification(formData) {
   const encodedMessage = encodeURIComponent(message);
   const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodedMessage}`;
 
-  console.log("📡 Telegram URL oluşturuldu");
+  const response = await fetch(telegramUrl);
+  const result = await response.json();
 
-  try {
-    // AbortController ile timeout ekle
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 saniye timeout
-
-    const response = await fetch(telegramUrl, {
-      method: 'GET',
-      signal: controller.signal,
-      headers: {
-        'User-Agent': 'DoganVentures-Lead-System/1.0'
-      }
-    });
-
-    clearTimeout(timeoutId);
-
-    console.log("📡 Telegram API response status:", response.status);
-
-    if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status} - ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    console.log("📡 Telegram API response:", result);
-
-    if (!result.ok) {
-      throw new Error(`Telegram API Error: ${result.description || 'Bilinmeyen hata'}`);
-    }
-
-    console.log("✅ Telegram bildirimi başarıyla gönderildi");
-    return result;
-
-  } catch (error) {
-    console.error("❌ Telegram notification error:", error);
-    
-    if (error.name === 'AbortError') {
-      throw new Error("Telegram bildirimi zaman aşımına uğradı - Lütfen tekrar deneyin");
-    } else if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
-      throw new Error("İnternet bağlantısı sorunu - Telegram bildirimi gönderilemedi");
-    } else {
-      throw new Error(`Telegram bildirimi hatası: ${error.message}`);
-    }
+  if (!result.ok) {
+    throw new Error(`Telegram bildirimi başarısız: ${result.description}`);
   }
 }
