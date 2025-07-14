@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { sendTelegramNotification } from "../lib/sendTelegramNotification";
 import { supabase } from "../lib/supabaseClient";
-import NetworkDebugger from "../lib/networkDebugger";
 
 export default function LeadForm() {
   const initialFormState = {
@@ -69,34 +68,22 @@ export default function LeadForm() {
 
       console.log("📝 Form data hazırlanıyor:", payload);
 
-      // Debug Environment Variables
-      console.log("🔧 Environment Debug:");
-      console.log("VITE_SUPABASE_URL:", import.meta.env.VITE_SUPABASE_URL ? "✅ Available" : "❌ Missing");
-      console.log("VITE_SUPABASE_ANON_KEY:", import.meta.env.VITE_SUPABASE_ANON_KEY ? "✅ Available" : "❌ Missing");
-      console.log("VITE_TELEGRAM_BOT_TOKEN:", import.meta.env.VITE_TELEGRAM_BOT_TOKEN ? "✅ Available" : "❌ Missing");
-      console.log("VITE_TELEGRAM_CHAT_ID:", import.meta.env.VITE_TELEGRAM_CHAT_ID ? "✅ Available" : "❌ Missing");
-
-      // Debug Supabase import
-      console.log("🔧 Supabase Debug:");
-      console.log("supabase object:", typeof supabase);
-      console.log("supabase defined:", supabase !== undefined);
-      
-      // Network connectivity test
-      console.log("🌐 Network connectivity test başlıyor...");
+      // 1. Supabase'e kaydet (Primary lead storage)
+      let leadSaved = false;
       try {
-        const networkResults = await NetworkDebugger.testConnectivity();
-        console.log("🌐 Network test results:", networkResults);
+        console.log("💾 Supabase'e kaydediliyor...");
+        const { data, error } = await supabase
+          .from("leads")
+          .insert([payload])
+          .select();
         
-        // Test Supabase specifically
-        const supabaseTest = await NetworkDebugger.testSupabaseConnection(supabase);
-        console.log("💾 Supabase connection test:", supabaseTest);
+        if (error) throw error;
         
-        // Test Telegram specifically  
-        const telegramTest = await NetworkDebugger.testTelegramBot();
-        console.log("📱 Telegram bot test:", telegramTest);
-        
-      } catch (netError) {
-        console.error("❌ Network test failed:", netError);
+        console.log("✅ Lead Supabase'e kaydedildi:", data);
+        leadSaved = true;
+      } catch (supabaseError) {
+        console.error("❌ Supabase kaydetme hatası:", supabaseError);
+        // Supabase hatası form işlemini durdurmaz, Telegram'a devam eder
       }
 
       // Facebook Pixel Lead Event - Potansiyel Müşteri Avlama
@@ -152,113 +139,40 @@ export default function LeadForm() {
         }
       }
 
-      // Supabase'e kaydet (Enhanced error handling)
-      let supabaseSuccess = false;
-      try {
-        console.log("🔄 Supabase'e kaydetme başlıyor...");
-        
-        if (!supabase) {
-          throw new Error("Supabase client tanımlanmamış");
-        }
-        
-        // Test Supabase connection first
-        console.log("🔗 Supabase bağlantı testi...");
-        const { data: testData, error: testError } = await supabase
-          .from("leads")
-          .select("count", { count: "exact" })
-          .limit(1);
-          
-        if (testError) {
-          console.error("❌ Supabase connection test failed:", testError);
-          throw new Error(`Supabase bağlantı hatası: ${testError.message}`);
-        }
-        
-        console.log("✅ Supabase bağlantı testi başarılı");
-        
-        const { data, error } = await supabase
-          .from("leads")
-          .insert([payload])
-          .select();
-        
-        if (error) {
-          console.error("❌ Supabase error details:", error);
-          throw error;
-        }
-        
-        console.log("✅ Supabase'e başarıyla kaydedildi:", data);
-        supabaseSuccess = true;
-      } catch (supabaseErr) {
-        console.error("❌ Supabase kaydetme hatası (detaylı):", {
-          message: supabaseErr.message,
-          details: supabaseErr.details,
-          hint: supabaseErr.hint,
-          code: supabaseErr.code,
-          stack: supabaseErr.stack
-        });
-        
-        // Supabase hatası form gönderimini engellemez
-        console.warn("⚠️ Supabase kaydedilemedi, Telegram'a devam ediliyor...");
-      }
-
-      // Telegram bildirimi gönder (Enhanced error handling)
-      let telegramSuccess = false;
+      // 2. Telegram bildirimi gönder
+      let telegramSent = false;
       try {
         console.log("📱 Telegram bildirimi gönderiliyor...");
         await sendTelegramNotification(payload);
         console.log("✅ Telegram bildirimi gönderildi");
-        telegramSuccess = true;
+        telegramSent = true;
       } catch (telegramErr) {
-        console.error("❌ Telegram bildirimi hatası (detaylı):", {
-          message: telegramErr.message,
-          stack: telegramErr.stack,
-          type: telegramErr.constructor.name
+        console.error("❌ Telegram bildirimi hatası:", telegramErr);
+      }
+
+      // 3. Facebook Pixel Lead Event
+      if (typeof fbq !== "undefined") {
+        fbq("track", "Lead", {
+          content_name: "DOGANVENTURES Premium Consultation Lead",
+          content_category: "Business Consultation", 
+          value: 1000,
+          currency: "TRY",
+          custom_data: {
+            monthly_budget: payload.monthly_budget,
+            company_name: payload.company_name,
+            sector: payload.sector,
+            lead_source: payload.utm_source || "doganventures_website",
+          },
         });
-        console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr);
+        console.log("🎯 Facebook Lead Pixel tetiklendi!");
       }
 
-      // Success/failure summary
-      console.log("📊 İşlem Özeti:");
-      console.log(`📄 Form Validation: ✅ Başarılı`);
-      console.log(`🔵 Facebook Pixel: ${typeof fbq !== "undefined" ? "✅ Tetiklendi" : "⚠️ Bulunamadı"}`);
-      console.log(`💾 Supabase: ${supabaseSuccess ? "✅ Kaydedildi" : "❌ Başarısız"}`);
-      console.log(`📱 Telegram: ${telegramSuccess ? "✅ Gönderildi" : "❌ Başarısız"}`);
-
-      // Final success message with fallback
-      if (supabaseSuccess || telegramSuccess) {
-        alert("✅ Başvurunuz alındı! En kısa sürede size dönüş yapacağız.");
+      // 4. Success message
+      if (leadSaved || telegramSent) {
+        alert("✅ Başvurunuz başarıyla alındı! En kısa sürede size dönüş yapacağız.");
       } else {
-        // Complete fallback - mailto link
-        console.log("🔄 Fallback email sistemi aktifleştiriliyor...");
-        
-        const emailSubject = encodeURIComponent("DOGANVENTURES - Yeni Lead Başvurusu");
-        const emailBody = encodeURIComponent(`
-Yeni Lead Başvurusu:
-
-Ad Soyad: ${payload.full_name}
-E-posta: ${payload.email}  
-Telefon: ${payload.phone}
-Şirket: ${payload.company_name || "-"}
-Sektör: ${payload.sector || "-"}
-Bütçe: ${payload.monthly_budget || "-"}
-İhtiyaç: ${payload.need_description || "-"}
-Kaynak: ${payload.utm_source} / ${payload.utm_medium} / ${payload.utm_campaign}
-Tarih: ${new Date().toLocaleString("tr-TR")}
-
-Bu başvuru otomatik sistem hatası nedeniyle e-posta yoluyla iletilmektedir.
-        `);
-        
-        const mailtoLink = `mailto:info@doganventures.com?subject=${emailSubject}&body=${emailBody}`;
-        
-        // Try to open default email client
-        try {
-          window.open(mailtoLink, '_blank');
-        } catch (mailError) {
-          console.error("❌ Mail client açılamadı:", mailError);
-        }
-        
-        alert(`⚠️ Sistem hatası tespit edildi. Başvurunuz için lütfen:\n\n1. E-posta: info@doganventures.com\n2. WhatsApp: +90 XXX XXX XX XX\n\nüzerinden doğrudan iletişime geçin.`);
+        alert("⚠️ Sistem hatası oluştu. Lütfen info@doganventures.com adresine e-posta gönderin.");
       }
-      
       resetForm();
     } catch (err) {
       console.error("❌ Hata:", err);

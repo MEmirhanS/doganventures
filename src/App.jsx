@@ -5,7 +5,9 @@ import { useState, useEffect, memo, useRef } from "react";
 import Slider from "react-slick";
 import PremiumBrandsSection from "./components/PremiumBrandsSection";
 import NotificationSystem from "./components/NotificationSystem";
+import LeadTestComponent from "./components/LeadTestComponent";
 import { sendTelegramNotification } from "./lib/sendTelegramNotification";
+import { supabase } from "./lib/supabaseClient";
 
 const ServiceCarousel = memo(({ services }) => {
   const settings = {
@@ -1138,7 +1140,7 @@ function App() {
   };
 
   const trackCtaClick = (ctaName) => {
-    // Facebook Pixel - Sadece Intent tracking (Lead değil)
+    // Facebook Pixel
     if (typeof fbq !== "undefined") {
       fbq("track", "InitiateCheckout", {
         content_name: ctaName,
@@ -1146,10 +1148,19 @@ function App() {
         currency: "TRY",
       });
 
-      // CTA'lar için sadece intent tracking - Lead tracking sadece form gönderiminde
-      console.log(`🎯 CTA Intent tracked for: ${ctaName}`);
-      
-      // Lead tracking'i kaldırdık - sadece form submit'te olacak
+      // Önemli CTA'lar için Lead Intent tracking
+      if (
+        ctaName.includes("Ücretsiz Analiz") ||
+        ctaName.includes("Strateji Analizi") ||
+        ctaName.includes("Hediye Analiz")
+      ) {
+        fbq("track", "Lead", {
+          content_name: `Lead Intent - ${ctaName}`,
+          value: 500,
+          currency: "TRY",
+        });
+        console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
+      }
     }
   };
 
@@ -1487,11 +1498,7 @@ function App() {
   // Using the RemainingSlots component that's already defined at the top level
 
   return (
-    <div className="App" style={{
-      minHeight: "100vh",
-      background: "linear-gradient(135deg, #1a1a1a 0%, #111111 50%, #0a0a0a 100%)",
-      color: "var(--text-light)"
-    }}>
+    <div className="App">
       {/* Navigation Bar */}
       <nav
         style={{
@@ -2871,6 +2878,11 @@ function App() {
                   Tamam, Anladım
                 </button>
               </div>
+            )}
+            
+            {/* Test Components - Development only */}
+            {process.env.NODE_ENV === 'development' && (
+              <LeadTestComponent />
             )}
           </div>
         </div>
