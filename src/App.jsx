@@ -5,7 +5,6 @@ import { useState, useEffect, memo, useRef } from "react";
 import Slider from "react-slick";
 import PremiumBrandsSection from "./components/PremiumBrandsSection";
 import NotificationSystem from "./components/NotificationSystem";
-import LeadTestComponent from "./components/LeadTestComponent";
 import { sendTelegramNotification } from "./lib/sendTelegramNotification";
 import { supabase } from "./lib/supabaseClient";
 
@@ -1291,6 +1290,9 @@ function App() {
     }
     // Formu gönder, bildirim gösterme
     setIsSubmitted(true);
+    
+    console.log("📝 Form submission başlıyor...");
+    
     // Map frontend fields to Supabase schema
     const payload = {
       full_name: formData.name,
@@ -1312,6 +1314,9 @@ function App() {
         "main_contact_form",
       created_at: new Date().toISOString(),
     };
+    
+    console.log("📊 Lead payload hazır:", payload);
+    
     try {
       // Validate required fields
       if (
@@ -1332,6 +1337,27 @@ function App() {
         .insert([payload])
         .select();
       if (error) throw new Error(error.message);
+      
+      console.log("✅ Lead Supabase'e kaydedildi:", data);
+      
+      // Facebook Pixel Lead Event - LEAD TRACKING
+      if (typeof fbq !== "undefined") {
+        fbq("track", "Lead", {
+          content_name: "DOGANVENTURES Premium Consultation Lead",
+          content_category: "Business Consultation",
+          value: 1000,
+          currency: "TRY",
+          custom_data: {
+            monthly_budget: payload.monthly_budget,
+            company_name: payload.company_name,
+            sector: payload.sector,
+            lead_source: payload.utm_source || "doganventures_website",
+          },
+        });
+        console.log("🎯 Facebook Lead Pixel tetiklendi - LEAD ALGILANDI!");
+      } else {
+        console.warn("⚠️ Facebook Pixel bulunamadı - Lead tracking çalışmıyor!");
+      }
       // Send Telegram notification
       try {
         const { sendTelegramNotification } = await import(
@@ -2878,11 +2904,6 @@ function App() {
                   Tamam, Anladım
                 </button>
               </div>
-            )}
-            
-            {/* Test Components - Development only */}
-            {process.env.NODE_ENV === 'development' && (
-              <LeadTestComponent />
             )}
           </div>
         </div>

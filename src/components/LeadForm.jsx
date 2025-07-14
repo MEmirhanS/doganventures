@@ -280,41 +280,6 @@ export default function LeadForm() {
       >
         {isSubmitting ? "Gönderiliyor..." : "Gönder"}
       </button>
-      <button
-        type="button"
-        onClick={async () => {
-          // Test başvurusu gönder
-          const testData = {
-            full_name: "Test Kullanıcı",
-            email: "test@example.com",
-            phone: "5551234567",
-            company_name: "Test Şirketi",
-            sector: "Test Sektör",
-            monthly_budget: "0-5000",
-            need_description: "Test ihtiyacı",
-            services: ["Dijital Pazarlama", "İş Geliştirme & Satış"],
-            utm_source: "test_form",
-            utm_medium: "test_environment",
-            utm_campaign: "telegram_test",
-            created_at: new Date().toISOString(),
-          };
-          setIsSubmitting(true);
-          setSubmitError(null);
-          try {
-            await sendTelegramNotification(testData);
-            alert("✅ Test başvurusu başarıyla Telegram'a gönderildi!");
-          } catch (err) {
-            setSubmitError(err.message);
-            alert(`Test Hatası: ${err.message}`);
-          } finally {
-            setIsSubmitting(false);
-          }
-        }}
-        className="w-full p-3 font-semibold text-white rounded bg-green-600 hover:bg-green-700 mt-2"
-        disabled={isSubmitting}
-      >
-        Test Başvuru Gönder
-      </button>
     </form>
   );
 }
