@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { sendTelegramNotification } from "../lib/sendTelegramNotification";
+import { supabase } from "../lib/supabaseClient";
 
 export default function LeadForm() {
   const initialFormState = {
@@ -120,6 +121,21 @@ export default function LeadForm() {
         }
       }
 
+      // Supabase'e kaydet (Non-blocking)
+      try {
+        const { data, error } = await supabase
+          .from("leads")
+          .insert([payload])
+          .select();
+        
+        if (error) throw error;
+        console.log("✅ Supabase'e başarıyla kaydedildi:", data);
+      } catch (supabaseErr) {
+        console.warn("⚠️ Supabase kaydetme hatası:", supabaseErr);
+        // Supabase hatası form gönderimini engellemez
+      }
+
+      // Telegram bildirimi gönder (Non-blocking)
       try {
         await sendTelegramNotification(payload);
         console.log("✅ Telegram bildirimi gönderildi");
