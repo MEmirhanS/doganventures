@@ -19,94 +19,109 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
-    
+
     <!-- Facebook Pixel - Vercel Optimized -->
     <script>
       // Console log for debugging
-      console.log('🔄 Facebook Pixel loading...');
-      console.log('🌍 Environment:', window.location.hostname);
-      
+      console.log("🔄 Facebook Pixel loading...");
+      console.log("🌍 Environment:", window.location.hostname);
+
       // AdBlock Detection
       function isAdBlockActive() {
-        const testAd = document.createElement('div');
-        testAd.innerHTML = '&nbsp;';
-        testAd.className = 'adsbox';
-        testAd.style.position = 'absolute';
-        testAd.style.left = '-9999px';
+        const testAd = document.createElement("div");
+        testAd.innerHTML = "&nbsp;";
+        testAd.className = "adsbox";
+        testAd.style.position = "absolute";
+        testAd.style.left = "-9999px";
         document.body.appendChild(testAd);
-        
+
         const isBlocked = testAd.offsetHeight === 0;
         document.body.removeChild(testAd);
-        
+
         if (isBlocked) {
-          console.warn('🚫 AdBlock detected - Pixel may be blocked');
+          console.warn("🚫 AdBlock detected - Pixel may be blocked");
         } else {
-          console.log('✅ No AdBlock detected');
+          console.log("✅ No AdBlock detected");
         }
         return isBlocked;
       }
-      
+
       // Wait for DOM and check AdBlock
-      window.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener("DOMContentLoaded", function () {
         setTimeout(isAdBlockActive, 1000);
       });
-      
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      
+
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+
       // Initialize with error handling and retry mechanism
       function initPixel() {
         try {
-          fbq('init', '1049814317342355');
-          fbq('track', 'PageView');
-          console.log('✅ Facebook Pixel initialized successfully');
+          fbq("init", "1049814317342355");
+          fbq("track", "PageView");
+          console.log("✅ Facebook Pixel initialized successfully");
           return true;
         } catch (error) {
-          console.error('❌ Facebook Pixel initialization failed:', error);
+          console.error("❌ Facebook Pixel initialization failed:", error);
           return false;
         }
       }
-      
+
       // Try to initialize immediately
       if (!initPixel()) {
         // Retry after 2 seconds if failed
-        setTimeout(function() {
-          console.log('🔄 Retrying pixel initialization...');
+        setTimeout(function () {
+          console.log("🔄 Retrying pixel initialization...");
           initPixel();
         }, 2000);
       }
-      
+
       // Verify pixel is loaded after page load
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          if (typeof fbq !== 'undefined') {
-            console.log('🎯 Facebook Pixel loaded on production!');
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          if (typeof fbq !== "undefined") {
+            console.log("🎯 Facebook Pixel loaded on production!");
             // Test pixel functionality
             try {
-              fbq('track', 'PageView');
-              console.log('🔥 Pixel test successful!');
+              fbq("track", "PageView");
+              console.log("🔥 Pixel test successful!");
             } catch (testError) {
-              console.error('❌ Pixel test failed:', testError);
+              console.error("❌ Pixel test failed:", testError);
             }
           } else {
-            console.error('⚠️ Facebook Pixel NOT loaded on production!');
-            console.log('🔧 Trying alternative loading method...');
-            
+            console.error("⚠️ Facebook Pixel NOT loaded on production!");
+            console.log("🔧 Trying alternative loading method...");
+
             // Alternative loading method
-            const script = document.createElement('script');
-            script.src = 'https://connect.facebook.net/en_US/fbevents.js';
-            script.onload = function() {
-              console.log('📦 Alternative pixel script loaded');
+            const script = document.createElement("script");
+            script.src = "https://connect.facebook.net/en_US/fbevents.js";
+            script.onload = function () {
+              console.log("📦 Alternative pixel script loaded");
               initPixel();
             };
-            script.onerror = function() {
-              console.error('❌ Alternative pixel loading also failed');
+            script.onerror = function () {
+              console.error("❌ Alternative pixel loading also failed");
             };
             document.head.appendChild(script);
           }
@@ -117,10 +132,14 @@
   <body>
     <!-- Facebook Pixel noscript -->
     <noscript>
-      <img height="1" width="1" style="display:none" 
-           src="https://www.facebook.com/tr?id=1049814317342355&ev=PageView&noscript=1"/>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1049814317342355&ev=PageView&noscript=1"
+      />
     </noscript>
-    
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

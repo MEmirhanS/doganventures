@@ -23,6 +23,7 @@ Modern, responsive Turkish lead generation website built with React + Vite. Feat
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - npm or yarn
 

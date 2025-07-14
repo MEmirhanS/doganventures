@@ -79,46 +79,55 @@ export default function LeadForm() {
       console.log("✅ Supabase'e kaydedildi:", data);
 
       // Facebook Pixel Lead Event - Potansiyel Müşteri Avlama
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'Lead', {
-          content_name: 'DOGANVENTURES Premium Consultation Lead',
-          content_category: 'Business Consultation',
+      if (typeof fbq !== "undefined") {
+        fbq("track", "Lead", {
+          content_name: "DOGANVENTURES Premium Consultation Lead",
+          content_category: "Business Consultation",
           value: 1000,
-          currency: 'TRY',
+          currency: "TRY",
           predicted_ltv: 10000, // Müşteri yaşam boyu değeri
           // Lead kalitesi için ekstra parametreler
           custom_data: {
             monthly_budget: payload.monthly_budget,
             company_name: payload.company_name,
             sector: payload.sector,
-            lead_source: payload.utm_source || 'doganventures_website'
-          }
+            lead_source: payload.utm_source || "doganventures_website",
+          },
         });
-        
+
         // Konsol'a başarılı pixel tetikleme mesajı
-        console.log('🎯 Facebook Lead Pixel tetiklendi - Potansiyel müşteri kaydedildi!');
-        
+        console.log(
+          "🎯 Facebook Lead Pixel tetiklendi - Potansiyel müşteri kaydedildi!"
+        );
+
         // Ek olarak CompleteRegistration eventi - daha iyi optimizasyon için
-        fbq('track', 'CompleteRegistration', {
-          content_name: 'DOGANVENTURES Lead Registration Complete',
+        fbq("track", "CompleteRegistration", {
+          content_name: "DOGANVENTURES Lead Registration Complete",
           value: 1000,
-          currency: 'TRY'
+          currency: "TRY",
         });
-        
-        console.log('📝 Registration Complete eventi tetiklendi!');
+
+        console.log("📝 Registration Complete eventi tetiklendi!");
       } else {
-        console.warn('⚠️ Facebook Pixel bulunamadı - Lead tracking çalışmıyor!');
-        console.log('🔧 Alternative tracking method için manual request gönderiliyor...');
-        
+        console.warn(
+          "⚠️ Facebook Pixel bulunamadı - Lead tracking çalışmıyor!"
+        );
+        console.log(
+          "🔧 Alternative tracking method için manual request gönderiliyor..."
+        );
+
         // Alternative method - direct fetch to Facebook
         try {
-          fetch(`https://www.facebook.com/tr?id=1049814317342355&ev=Lead&noscript=1&cd[content_name]=DOGANVENTURES Lead Form&cd[value]=1000&cd[currency]=TRY`, {
-            method: 'GET',
-            mode: 'no-cors'
-          });
-          console.log('📊 Alternative Facebook tracking sent');
+          fetch(
+            `https://www.facebook.com/tr?id=1049814317342355&ev=Lead&noscript=1&cd[content_name]=DOGANVENTURES Lead Form&cd[value]=1000&cd[currency]=TRY`,
+            {
+              method: "GET",
+              mode: "no-cors",
+            }
+          );
+          console.log("📊 Alternative Facebook tracking sent");
         } catch (altError) {
-          console.warn('⚠️ Alternative tracking de çalışmadı:', altError);
+          console.warn("⚠️ Alternative tracking de çalışmadı:", altError);
         }
       }
 

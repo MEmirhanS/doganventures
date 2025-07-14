@@ -552,7 +552,7 @@ const ServiceCard = memo(({ service }) => {
         }}
       >
         <span
-          onClick={() => trackCtaClick('Service Card - Detaylı Bilgi')}
+          onClick={() => trackCtaClick("Service Card - Detaylı Bilgi")}
           style={{
             color: "var(--primary-accent)",
             fontSize: "0.9rem",
@@ -974,36 +974,40 @@ function App() {
   // Pixel Tracking Functions
   const trackPageView = () => {
     // Facebook Pixel
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'PageView');
+    if (typeof fbq !== "undefined") {
+      fbq("track", "PageView");
     }
   };
 
   const trackVideoPlay = () => {
     // Facebook Pixel
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'ViewContent', {
-        content_type: 'video',
-        content_name: 'Hero Video - DOGANVENTURES'
+    if (typeof fbq !== "undefined") {
+      fbq("track", "ViewContent", {
+        content_type: "video",
+        content_name: "Hero Video - DOGANVENTURES",
       });
     }
   };
 
   const trackCtaClick = (ctaName) => {
     // Facebook Pixel
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'InitiateCheckout', {
+    if (typeof fbq !== "undefined") {
+      fbq("track", "InitiateCheckout", {
         content_name: ctaName,
         value: 1000,
-        currency: 'TRY'
+        currency: "TRY",
       });
-      
+
       // Önemli CTA'lar için Lead Intent tracking
-      if (ctaName.includes('Ücretsiz Analiz') || ctaName.includes('Strateji Analizi') || ctaName.includes('Hediye Analiz')) {
-        fbq('track', 'Lead', {
+      if (
+        ctaName.includes("Ücretsiz Analiz") ||
+        ctaName.includes("Strateji Analizi") ||
+        ctaName.includes("Hediye Analiz")
+      ) {
+        fbq("track", "Lead", {
           content_name: `Lead Intent - ${ctaName}`,
           value: 500,
-          currency: 'TRY'
+          currency: "TRY",
         });
         console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
       }
@@ -1400,7 +1404,7 @@ function App() {
           <button
             className="btn btn-primary"
             onClick={() => {
-              trackCtaClick('Header CTA - Ücretsiz Analiz');
+              trackCtaClick("Header CTA - Ücretsiz Analiz");
               setShowModal(true);
             }}
             style={{ padding: "0.75rem 1.5rem" }}
@@ -1423,7 +1427,7 @@ function App() {
           {/* Urgency Timer */}
           <div
             onClick={() => {
-              trackCtaClick('Urgency Timer - ACİL FIRSAT Click');
+              trackCtaClick("Urgency Timer - ACİL FIRSAT Click");
               setShowModal(true);
             }}
             className="pulse"
@@ -1509,7 +1513,7 @@ function App() {
             <button
               className="btn btn-primary btn-large"
               onClick={() => {
-                trackCtaClick('Hero CTA - Ücretsiz Strateji Analizi');
+                trackCtaClick("Hero CTA - Ücretsiz Strateji Analizi");
                 setShowModal(true);
               }}
             >
@@ -1522,7 +1526,7 @@ function App() {
             <button
               className="btn btn-secondary btn-large"
               onClick={() => {
-                trackCtaClick('Hero Section - Başarı Hikayelerini İzle');
+                trackCtaClick("Hero Section - Başarı Hikayelerini İzle");
                 document
                   .getElementById("case-studies")
                   .scrollIntoView({ behavior: "smooth" });
@@ -1997,12 +2001,12 @@ function App() {
                     <div className="proof-info">
                       <h4>2025 Dijital Pazarlama Trendleri</h4>
                       <p>38 Sayfa Detaylı Analiz</p>
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="proof-download-btn"
                         onClick={(e) => {
                           e.preventDefault();
-                          trackCtaClick('Proof Download - PDF Trends Report');
+                          trackCtaClick("Proof Download - PDF Trends Report");
                         }}
                       >
                         <i className="fas fa-download me-2"></i>
@@ -2017,12 +2021,14 @@ function App() {
                     <div className="proof-info">
                       <h4>Vaka Analizi: E-ticaret Büyüme</h4>
                       <p>12 Aylık Başarı Hikayesi</p>
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="proof-download-btn"
                         onClick={(e) => {
                           e.preventDefault();
-                          trackCtaClick('Proof Download - PowerPoint E-ticaret Vaka');
+                          trackCtaClick(
+                            "Proof Download - PowerPoint E-ticaret Vaka"
+                          );
                         }}
                       >
                         <i className="fas fa-download me-2"></i>
@@ -2037,12 +2043,14 @@ function App() {
                     <div className="proof-info">
                       <h4>ROI Hesaplama Araçları</h4>
                       <p>Detaylı Metrik Takibi</p>
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="proof-download-btn"
                         onClick={(e) => {
                           e.preventDefault();
-                          trackCtaClick('Proof Download - Excel ROI Calculator');
+                          trackCtaClick(
+                            "Proof Download - Excel ROI Calculator"
+                          );
                         }}
                       >
                         <i className="fas fa-download me-2"></i>
@@ -2078,7 +2086,7 @@ function App() {
           <button
             className="btn btn-primary btn-large"
             onClick={() => {
-              trackCtaClick('CTA Section - Hediye Analizimi Hemen Al');
+              trackCtaClick("CTA Section - Hediye Analizimi Hemen Al");
               setShowModal(true);
             }}
             style={{ fontSize: "1.2rem", padding: "1.5rem 3rem" }}
@@ -2305,7 +2313,9 @@ function App() {
             <button
               className="btn btn-primary btn-premium"
               onClick={() => {
-                trackCtaClick('FAQ Section - Sormak İstediğiniz Başka Bir Soru');
+                trackCtaClick(
+                  "FAQ Section - Sormak İstediğiniz Başka Bir Soru"
+                );
                 setShowModal(true);
               }}
               style={{
