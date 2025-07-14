@@ -1149,18 +1149,19 @@ function App() {
         currency: "TRY",
       });
 
-      // Önemli CTA'lar için Lead Intent tracking
+      // Önemli CTA'lar için ViewContent tracking (Lead değil)
       if (
         ctaName.includes("Ücretsiz Analiz") ||
         ctaName.includes("Strateji Analizi") ||
         ctaName.includes("Hediye Analiz")
       ) {
-        fbq("track", "Lead", {
-          content_name: `Lead Intent - ${ctaName}`,
-          value: 500,
+        fbq("track", "ViewContent", {
+          content_name: `CTA Interest - ${ctaName}`,
+          content_category: "Lead Form Interest",
+          value: 100,
           currency: "TRY",
         });
-        console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
+        console.log(`🎯 CTA Interest tracked for: ${ctaName}`);
       }
     }
   };

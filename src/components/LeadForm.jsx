@@ -124,20 +124,35 @@ export default function LeadForm() {
       // Supabase'e veri gönderme
       try {
         console.log("📊 Supabase'e veri gönderiliyor...");
+        console.log("📊 Payload:", payload);
+        
+        // Test connection first
+        const { data: testData, error: testError } = await supabase
+          .from('leads')
+          .select('count', { count: 'exact', head: true });
+          
+        if (testError) {
+          console.error("❌ Supabase table test failed:", testError);
+          throw new Error(`Tablo erişim hatası: ${testError.message}`);
+        }
+        
+        console.log("✅ Supabase table accessible");
+        
         const { data: supabaseData, error: supabaseError } = await supabase
           .from('leads')
-          .insert([payload]);
+          .insert([payload])
+          .select();
 
         if (supabaseError) {
-          console.error("❌ Supabase hatası:", supabaseError);
-          throw new Error(`Veritabanı hatası: ${supabaseError.message}`);
+          console.error("❌ Supabase insert hatası:", supabaseError);
+          throw new Error(`Veritabanı kayıt hatası: ${supabaseError.message}`);
         }
         
         console.log("✅ Supabase'e veri başarıyla kaydedildi:", supabaseData);
       } catch (supabaseErr) {
-        console.error("❌ Supabase bağlantı hatası:", supabaseErr);
+        console.error("❌ Supabase işlem hatası:", supabaseErr);
+        console.warn("⚠️ Veri veritabanına kaydedilemedi:", supabaseErr.message);
         // Supabase hatası form gönderimini engellemez, sadece log'lar
-        console.warn("⚠️ Veri veritabanına kaydedilemedi, ancak diğer işlemler devam ediyor");
       }
 
       try {
