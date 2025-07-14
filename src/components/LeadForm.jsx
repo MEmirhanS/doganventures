@@ -68,6 +68,11 @@ export default function LeadForm() {
 
       console.log("📝 Form data hazırlanıyor:", payload);
 
+      // Debug Supabase import
+      console.log("🔧 Supabase Debug:");
+      console.log("supabase object:", typeof supabase);
+      console.log("supabase defined:", supabase !== undefined);
+
       // Facebook Pixel Lead Event - Potansiyel Müşteri Avlama
       if (typeof fbq !== "undefined") {
         fbq("track", "Lead", {
@@ -123,15 +128,31 @@ export default function LeadForm() {
 
       // Supabase'e kaydet (Non-blocking)
       try {
+        console.log("🔄 Supabase'e kaydetme başlıyor...");
+        
+        if (!supabase) {
+          throw new Error("Supabase client tanımlanmamış");
+        }
+        
         const { data, error } = await supabase
           .from("leads")
           .insert([payload])
           .select();
         
-        if (error) throw error;
+        if (error) {
+          console.error("❌ Supabase error details:", error);
+          throw error;
+        }
+        
         console.log("✅ Supabase'e başarıyla kaydedildi:", data);
       } catch (supabaseErr) {
-        console.warn("⚠️ Supabase kaydetme hatası:", supabaseErr);
+        console.error("❌ Supabase kaydetme hatası (detaylı):", {
+          message: supabaseErr.message,
+          details: supabaseErr.details,
+          hint: supabaseErr.hint,
+          code: supabaseErr.code
+        });
+        
         // Supabase hatası form gönderimini engellemez
       }
 
