@@ -1290,9 +1290,9 @@ function App() {
     }
     // Formu gönder, bildirim gösterme
     setIsSubmitted(true);
-    
+
     console.log("📝 Form submission başlıyor...");
-    
+
     // Map frontend fields to Supabase schema
     const payload = {
       full_name: formData.name,
@@ -1314,9 +1314,9 @@ function App() {
         "main_contact_form",
       created_at: new Date().toISOString(),
     };
-    
+
     console.log("📊 Lead payload hazır:", payload);
-    
+
     try {
       // Validate required fields
       if (
@@ -1337,9 +1337,9 @@ function App() {
         .insert([payload])
         .select();
       if (error) throw new Error(error.message);
-      
+
       console.log("✅ Lead Supabase'e kaydedildi:", data);
-      
+
       // Facebook Pixel Lead Event - LEAD TRACKING
       if (typeof fbq !== "undefined") {
         fbq("track", "Lead", {
@@ -1356,7 +1356,9 @@ function App() {
         });
         console.log("🎯 Facebook Lead Pixel tetiklendi - LEAD ALGILANDI!");
       } else {
-        console.warn("⚠️ Facebook Pixel bulunamadı - Lead tracking çalışmıyor!");
+        console.warn(
+          "⚠️ Facebook Pixel bulunamadı - Lead tracking çalışmıyor!"
+        );
       }
       // Send Telegram notification
       try {
@@ -1876,6 +1878,198 @@ function App() {
       </section>
       {/* Premium Brands Section - Danışmanlık Hizmetleri */}
       <PremiumBrandsSection />
+      
+      {/* Bizimle Çalışan Markalar Section */}
+      <section
+        className="section"
+        style={{
+          background: "linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(184, 134, 11, 0.95) 100%)",
+          position: "relative",
+          overflow: "hidden",
+          padding: "3rem 0",
+        }}
+      >
+        {/* Background decorations */}
+        <div
+          style={{
+            position: "absolute",
+            top: "10%",
+            right: "5%",
+            width: "200px",
+            height: "200px",
+            background: "radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "15%",
+            left: "10%",
+            width: "150px",
+            height: "150px",
+            background: "radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div className="container">
+          <div className="text-center mb-4">
+            <h2 
+              className="mb-3"
+              style={{
+                color: "var(--primary-white)",
+                textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+                fontSize: "2.5rem",
+                fontWeight: "700",
+              }}
+            >
+              Bizimle Çalışan Markalar
+            </h2>
+            <p
+              style={{
+                maxWidth: "600px",
+                margin: "0 auto",
+                fontSize: "1.1rem",
+                color: "rgba(255, 255, 255, 0.9)",
+                textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              Türkiye'nin önde gelen markalarının güvendiği çözüm ortağıyız
+            </p>
+          </div>
+
+          {/* Logo Marquee Container */}
+          <div
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              background: "rgba(255, 255, 255, 0.15)",
+              borderRadius: "20px",
+              padding: "2rem 0",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div
+              className="brands-marquee"
+              style={{
+                display: "flex",
+                animation: "marqueeScroll 60s linear infinite",
+                width: "200%",
+              }}
+            >
+              {/* First set of logos */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  width: "50%",
+                  padding: "0 2rem",
+                }}
+              >
+                {[
+                  "alkış.png",
+                  "artife.png", 
+                  "besttem.png",
+                  "freemen.png",
+                  "gülfem.png",
+                  "ispanyolcaonline.png",
+                  "kutsalhaber.png"
+                ].map((logo, index) => (
+                  <div
+                    key={`first-${index}`}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.9)",
+                      borderRadius: "12px",
+                      padding: "1rem",
+                      margin: "0 0.5rem",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                      transition: "transform 0.3s ease",
+                      minWidth: "120px",
+                      height: "80px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+                  >
+                    <img
+                      src={`/assets/company-logos/${logo}`}
+                      alt={`${logo.replace('.png', '')} Logo`}
+                      style={{
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                        objectFit: "contain",
+                        filter: "brightness(0.8) saturate(1.1)",
+                      }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Second set of logos */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  width: "50%",
+                  padding: "0 2rem",
+                }}
+              >
+                {[
+                  "metinbingöl.png",
+                  "mialosi.png",
+                  "nortsofa.png",
+                  "özgüvenakademi.png",
+                  "pelda.png",
+                  "personaljesus.png",
+                  "supx.png"
+                ].map((logo, index) => (
+                  <div
+                    key={`second-${index}`}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.9)",
+                      borderRadius: "12px",
+                      padding: "1rem",
+                      margin: "0 0.5rem",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                      transition: "transform 0.3s ease",
+                      minWidth: "120px",
+                      height: "80px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+                  >
+                    <img
+                      src={`/assets/company-logos/${logo}`}
+                      alt={`${logo.replace('.png', '')} Logo`}
+                      style={{
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                        objectFit: "contain",
+                        filter: "brightness(0.8) saturate(1.1)",
+                      }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section
         id="case-studies"

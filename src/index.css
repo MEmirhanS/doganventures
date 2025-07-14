@@ -664,6 +664,15 @@ a:hover {
   }
 }
 
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes simplePulse {
   0% {
     transform: scale(1);

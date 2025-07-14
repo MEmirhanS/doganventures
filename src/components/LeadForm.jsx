@@ -76,9 +76,9 @@ export default function LeadForm() {
           .from("leads")
           .insert([payload])
           .select();
-        
+
         if (error) throw error;
-        
+
         console.log("✅ Lead Supabase'e kaydedildi:", data);
         leadSaved = true;
       } catch (supabaseError) {
@@ -154,7 +154,7 @@ export default function LeadForm() {
       if (typeof fbq !== "undefined") {
         fbq("track", "Lead", {
           content_name: "DOGANVENTURES Premium Consultation Lead",
-          content_category: "Business Consultation", 
+          content_category: "Business Consultation",
           value: 1000,
           currency: "TRY",
           custom_data: {
@@ -169,9 +169,13 @@ export default function LeadForm() {
 
       // 4. Success message
       if (leadSaved || telegramSent) {
-        alert("✅ Başvurunuz başarıyla alındı! En kısa sürede size dönüş yapacağız.");
+        alert(
+          "✅ Başvurunuz başarıyla alındı! En kısa sürede size dönüş yapacağız."
+        );
       } else {
-        alert("⚠️ Sistem hatası oluştu. Lütfen info@doganventures.com adresine e-posta gönderin.");
+        alert(
+          "⚠️ Sistem hatası oluştu. Lütfen info@doganventures.com adresine e-posta gönderin."
+        );
       }
       resetForm();
     } catch (err) {
