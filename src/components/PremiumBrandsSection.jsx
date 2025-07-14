@@ -11,7 +11,7 @@ const PremiumBrandsSection = () => {
       title: "Stratejik Büyüme",
       description:
         "Pazarlama, satış ve dijital dönüşümde sektörünüze özel, ölçülebilir büyüme stratejileri.",
-      icon: "fas fa-chart-line",
+      icon: "fas fa-rocket",
       features: [
         "Hedef pazar ve müşteri analizi",
         "Gelir artırıcı strateji planları",
@@ -24,7 +24,7 @@ const PremiumBrandsSection = () => {
       title: "Yönetici & Ekip Gelişimi",
       description:
         "Liderlik, ekip motivasyonu ve kurumsal kültürde sürdürülebilir gelişim programları.",
-      icon: "fas fa-users",
+      icon: "fas fa-users-cog",
       features: [
         "Yönetici koçluğu ve mentorluk",
         "Takım içi iletişim ve motivasyon",
@@ -37,7 +37,7 @@ const PremiumBrandsSection = () => {
       title: "İnovasyon & Dijitalleşme",
       description:
         "Yeni nesil iş modelleri, dijitalleşme ve inovasyon odaklı dönüşüm projeleri.",
-      icon: "fas fa-lightbulb",
+      icon: "fas fa-brain",
       features: [
         "İnovasyon kültürü ve Ar-Ge danışmanlığı",
         "Dijital ürün ve servis geliştirme",
@@ -134,8 +134,8 @@ const PremiumBrandsSection = () => {
               height: "80px",
               margin: "0 auto",
               background: isActive
-                ? "linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.1))"
-                : "linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05))",
+                ? "linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.15))"
+                : "linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1))",
               borderRadius: "20px",
               border: isActive
                 ? "2px solid rgba(212, 175, 55, 0.5)"
@@ -154,7 +154,7 @@ const PremiumBrandsSection = () => {
             <i
               className={service.icon}
               style={{
-                fontSize: "2.5rem",
+                fontSize: "2.8rem",
                 color: isActive
                   ? "rgba(212, 175, 55, 1)"
                   : "rgba(212, 175, 55, 0.9)",
