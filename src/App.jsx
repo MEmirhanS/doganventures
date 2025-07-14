@@ -578,12 +578,12 @@ const ServiceCard = memo(({ service }) => {
 
 const TestimonialCard = memo(({ testimonial }) => {
   const [ref, isVisible] = useIntersectionObserver();
-  
+
   // Professional business photos array for random backgrounds
   const professionalBackgrounds = [
     // Use existing testimonial photos as base (different combinations)
     "/testimonials/mehmet-ozkan.jpg",
-    "/testimonials/ayse-demir.jpg", 
+    "/testimonials/ayse-demir.jpg",
     "/testimonials/can-yilmaz.jpg",
     "/testimonials/zeynep-kaya.jpg",
     "/testimonials/ahmet-yildiz.jpg",
@@ -607,37 +607,38 @@ const TestimonialCard = memo(({ testimonial }) => {
     "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=150&h=150&fit=crop&crop=face",
     "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
     "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1584999734482-0361aecad844?w=150&h=150&fit=crop&crop=face"
+    "https://images.unsplash.com/photo-1584999734482-0361aecad844?w=150&h=150&fit=crop&crop=face",
   ];
-  
+
   // Get consistent random background for each testimonial
   const getConsistentBackground = (name) => {
     // Use name hash to get consistent random selection
     let hash = 0;
     for (let i = 0; i < name.length; i++) {
       const char = name.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
+      hash = (hash << 5) - hash + char;
       hash = hash & hash; // Convert to 32bit integer
     }
-    
+
     // Filter out the testimonial's own image path
-    const normalizedName = name.toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/ş/g, 's')
-      .replace(/ç/g, 'c')
-      .replace(/ğ/g, 'g')
-      .replace(/ü/g, 'u')
-      .replace(/ö/g, 'o')
-      .replace(/ı/g, 'i');
-    
-    const availablePhotos = professionalBackgrounds.filter(photo => 
-      !photo.includes(normalizedName)
+    const normalizedName = name
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/ş/g, "s")
+      .replace(/ç/g, "c")
+      .replace(/ğ/g, "g")
+      .replace(/ü/g, "u")
+      .replace(/ö/g, "o")
+      .replace(/ı/g, "i");
+
+    const availablePhotos = professionalBackgrounds.filter(
+      (photo) => !photo.includes(normalizedName)
     );
-    
+
     const index = Math.abs(hash) % availablePhotos.length;
     return availablePhotos[index];
   };
-  
+
   const backgroundImage = getConsistentBackground(testimonial.name);
 
   // State for image loading
@@ -689,7 +690,7 @@ const TestimonialCard = memo(({ testimonial }) => {
             }}
             onLoad={() => setBackgroundLoaded(true)}
           />
-          
+
           {/* Loading placeholder */}
           {!backgroundLoaded && (
             <div
@@ -699,12 +700,13 @@ const TestimonialCard = memo(({ testimonial }) => {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                background: "linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(30, 30, 35, 0.2))",
+                background:
+                  "linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(30, 30, 35, 0.2))",
                 zIndex: 1,
               }}
             />
           )}
-          
+
           {/* Hidden image for loading detection */}
           <img
             src={backgroundImage}
@@ -713,7 +715,7 @@ const TestimonialCard = memo(({ testimonial }) => {
             onLoad={() => setBackgroundLoaded(true)}
             onError={() => setBackgroundLoaded(true)}
           />
-          
+
           {/* Color overlay for brand consistency */}
           <div
             style={{
@@ -722,11 +724,12 @@ const TestimonialCard = memo(({ testimonial }) => {
               left: 0,
               width: "100%",
               height: "100%",
-              background: "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 30, 35, 0.25) 100%)",
+              background:
+                "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 30, 35, 0.25) 100%)",
               zIndex: 2,
             }}
           />
-          
+
           {/* Blurred testimonial photo overlay */}
           <img
             src={testimonial.image}
@@ -749,7 +752,7 @@ const TestimonialCard = memo(({ testimonial }) => {
             onLoad={() => setTestimonialLoaded(true)}
             onError={() => setTestimonialLoaded(true)}
           />
-          
+
           {/* Final glow accent */}
           <div
             style={{
@@ -758,7 +761,8 @@ const TestimonialCard = memo(({ testimonial }) => {
               left: 0,
               width: "100%",
               height: "100%",
-              background: "radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.3) 0%, transparent 60%)",
+              background:
+                "radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.3) 0%, transparent 60%)",
               zIndex: 4,
               opacity: 0.6,
             }}
@@ -1695,6 +1699,430 @@ function App() {
           </div>
         </div>
       </section>
+      
+      {/* Bizimle Çalışan Markalar Section */}
+      <section
+        className="section"
+        style={{
+          background: "linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Background decoration */}
+        <div
+          style={{
+            position: "absolute",
+            top: "10%",
+            right: "5%",
+            width: "200px",
+            height: "200px",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "15%",
+            left: "10%",
+            width: "150px",
+            height: "150px",
+            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div className="container">
+          <div className="text-center mb-5">
+            <div
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(to right, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.2))",
+                padding: "0.5rem 2rem",
+                borderRadius: "25px",
+                marginBottom: "1.5rem",
+                border: "1px solid rgba(212, 175, 55, 0.4)",
+                fontSize: "0.9rem",
+                fontWeight: "600",
+                color: "var(--primary-accent)",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              Güvenilen Partner
+            </div>
+            
+            <h2
+              style={{
+                fontSize: "2.8rem",
+                marginBottom: "1.5rem",
+                fontWeight: "800",
+                background: "linear-gradient(to right, #ffffff, #d4af37, #ffffff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              Bizimle Çalışan Markalar
+            </h2>
+            
+            <p
+              style={{
+                maxWidth: "700px",
+                margin: "0 auto",
+                fontSize: "1.1rem",
+                color: "rgba(255, 255, 255, 0.85)",
+                lineHeight: "1.6",
+                fontWeight: "400",
+              }}
+            >
+              Sektöründe öncü olan markaların güvenini kazandık. Her biri kendi alanında lider olan bu şirketlerle birlikte büyüyor, başarılarına ortak oluyoruz.
+            </p>
+          </div>
+
+          {/* Brands Grid */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: "2rem",
+              maxWidth: "1200px",
+              margin: "0 auto",
+              padding: "3rem 0",
+            }}
+          >
+            {[
+              {
+                name: "North Sofa",
+                logo: "/assets/company-logos/north sofa logo.png",
+                category: "Mobilya & Yaşam",
+                description: "Premium mobilya ve ev tekstili",
+                highlight: true,
+              },
+              {
+                name: "Metin Bingöl",
+                logo: "/assets/company-logos/metin bingöl logo.png",
+                category: "Eğitim & Gelişim",
+                description: "Kişisel gelişim ve eğitim",
+                highlight: true,
+              },
+              {
+                name: "İspanyolca Online",
+                logo: "/assets/company-logos/ispanyolca online.png",
+                category: "Online Eğitim",
+                description: "Dil eğitimi ve online kurslar",
+                highlight: true,
+              },
+              {
+                name: "TechCorp Solutions",
+                logo: "/assets/company-logos/1 kopyası.png",
+                category: "Teknoloji",
+                description: "Yazılım ve teknoloji çözümleri",
+                highlight: false,
+              },
+              {
+                name: "E-Commerce Pro",
+                logo: "/assets/company-logos/2.png",
+                category: "E-ticaret",
+                description: "Online satış platformları",
+                highlight: false,
+              },
+              {
+                name: "FinanceFlow",
+                logo: "/assets/company-logos/3.png",
+                category: "Fintech",
+                description: "Dijital finansal hizmetler",
+                highlight: false,
+              },
+              {
+                name: "HealthCare Plus",
+                logo: "/assets/company-logos/4.png",
+                category: "Sağlık",
+                description: "Sağlık teknolojileri",
+                highlight: false,
+              },
+              {
+                name: "BeautyTech",
+                logo: "/assets/company-logos/5.png",
+                category: "Güzellik",
+                description: "Kozmetik ve kişisel bakım",
+                highlight: false,
+              },
+            ].map((brand, index) => (
+              <div
+                key={index}
+                className={`brand-card ${brand.highlight ? 'highlight' : ''}`}
+                style={{
+                  background: brand.highlight
+                    ? "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 30, 35, 0.9) 100%)"
+                    : "linear-gradient(135deg, rgba(30, 30, 35, 0.6) 0%, rgba(20, 20, 25, 0.8) 100%)",
+                  borderRadius: "16px",
+                  padding: "2rem 1.5rem",
+                  textAlign: "center",
+                  border: brand.highlight
+                    ? "2px solid rgba(212, 175, 55, 0.3)"
+                    : "1px solid rgba(255, 255, 255, 0.1)",
+                  boxShadow: brand.highlight
+                    ? "0 15px 40px rgba(212, 175, 55, 0.2), 0 0 30px rgba(212, 175, 55, 0.1)"
+                    : "0 10px 30px rgba(0, 0, 0, 0.3)",
+                  transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                  cursor: "pointer",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px) scale(1.02)";
+                  e.currentTarget.style.boxShadow = brand.highlight
+                    ? "0 20px 50px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15)"
+                    : "0 15px 40px rgba(0, 0, 0, 0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
+                  e.currentTarget.style.boxShadow = brand.highlight
+                    ? "0 15px 40px rgba(212, 175, 55, 0.2), 0 0 30px rgba(212, 175, 55, 0.1)"
+                    : "0 10px 30px rgba(0, 0, 0, 0.3)";
+                }}
+                onClick={() => trackCtaClick(`Brand Click - ${brand.name}`)}
+              >
+                {/* Glow effect for highlighted brands */}
+                {brand.highlight && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-2px",
+                      left: "-2px",
+                      right: "-2px",
+                      bottom: "-2px",
+                      background: "linear-gradient(45deg, rgba(212, 175, 55, 0.3), transparent, rgba(212, 175, 55, 0.3))",
+                      borderRadius: "18px",
+                      zIndex: -1,
+                      opacity: 0.6,
+                    }}
+                  />
+                )}
+
+                {/* Logo Container */}
+                <div
+                  style={{
+                    width: "120px",
+                    height: "80px",
+                    margin: "0 auto 1.5rem",
+                    background: "rgba(255, 255, 255, 0.95)",
+                    borderRadius: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)",
+                    border: "1px solid rgba(212, 175, 55, 0.2)",
+                  }}
+                >
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    loading="lazy"
+                    style={{
+                      maxWidth: "100px",
+                      maxHeight: "60px",
+                      objectFit: "contain",
+                      filter: "brightness(0.9) contrast(1.1)",
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.parentElement.innerHTML = `<div style="font-size: 0.8rem; color: #666; font-weight: 600;">${brand.name}</div>`;
+                    }}
+                  />
+                </div>
+
+                {/* Brand Info */}
+                <div
+                  style={{
+                    color: brand.highlight ? "var(--primary-accent)" : "rgba(255, 255, 255, 0.9)",
+                    fontSize: "0.85rem",
+                    fontWeight: "600",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {brand.category}
+                </div>
+                
+                <div
+                  style={{
+                    color: "rgba(255, 255, 255, 0.7)",
+                    fontSize: "0.75rem",
+                    lineHeight: "1.3",
+                    marginBottom: "1rem",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {brand.description}
+                </div>
+                
+                {brand.highlight && (
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "rgba(212, 175, 55, 0.8)",
+                      fontWeight: "500",
+                      background: "rgba(212, 175, 55, 0.1)",
+                      padding: "0.25rem 0.75rem",
+                      borderRadius: "12px",
+                      display: "inline-block",
+                      border: "1px solid rgba(212, 175, 55, 0.3)",
+                    }}
+                  >
+                    ✨ Premium Partner
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Trust Indicators */}
+          <div
+            style={{
+              marginTop: "4rem",
+              textAlign: "center",
+              background: "rgba(30, 30, 35, 0.6)",
+              borderRadius: "20px",
+              padding: "2.5rem 2rem",
+              border: "1px solid rgba(212, 175, 55, 0.2)",
+              boxShadow: "0 15px 40px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: "1.5rem",
+                marginBottom: "1.5rem",
+                color: "var(--primary-accent)",
+                fontWeight: "700",
+              }}
+            >
+              <i className="fas fa-handshake" style={{ marginRight: "0.5rem" }}></i>
+              Güvenilir Ortaklık
+            </h3>
+            
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gap: "2rem",
+                maxWidth: "800px",
+                margin: "0 auto",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "800",
+                    color: "var(--primary-accent)",
+                    marginBottom: "0.5rem",
+                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  50+
+                </div>
+                <div
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.4",
+                    fontWeight: "500",
+                  }}
+                >
+                  Başarılı Marka<br />Ortaklığı
+                </div>
+              </div>
+              
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "800",
+                    color: "var(--primary-accent)",
+                    marginBottom: "0.5rem",
+                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  98%
+                </div>
+                <div
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.4",
+                    fontWeight: "500",
+                  }}
+                >
+                  Müşteri Memnuniyet<br />Oranı
+                </div>
+              </div>
+              
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "800",
+                    color: "var(--primary-accent)",
+                    marginBottom: "0.5rem",
+                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  5+
+                </div>
+                <div
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.4",
+                    fontWeight: "500",
+                  }}
+                >
+                  Yıllık Deneyim<br />Ortalaması
+                </div>
+              </div>
+              
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "800",
+                    color: "var(--primary-accent)",
+                    marginBottom: "0.5rem",
+                    background: "linear-gradient(45deg, #d4af37, #f4e4bc)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  24/7
+                </div>
+                <div
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.4",
+                    fontWeight: "500",
+                  }}
+                >
+                  Destek ve<br />Danışmanlık
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Services & Information Video Section */}
       <section
         className="section-narrow"

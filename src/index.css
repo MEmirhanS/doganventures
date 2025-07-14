@@ -1144,3 +1144,107 @@ a:hover {
     max-width: calc(100% - 20px) !important;
   }
 }
+
+/* Brand Cards Styles */
+.brand-card {
+  will-change: transform, box-shadow;
+  transform-origin: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.brand-card.highlight {
+  position: relative;
+}
+
+.brand-card.highlight::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, 
+    rgba(212, 175, 55, 0.3) 0%, 
+    rgba(212, 175, 55, 0.1) 25%, 
+    transparent 50%, 
+    rgba(212, 175, 55, 0.1) 75%, 
+    rgba(212, 175, 55, 0.3) 100%
+  );
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.brand-card.highlight:hover::before {
+  opacity: 1;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1200px) {
+  .brand-card {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-card {
+    padding: 1.25rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .brand-card img {
+    max-width: 80px !important;
+    max-height: 50px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-card {
+    padding: 1rem 0.5rem;
+  }
+  
+  .brand-card h3 {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Animation for brand loading */
+@keyframes brandFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.brand-card {
+  animation: brandFadeIn 0.6s ease-out forwards;
+}
+
+.brand-card:nth-child(1) { animation-delay: 0.1s; }
+.brand-card:nth-child(2) { animation-delay: 0.2s; }
+.brand-card:nth-child(3) { animation-delay: 0.3s; }
+.brand-card:nth-child(4) { animation-delay: 0.4s; }
+.brand-card:nth-child(5) { animation-delay: 0.5s; }
+.brand-card:nth-child(6) { animation-delay: 0.6s; }
+.brand-card:nth-child(7) { animation-delay: 0.7s; }
+.brand-card:nth-child(8) { animation-delay: 0.8s; }
+
+/* Enhanced glow effect for premium partners */
+.brand-card.highlight {
+  box-shadow: 
+    0 15px 40px rgba(212, 175, 55, 0.2), 
+    0 0 30px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(212, 175, 55, 0.1);
+}
+
+.brand-card.highlight:hover {
+  box-shadow: 
+    0 20px 50px rgba(212, 175, 55, 0.3), 
+    0 0 40px rgba(212, 175, 55, 0.15),
+    inset 0 1px 0 rgba(212, 175, 55, 0.2);
+}
