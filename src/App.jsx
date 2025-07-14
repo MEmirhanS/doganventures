@@ -2110,15 +2110,15 @@ function App() {
                     <div
                       key={`premium-first-${index}`}
                       style={{
-                        background: "linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.9))",
+                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
                         borderRadius: "16px",
                         padding: "1.2rem",
-                        border: "1px solid rgba(212, 175, 55, 0.4)",
+                        border: "1px solid rgba(212, 175, 55, 0.6)",
                         boxShadow: `
                           0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                          0 0 0 1px rgba(212, 175, 55, 0.3),
-                          0 0 15px rgba(212, 175, 55, 0.2)
+                          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                          0 0 0 1px rgba(212, 175, 55, 0.4),
+                          0 0 15px rgba(212, 175, 55, 0.3)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                         minWidth: "150px",
@@ -2205,15 +2205,15 @@ function App() {
                     <div
                       key={`premium-second-${index}`}
                       style={{
-                        background: "linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 248, 0.9))",
+                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
                         borderRadius: "16px",
                         padding: "1.2rem",
-                        border: "1px solid rgba(212, 175, 55, 0.4)",
+                        border: "1px solid rgba(212, 175, 55, 0.6)",
                         boxShadow: `
                           0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                          0 0 0 1px rgba(212, 175, 55, 0.3),
-                          0 0 15px rgba(212, 175, 55, 0.2)
+                          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                          0 0 0 1px rgba(212, 175, 55, 0.4),
+                          0 0 15px rgba(212, 175, 55, 0.3)
                         `,
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                         minWidth: "150px",
@@ -2231,19 +2231,21 @@ function App() {
                         e.currentTarget.style.transform = "translateY(-6px) scale(1.03)";
                         e.currentTarget.style.boxShadow = `
                           0 15px 35px rgba(0, 0, 0, 0.25),
-                          inset 0 1px 0 rgba(255, 255, 255, 1),
-                          0 0 0 1px rgba(212, 175, 55, 0.5),
-                          0 0 25px rgba(212, 175, 55, 0.3)
+                          inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                          0 0 0 1px rgba(212, 175, 55, 0.6),
+                          0 0 25px rgba(212, 175, 55, 0.4)
                         `;
+                        e.currentTarget.style.background = "linear-gradient(145deg, rgba(212, 175, 55, 0.95), rgba(244, 228, 188, 0.9))";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = "translateY(0) scale(1)";
                         e.currentTarget.style.boxShadow = `
                           0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                          0 0 0 1px rgba(212, 175, 55, 0.3),
-                          0 0 15px rgba(212, 175, 55, 0.2)
+                          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                          0 0 0 1px rgba(212, 175, 55, 0.4),
+                          0 0 15px rgba(212, 175, 55, 0.3)
                         `;
+                        e.currentTarget.style.background = "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))";
                       }}
                     >
                       {/* Premium Badge */}
@@ -2268,7 +2270,7 @@ function App() {
                           maxWidth: "100%",
                           maxHeight: "100%",
                           objectFit: "contain",
-                          filter: "brightness(1) saturate(1.1) contrast(1.1)",
+                          filter: "brightness(0.8) saturate(1.1) contrast(1.2)",
                           transition: "filter 0.3s ease",
                         }}
                         loading="lazy"
