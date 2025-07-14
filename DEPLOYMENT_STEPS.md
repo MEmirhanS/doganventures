@@ -1,6 +1,7 @@
 # 🚀 DOGANVENTURES DEPLOYMENT ADIMLARı LİSTESİ
 
 ## ✅ TAMAMLANAN İŞLER:
+
 - [x] Facebook Pixel entegrasyonu (ID: 1049814317342355)
 - [x] Lead tracking sistemi kurulumu
 - [x] CTA butonları tracking'i
@@ -15,6 +16,7 @@
 ## 🎯 YAPILACAKLAR LİSTESİ:
 
 ### 1️⃣ GITHUB'A PUSH (5 dakika)
+
 ```bash
 cd /Users/yunusemredogan/Desktop/doganventures
 git add .
@@ -23,6 +25,7 @@ git push --set-upstream origin main
 ```
 
 ### 2️⃣ VERCEl DEPLOY (10 dakika)
+
 1. **vercel.com** adresine git
 2. **Sign up/Login** yap (GitHub hesabınla bağlan)
 3. **"Import Git Repository"** butonuna bas
@@ -33,11 +36,13 @@ git push --set-upstream origin main
 8. **"Deploy"** butonuna bas
 
 ### 3️⃣ DEPLOYMENT KONTROLÜ (5 dakika)
+
 - [ ] Build başarılı mı kontrol et
 - [ ] Vercel URL'ini al (örn: doganventures.vercel.app)
 - [ ] Website açılıyor mu kontrol et
 
 ### 4️⃣ FACEBOOK PIXEL TESTİ (10 dakika)
+
 - [ ] **Chrome** browser aç
 - [ ] **Facebook Pixel Helper** extension yükle
 - [ ] **AdBlock'ları kapat**
@@ -51,6 +56,7 @@ git push --set-upstream origin main
   ```
 
 ### 5️⃣ LEAD TRACKING TESTİ (5 dakika)
+
 - [ ] Website'de forma bilgi gir
 - [ ] **"Gönder"** butonuna bas
 - [ ] Console'da şu mesajları gör:
@@ -60,6 +66,7 @@ git push --set-upstream origin main
   ```
 
 ### 6️⃣ FACEBOOK EVENTS MANAGER KONTROLÜ (10 dakika)
+
 - [ ] **business.facebook.com** → Events Manager
 - [ ] **Test Events** sekmesine git
 - [ ] **Website URL'ini gir** (Vercel URL'i)
@@ -70,12 +77,14 @@ git push --set-upstream origin main
   - InitiateCheckout events
 
 ### 7️⃣ CTA BUTONLARI TESTİ (5 dakika)
+
 - [ ] **"Ücretsiz Analiz Al"** butonuna tıkla
 - [ ] **"Strateji Analizi Al"** butonuna tıkla
 - [ ] Console'da tracking mesajlarını kontrol et
 - [ ] Facebook Events Manager'da InitiateCheckout eventlerini gör
 
 ### 8️⃣ META DOMAIN VERIFICATION (İsteğe bağlı - 24 saat)
+
 - [ ] **Meta Business Manager** → Events Manager → Pixel Settings → Domains
 - [ ] **Vercel URL'ini ekle** (örn: doganventures.vercel.app)
 - [ ] **Meta verification tag'ini** index.html'e ekle
@@ -86,6 +95,7 @@ git push --set-upstream origin main
 ## 🚨 SORUN GİDERME:
 
 ### GitHub Push Hatası:
+
 ```bash
 # Remote'u temizle ve tekrar ekle
 git remote remove origin
@@ -94,17 +104,20 @@ git push --set-upstream origin main
 ```
 
 ### Vercel Build Hatası:
+
 - Node.js version: 18+ olmalı
 - Build Command: `npm run build`
 - Output Directory: `dist`
 
 ### Facebook Pixel Çalışmıyor:
+
 - AdBlock'ları kapat
 - Incognito mode'da test et
 - Facebook Pixel Helper kullan
 - Console'da hata mesajlarını kontrol et
 
 ### Lead Events Görünmüyor:
+
 - Form gönderimini test et
 - Console'da lead tracking mesajlarını kontrol et
 - Meta Events Manager'da 5-10 dakika bekle
@@ -114,11 +127,13 @@ git push --set-upstream origin main
 ## 📊 BAŞARILI DEPLOYMENT SİNYALLERİ:
 
 ### ✅ Website Çalışıyor:
+
 - Vercel URL açılıyor
 - Tüm bölümler yükleniyor
 - Form gönderilebiliyor
 
 ### ✅ Facebook Pixel Aktif:
+
 ```
 ✅ Facebook Pixel initialized successfully
 🎯 Facebook Pixel loaded on production!
@@ -126,12 +141,14 @@ git push --set-upstream origin main
 ```
 
 ### ✅ Lead Tracking Çalışıyor:
+
 ```
 🎯 Facebook Lead Pixel tetiklendi!
 📝 Registration Complete eventi tetiklendi!
 ```
 
 ### ✅ Meta Events Manager:
+
 - PageView events geliyor
 - Lead events geliyor
 - CTA click events geliyor
@@ -141,12 +158,14 @@ git push --set-upstream origin main
 ## 🎯 TOPLAM SÜRE: ~45 dakika
 
 ### Kritik Adımlar (Mutlaka Yap):
+
 1. **GitHub Push** (5 dk)
 2. **Vercel Deploy** (10 dk)
 3. **Pixel Test** (10 dk)
 4. **Lead Test** (5 dk)
 
 ### İsteğe Bağlı:
+
 - Domain verification (24 saat)
 - Detaylı CTA testleri
 - A/B test setupları
@@ -156,6 +175,7 @@ git push --set-upstream origin main
 ## 🚀 İLK ADIM:
 
 **Şimdi şu komutu çalıştır:**
+
 ```bash
 cd /Users/yunusemredogan/Desktop/doganventures
 git add .
