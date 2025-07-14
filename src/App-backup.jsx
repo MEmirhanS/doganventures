@@ -1703,156 +1703,6 @@ function App() {
         </div>
       </section>
       
-      {/* Services & Information Video Section */}
-      <section
-        className="section-narrow"
-        style={{ background: "var(--bg-card)" }}
-      >
-        <div className="container text-center">
-          <h2 className="mb-4">Verdiğimiz Hizmetler & Biz Kimiz</h2>
-          <p
-            style={{
-              maxWidth: "700px",
-              margin: "0 auto 2rem",
-              color: "var(--text-light)",
-              fontSize: "1.1rem",
-              lineHeight: "1.6",
-            }}
-          >
-            Profesyonel ekibimiz ve benzersiz yaklaşımımızla, dijital pazarlama
-            ve iş geliştirme alanında doğru bilinen yanlışları düzeltiyoruz.
-            İşte fark yaratan metodolojimiz:
-          </p>
-          <div
-            style={{
-              maxWidth: "800px",
-              margin: "0 auto",
-              borderRadius: "20px",
-              overflow: "hidden",
-              boxShadow: "var(--shadow-heavy)",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                paddingBottom: "56.25%",
-                height: 0,
-              }}
-            >
-              <video
-                controls
-                autoPlay={false}
-                muted
-                preload="metadata"
-                poster="/assets/proofs/funnel-1.gif"
-                onPlay={() => trackVideoPlay()}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                }}
-              >
-                <source
-                  src="/assets/videos/satis-egitimi.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              gap: "2rem",
-              marginTop: "3rem",
-            }}
-          >
-            <div
-              style={{
-                maxWidth: "350px",
-                padding: "1.5rem",
-                background: "rgba(30, 30, 35, 0.6)",
-                borderRadius: "16px",
-                border: "1px solid rgba(212, 175, 55, 0.2)",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
-                textAlign: "left",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "1.2rem",
-                  color: "var(--primary-accent)",
-                  marginBottom: "1rem",
-                }}
-              >
-                <i
-                  className="fas fa-check-circle"
-                  style={{ marginRight: "8px" }}
-                ></i>
-                Doğru Bilinen Yanlışlar
-              </h3>
-              <p
-                style={{
-                  color: "var(--text-light)",
-                  fontSize: "0.95rem",
-                  lineHeight: "1.6",
-                }}
-              >
-                Dijital pazarlamada sadece reklam harcaması yapmanın yeterli
-                olduğu, hızlı sonuçlar alabileceğiniz ve herkesin aynı
-                stratejilerle başarılı olabileceği gibi yaygın yanılgıları
-                ortadan kaldırıyoruz.
-              </p>
-            </div>
-            <div
-              style={{
-                maxWidth: "350px",
-                padding: "1.5rem",
-                background: "rgba(30, 30, 35, 0.6)",
-                borderRadius: "16px",
-                border: "1px solid rgba(212, 175, 55, 0.2)",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
-                textAlign: "left",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "1.2rem",
-                  color: "var(--primary-accent)",
-                  marginBottom: "1rem",
-                }}
-              >
-                <i
-                  className="fas fa-lightbulb"
-                  style={{ marginRight: "8px" }}
-                ></i>
-                Benzersiz Yaklaşımımız
-              </h3>
-              <p
-                style={{
-                  color: "var(--text-light)",
-                  fontSize: "0.95rem",
-                  lineHeight: "1.6",
-                }}
-              >
-                Veri odaklı stratejilerimiz, sektör uzmanlığımız ve
-                kişiselleştirilmiş çözümlerimizle işletmenizin gerçek
-                potansiyelini ortaya çıkarıyor, sürdürülebilir büyüme
-                sağlıyoruz.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Premium Brands Section - Danışmanlık Hizmetleri */}
-      {/* <PremiumBrandsSection /> */}
-      
       {/* Bizimle Çalışan Markalar Section */}
       <section
         className="section"
@@ -1941,7 +1791,7 @@ function App() {
             <div className="marquee-container">
               <div 
                 className="marquee-content scroll-left" 
-                style={{ animationDuration: "60s" }}
+                style={{ animationDuration: "40s" }}
               >
                 {/* All brands in single row */}
                 {[
@@ -2249,6 +2099,155 @@ function App() {
         </div>
       </section>
       
+      {/* Services & Information Video Section */}
+      <section
+        className="section-narrow"
+        style={{ background: "var(--bg-card)" }}
+      >
+        <div className="container text-center">
+          <h2 className="mb-4">Verdiğimiz Hizmetler & Biz Kimiz</h2>
+          <p
+            style={{
+              maxWidth: "700px",
+              margin: "0 auto 2rem",
+              color: "var(--text-light)",
+              fontSize: "1.1rem",
+              lineHeight: "1.6",
+            }}
+          >
+            Profesyonel ekibimiz ve benzersiz yaklaşımımızla, dijital pazarlama
+            ve iş geliştirme alanında doğru bilinen yanlışları düzeltiyoruz.
+            İşte fark yaratan metodolojimiz:
+          </p>
+          <div
+            style={{
+              maxWidth: "800px",
+              margin: "0 auto",
+              borderRadius: "20px",
+              overflow: "hidden",
+              boxShadow: "var(--shadow-heavy)",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                paddingBottom: "56.25%",
+                height: 0,
+              }}
+            >
+              <video
+                controls
+                autoPlay={false}
+                muted
+                preload="metadata"
+                poster="/assets/proofs/funnel-1.gif"
+                onPlay={() => trackVideoPlay()}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
+              >
+                <source
+                  src="/assets/videos/satis-egitimi.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "2rem",
+              marginTop: "3rem",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "350px",
+                padding: "1.5rem",
+                background: "rgba(30, 30, 35, 0.6)",
+                borderRadius: "16px",
+                border: "1px solid rgba(212, 175, 55, 0.2)",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+                textAlign: "left",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1.2rem",
+                  color: "var(--primary-accent)",
+                  marginBottom: "1rem",
+                }}
+              >
+                <i
+                  className="fas fa-check-circle"
+                  style={{ marginRight: "8px" }}
+                ></i>
+                Doğru Bilinen Yanlışlar
+              </h3>
+              <p
+                style={{
+                  color: "var(--text-light)",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.6",
+                }}
+              >
+                Dijital pazarlamada sadece reklam harcaması yapmanın yeterli
+                olduğu, hızlı sonuçlar alabileceğiniz ve herkesin aynı
+                stratejilerle başarılı olabileceği gibi yaygın yanılgıları
+                ortadan kaldırıyoruz.
+              </p>
+            </div>
+            <div
+              style={{
+                maxWidth: "350px",
+                padding: "1.5rem",
+                background: "rgba(30, 30, 35, 0.6)",
+                borderRadius: "16px",
+                border: "1px solid rgba(212, 175, 55, 0.2)",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+                textAlign: "left",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1.2rem",
+                  color: "var(--primary-accent)",
+                  marginBottom: "1rem",
+                }}
+              >
+                <i
+                  className="fas fa-lightbulb"
+                  style={{ marginRight: "8px" }}
+                ></i>
+                Benzersiz Yaklaşımımız
+              </h3>
+              <p
+                style={{
+                  color: "var(--text-light)",
+                  fontSize: "0.95rem",
+                  lineHeight: "1.6",
+                }}
+              >
+                Veri odaklı stratejilerimiz, sektör uzmanlığımız ve
+                kişiselleştirilmiş çözümlerimizle işletmenizin gerçek
+                potansiyelini ortaya çıkarıyor, sürdürülebilir büyüme
+                sağlıyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Premium Brands Section - Danışmanlık Hizmetleri */}
+      {/* <PremiumBrandsSection /> */}
       {/* Testimonials Section */}
       <section
         id="case-studies"

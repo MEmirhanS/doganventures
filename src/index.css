@@ -685,22 +685,163 @@ a:hover {
   }
 }
 
-/* Make the brand section responsive */
-@media (max-width: 768px) {
-  .premium-brands-container {
-    padding: 2rem 1rem !important;
+/* Marquee animation styles for brands section */
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
-  .company-logo > div {
-    width: 180px !important;
-    height: 110px !important;
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  mask: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marquee-content {
+  display: flex;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  white-space: nowrap;
+}
+
+.marquee-content.scroll-left {
+  animation-name: marqueeLeft;
+}
+
+.marquee-content.scroll-right {
+  animation-name: marqueeRight;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  flex-shrink: 0;
+  margin-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+  height: 140px;
+  background: linear-gradient(135deg, rgba(30, 30, 35, 0.6) 0%, rgba(20, 20, 25, 0.8) 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee-item.highlight {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 30, 35, 0.9) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.marquee-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.marquee-item.highlight:hover {
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+}
+
+.marquee-logo-container {
+  width: 120px;
+  height: 70px;
+  background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.marquee-logo {
+  max-width: 110px;
+  max-height: 65px;
+  width: 110px;
+  height: 65px;
+  object-fit: contain;
+}
+
+.marquee-premium-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(212, 175, 55, 0.9);
+  color: var(--primary-dark);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive marquee */
+@media (max-width: 768px) {
+  .marquee-item {
+    min-width: 180px;
+    height: 120px;
+    margin-right: 2rem;
+    padding: 1rem;
+  }
+  
+  .marquee-logo-container {
+    width: 95px;
+    height: 60px;
+    background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  
+  .marquee-logo {
+    max-width: 90px;
+    max-height: 55px;
+    width: 90px;
+    height: 55px;
   }
 }
 
 @media (max-width: 480px) {
-  .company-logo > div {
-    width: 150px !important;
-    height: 90px !important;
+  .marquee-item {
+    min-width: 160px;
+    height: 100px;
+    margin-right: 1.5rem;
+    padding: 0.75rem;
+  }
+  
+  .marquee-logo-container {
+    width: 85px;
+    height: 50px;
+    background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  
+  .marquee-logo {
+    max-width: 80px;
+    max-height: 45px;
+    width: 80px;
+    height: 45px;
   }
 }
 
@@ -766,7 +907,6 @@ a:hover {
   animation: marquee 40s linear infinite;
   will-change: transform;
   transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
 .marquee-container:hover .marquee-content {
