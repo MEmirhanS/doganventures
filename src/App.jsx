@@ -1138,7 +1138,7 @@ function App() {
   };
 
   const trackCtaClick = (ctaName) => {
-    // Facebook Pixel
+    // Facebook Pixel - Sadece Intent tracking (Lead değil)
     if (typeof fbq !== "undefined") {
       fbq("track", "InitiateCheckout", {
         content_name: ctaName,
@@ -1146,19 +1146,10 @@ function App() {
         currency: "TRY",
       });
 
-      // Önemli CTA'lar için Lead Intent tracking
-      if (
-        ctaName.includes("Ücretsiz Analiz") ||
-        ctaName.includes("Strateji Analizi") ||
-        ctaName.includes("Hediye Analiz")
-      ) {
-        fbq("track", "Lead", {
-          content_name: `Lead Intent - ${ctaName}`,
-          value: 500,
-          currency: "TRY",
-        });
-        console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
-      }
+      // CTA'lar için sadece intent tracking - Lead tracking sadece form gönderiminde
+      console.log(`🎯 CTA Intent tracked for: ${ctaName}`);
+      
+      // Lead tracking'i kaldırdık - sadece form submit'te olacak
     }
   };
 
