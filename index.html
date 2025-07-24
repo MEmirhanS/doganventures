@@ -32,7 +32,7 @@
       rel="stylesheet"
     />
 
-    <!-- Facebook Pixel - BASİT -->
+    <!-- Facebook Pixel - GARANTİLİ PAGEVIEW -->
     <script>
       console.log("🔄 Facebook Pixel loading...");
       
@@ -53,9 +53,29 @@
         s.parentNode.insertBefore(t, s);
       })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
 
+      // İlk PageView tracking
       fbq("init", "1049814317342355");
       fbq("track", "PageView");
-      console.log("✅ Facebook Pixel loaded!");
+      console.log("✅ Facebook Pixel initialized with PageView!");
+
+      // Sayfa tam yüklendiğinde ek PageView tracking (güvenlik için)
+      window.addEventListener('load', function() {
+        console.log("🎯 Page fully loaded - sending additional PageView");
+        if (typeof fbq !== 'undefined') {
+          fbq("track", "PageView");
+          console.log("🔥 Additional PageView sent on window load!");
+        }
+      });
+
+      // DOM hazır olduğunda da kontrol et
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("📄 DOM ready - verifying pixel");
+        if (typeof fbq !== 'undefined') {
+          console.log("✅ Pixel verified on DOM ready");
+        } else {
+          console.warn("⚠️ Pixel not available on DOM ready");
+        }
+      });
     </script>
   </head>
   <body>
