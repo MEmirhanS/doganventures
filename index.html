@@ -10,11 +10,21 @@
     <!-- Domain Verification for Facebook -->
     <meta name="facebook-domain-verification" content="xdquvg1vicuyjzanpx1b82uo14f5g2" />
     
+    <!-- Automatic WWW Redirect Script -->
+    <script>
+      // Redirect non-www to www for consistent domain
+      if (window.location.hostname === 'doganventures.net' && 
+          !window.location.hostname.startsWith('www.')) {
+        console.log('🔄 Redirecting to www subdomain for consistency');
+        window.location.replace('https://www.doganventures.net' + window.location.pathname + window.location.search);
+      }
+    </script>
+    
     <!-- Domain specific metadata for doganventures.net -->
-    <meta property="og:url" content="https://doganventures.net" />
+    <meta property="og:url" content="https://www.doganventures.net" />
     <meta property="og:site_name" content="Doğan Ventures" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://doganventures.net" />
+    <link rel="canonical" href="https://www.doganventures.net" />
     
     <title>DOGANVENTURES - Şirketinizi 10X Büyütün | Premium Danışmanlık</title>
     <meta
@@ -32,9 +42,19 @@
       rel="stylesheet"
     />
 
-    <!-- Facebook Pixel - ENHANCED TIMING -->
+    <!-- Facebook Pixel - DOMAIN-AWARE -->
     <script>
       console.log("🔄 Facebook Pixel loading...");
+      console.log("🌍 Current domain:", window.location.hostname);
+      
+      // Domain consistency check
+      const isWWW = window.location.hostname.startsWith('www.');
+      const isDogventures = window.location.hostname.includes('doganventures.net');
+      
+      if (isDogventures && !isWWW) {
+        console.log("⚠️ Non-www domain detected - this may cause pixel issues");
+        console.log("🔄 Pixel will still initialize but recommend using www subdomain");
+      }
       
       // Pixel base code
       !(function (f, b, e, v, n, t, s) {
@@ -55,8 +75,11 @@
           // Ensure pixel is ready before tracking
           setTimeout(function() {
             if (typeof fbq !== 'undefined') {
-              fbq("track", "PageView");
-              console.log("🎯 PageView sent after script load");
+              fbq("track", "PageView", {
+                source: window.location.hostname,
+                domain_type: isWWW ? 'www' : 'non-www'
+              });
+              console.log("🎯 PageView sent after script load with domain info");
             }
           }, 100);
         };
@@ -66,18 +89,25 @@
 
       // Initialize pixel immediately
       fbq("init", "1049814317342355");
-      console.log("✅ Facebook Pixel initialized");
+      console.log("✅ Facebook Pixel initialized on", window.location.hostname);
 
-      // Send initial PageView
-      fbq("track", "PageView");
-      console.log("🎯 Initial PageView sent");
+      // Send initial PageView with domain info
+      fbq("track", "PageView", {
+        source: window.location.hostname,
+        domain_type: isWWW ? 'www' : 'non-www',
+        canonical_url: 'https://www.doganventures.net'
+      });
+      console.log("🎯 Initial PageView sent with domain context");
 
       // Additional PageView on window load (for safety)
       window.addEventListener('load', function() {
         console.log("🌐 Window loaded - sending additional PageView");
         setTimeout(function() {
           if (typeof fbq !== 'undefined') {
-            fbq("track", "PageView");
+            fbq("track", "PageView", {
+              source: window.location.hostname,
+              event_type: 'window_load'
+            });
             console.log("🔥 Additional PageView sent on window load");
           }
         }, 500);
@@ -92,9 +122,11 @@
             // Test event to ensure pixel is working
             fbq("trackCustom", "PixelTest", {
               test_event: true,
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
+              domain: window.location.hostname,
+              is_www: isWWW
             });
-            console.log("🧪 Test event sent");
+            console.log("🧪 Test event sent with domain info");
           } else {
             console.warn("⚠️ Pixel not available");
           }
