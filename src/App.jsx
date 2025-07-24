@@ -1878,11 +1878,12 @@ function App() {
       </section>
       {/* Premium Brands Section - Danışmanlık Hizmetleri */}
       <PremiumBrandsSection />
-      
+
       {/* Premium Partner Brands Section */}
       <section
         style={{
-          background: "linear-gradient(135deg, rgba(5, 5, 15, 0.98) 0%, rgba(25, 25, 35, 0.98) 100%)",
+          background:
+            "linear-gradient(135deg, rgba(5, 5, 15, 0.98) 0%, rgba(25, 25, 35, 0.98) 100%)",
           padding: "6rem 0",
           position: "relative",
           borderTop: "1px solid rgba(212, 175, 55, 0.15)",
@@ -1919,7 +1920,8 @@ function App() {
             width: "300px",
             height: "300px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
             pointerEvents: "none",
             filter: "blur(40px)",
           }}
@@ -1932,7 +1934,8 @@ function App() {
             width: "250px",
             height: "250px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%)",
             pointerEvents: "none",
             filter: "blur(40px)",
           }}
@@ -1945,12 +1948,22 @@ function App() {
             width: "100%",
             height: "1px",
             top: "0",
-            background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
+            background:
+              "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
             opacity: "0.8",
           }}
         />
 
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px", position: "relative", zIndex: 2 }}>
+        <div
+          className="container"
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+            position: "relative",
+            zIndex: 2,
+          }}
+        >
           {/* Premium Header */}
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             {/* Luxury Badge */}
@@ -1958,7 +1971,8 @@ function App() {
               style={{
                 display: "inline-block",
                 padding: "8px 20px",
-                background: "linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.9))",
+                background:
+                  "linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.9))",
                 color: "#000",
                 fontSize: "0.8rem",
                 fontWeight: "bold",
@@ -1980,7 +1994,8 @@ function App() {
                 fontWeight: "800",
                 textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
                 letterSpacing: "0.5px",
-                background: "linear-gradient(to right, #ffffff, #f5e7a3, #ffffff)",
+                background:
+                  "linear-gradient(to right, #ffffff, #f5e7a3, #ffffff)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 textAlign: "center",
@@ -2003,7 +2018,8 @@ function App() {
                 style={{
                   height: "1px",
                   flex: "1",
-                  background: "linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5))",
+                  background:
+                    "linear-gradient(to right, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5))",
                 }}
               />
               <div style={{ padding: "0 1rem" }}>
@@ -2021,7 +2037,8 @@ function App() {
                 style={{
                   height: "1px",
                   flex: "1",
-                  background: "linear-gradient(to left, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5))",
+                  background:
+                    "linear-gradient(to left, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.5))",
                 }}
               />
             </div>
@@ -2037,7 +2054,7 @@ function App() {
                 lineHeight: "1.6",
               }}
             >
-              Türkiye'nin önde gelen markalarının güvendiği çözüm ortağıyız. 
+              Türkiye'nin önde gelen markalarının güvendiği çözüm ortağıyız.
               Sektör liderlerine özel, premium danışmanlık hizmetleri sunuyoruz.
             </p>
           </div>
@@ -2045,12 +2062,14 @@ function App() {
           {/* Premium Logo Showcase Container */}
           <div
             style={{
-              background: "linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(25, 25, 40, 0.9), rgba(10, 10, 15, 0.9))",
+              background:
+                "linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(25, 25, 40, 0.9), rgba(10, 10, 15, 0.9))",
               borderRadius: "24px",
               padding: "3rem 2rem",
               border: "1px solid rgba(212, 175, 55, 0.3)",
               backdropFilter: "blur(15px)",
-              boxShadow: "0 30px 100px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)",
+              boxShadow:
+                "0 30px 100px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)",
               position: "relative",
               overflow: "hidden",
             }}
@@ -2063,67 +2082,94 @@ function App() {
                 left: "0",
                 right: "0",
                 height: "1px",
-                background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
               }}
             />
 
-            {/* Premium Marquee Animation */}
+            {/* Premium Brands Marquee - Right to Left Sliding */}
             <div
               style={{
                 position: "relative",
+                padding: "2rem 0",
                 overflow: "hidden",
-                mask: "linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%)",
-                WebkitMask: "linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%)",
-                padding: "1rem 0",
               }}
             >
               <div
-                className="brands-marquee"
+                className="marquee-container"
                 style={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  position: "relative",
+                  height: "200px",
                   display: "flex",
-                  animation: "marqueeScroll 60s linear infinite",
-                  width: "200%",
-                  gap: "1.5rem",
                   alignItems: "center",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  const marqueeContent =
+                    e.currentTarget.querySelector(".marquee-content");
+                  if (marqueeContent) {
+                    marqueeContent.style.animationPlayState = "paused";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const marqueeContent =
+                    e.currentTarget.querySelector(".marquee-content");
+                  if (marqueeContent) {
+                    marqueeContent.style.animationPlayState = "running";
+                  }
                 }}
               >
-                {/* First set of premium logo cards */}
                 <div
+                  className="marquee-content"
                   style={{
                     display: "flex",
-                    justifyContent: "space-evenly",
+                    gap: "4rem",
                     alignItems: "center",
-                    width: "50%",
-                    gap: "1rem",
-                    padding: "0 0.5rem",
+                    minWidth: "max-content",
+                    animation: "marqueeRTL 22s linear infinite",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
                   }}
                 >
+                  {/* First set of logos */}
                   {[
-                    "alkış.png",
-                    "artife.png", 
+                    "alkis.png",
+                    "artife.png",
                     "besttem.png",
                     "freemen.png",
-                    "gülfem.png",
+                    "gulfem.png",
                     "ispanyolcaonline.png",
-                    "kutsalhaber.png"
+                    "kutsalhaber.png",
+                    "mialosi.png",
+                    "nortsofa.png",
+                    "ozguvenakademi.png",
+                    "pelda.png",
+                    "personaljesus.png",
+                    "supx.png",
                   ].map((logo, index) => (
                     <div
-                      key={`premium-first-${index}`}
+                      key={`premium-logo-set1-${index}`}
+                      className="logo-card-marquee"
                       style={{
-                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
-                        borderRadius: "16px",
-                        padding: "1rem",
+                        background:
+                          "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
+                        borderRadius: "20px",
+                        padding: "2rem",
                         border: "1px solid rgba(212, 175, 55, 0.6)",
                         boxShadow: `
-                          0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                          0 12px 40px rgba(0, 0, 0, 0.2),
+                          inset 0 2px 0 rgba(255, 255, 255, 0.3),
                           0 0 0 1px rgba(212, 175, 55, 0.4),
-                          0 0 15px rgba(212, 175, 55, 0.3)
+                          0 0 20px rgba(212, 175, 55, 0.25)
                         `,
-                        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "130px",
-                        width: "130px",
-                        height: "90px",
+                        transition:
+                          "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                        height: "180px",
+                        width: "280px",
+                        minWidth: "280px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -2131,93 +2177,94 @@ function App() {
                         backdropFilter: "blur(10px)",
                         overflow: "hidden",
                         flexShrink: 0,
+                        cursor: "pointer",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-6px) scale(1.03)";
-                        e.currentTarget.style.boxShadow = `
-                          0 15px 35px rgba(0, 0, 0, 0.25),
-                          inset 0 1px 0 rgba(255, 255, 255, 1),
-                          0 0 0 1px rgba(212, 175, 55, 0.5),
-                          0 0 25px rgba(212, 175, 55, 0.3)
-                        `;
+                        // Logo kartına mouse gelince marquee dursun
+                        const marqueeContent = e.currentTarget
+                          .closest(".marquee-container")
+                          ?.querySelector(".marquee-content");
+                        if (marqueeContent) {
+                          marqueeContent.style.animationPlayState = "paused";
+                        }
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateY(0) scale(1)";
-                        e.currentTarget.style.boxShadow = `
-                          0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.9),
-                          0 0 0 1px rgba(212, 175, 55, 0.3),
-                          0 0 15px rgba(212, 175, 55, 0.2)
-                        `;
+                        // Logo kartından mouse çıkınca marquee devam etsin
+                        const marqueeContent = e.currentTarget
+                          .closest(".marquee-container")
+                          ?.querySelector(".marquee-content");
+                        if (marqueeContent) {
+                          marqueeContent.style.animationPlayState = "running";
+                        }
                       }}
                     >
                       {/* Premium Badge */}
                       <div
                         style={{
                           position: "absolute",
-                          top: "6px",
-                          right: "6px",
-                          width: "8px",
-                          height: "8px",
+                          top: "8px",
+                          right: "8px",
+                          width: "10px",
+                          height: "10px",
                           borderRadius: "50%",
-                          background: "linear-gradient(135deg, #d4af37, #f4e4bc)",
-                          boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
-                          opacity: "0.8",
+                          background:
+                            "linear-gradient(135deg, #d4af37, #f4e4bc)",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.4)",
+                          opacity: "0.9",
                         }}
                       />
-                      
+
                       <img
                         src={`/assets/company-logos/${logo}`}
-                        alt={`${logo.replace('.png', '')} Premium Partner`}
+                        alt={`${logo.replace(".png", "")} Premium Partner`}
                         style={{
-                          maxWidth: "100%",
-                          maxHeight: "100%",
+                          maxWidth: "85%",
+                          maxHeight: "80%",
                           objectFit: "contain",
-                          filter: "brightness(1) saturate(1.1) contrast(1.1)",
+                          filter: "brightness(1.1) saturate(1.2) contrast(1.1)",
                           transition: "filter 0.3s ease",
                         }}
                         loading="lazy"
                       />
                     </div>
                   ))}
-                </div>
 
-                {/* Second set of premium logo cards */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                    width: "50%",
-                    gap: "1rem",
-                    padding: "0 0.5rem",
-                  }}
-                >
+                  {/* Second set of logos for seamless loop */}
                   {[
+                    "alkis.png",
+                    "artife.png",
+                    "besttem.png",
+                    "freemen.png",
+                    "gulfem.png",
+                    "ispanyolcaonline.png",
+                    "kutsalhaber.png",
                     "mialosi.png",
-                    "nortsofa.png", 
-                    "özgüvenakademi.png",
+                    "nortsofa.png",
+                    "ozguvenakademi.png",
                     "pelda.png",
                     "personaljesus.png",
-                    "supx.png"
+                    "supx.png",
                   ].map((logo, index) => (
                     <div
-                      key={`premium-second-${index}`}
+                      key={`premium-logo-set2-${index}`}
+                      className="logo-card-marquee"
                       style={{
-                        background: "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
-                        borderRadius: "16px",
-                        padding: "1rem",
+                        background:
+                          "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))",
+                        borderRadius: "20px",
+                        padding: "2rem",
                         border: "1px solid rgba(212, 175, 55, 0.6)",
                         boxShadow: `
-                          0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                          0 12px 40px rgba(0, 0, 0, 0.2),
+                          inset 0 2px 0 rgba(255, 255, 255, 0.3),
                           0 0 0 1px rgba(212, 175, 55, 0.4),
-                          0 0 15px rgba(212, 175, 55, 0.3)
+                          0 0 20px rgba(212, 175, 55, 0.25)
                         `,
-                        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        minWidth: "130px",
-                        width: "130px",
-                        height: "90px",
+                        transition:
+                          "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                        height: "180px",
+                        width: "280px",
+                        minWidth: "280px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -2225,51 +2272,51 @@ function App() {
                         backdropFilter: "blur(10px)",
                         overflow: "hidden",
                         flexShrink: 0,
+                        cursor: "pointer",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-6px) scale(1.03)";
-                        e.currentTarget.style.boxShadow = `
-                          0 15px 35px rgba(0, 0, 0, 0.25),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                          0 0 0 1px rgba(212, 175, 55, 0.6),
-                          0 0 25px rgba(212, 175, 55, 0.4)
-                        `;
-                        e.currentTarget.style.background = "linear-gradient(145deg, rgba(212, 175, 55, 0.95), rgba(244, 228, 188, 0.9))";
+                        // Logo kartına mouse gelince marquee dursun
+                        const marqueeContent = e.currentTarget
+                          .closest(".marquee-container")
+                          ?.querySelector(".marquee-content");
+                        if (marqueeContent) {
+                          marqueeContent.style.animationPlayState = "paused";
+                        }
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateY(0) scale(1)";
-                        e.currentTarget.style.boxShadow = `
-                          0 8px 32px rgba(0, 0, 0, 0.15),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                          0 0 0 1px rgba(212, 175, 55, 0.4),
-                          0 0 15px rgba(212, 175, 55, 0.3)
-                        `;
-                        e.currentTarget.style.background = "linear-gradient(145deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.85))";
+                        // Logo kartından mouse çıkınca marquee devam etsin
+                        const marqueeContent = e.currentTarget
+                          .closest(".marquee-container")
+                          ?.querySelector(".marquee-content");
+                        if (marqueeContent) {
+                          marqueeContent.style.animationPlayState = "running";
+                        }
                       }}
                     >
                       {/* Premium Badge */}
                       <div
                         style={{
                           position: "absolute",
-                          top: "6px",
-                          right: "6px",
-                          width: "8px",
-                          height: "8px",
+                          top: "8px",
+                          right: "8px",
+                          width: "10px",
+                          height: "10px",
                           borderRadius: "50%",
-                          background: "linear-gradient(135deg, #d4af37, #f4e4bc)",
-                          boxShadow: "0 2px 4px rgba(0,0,0,0.3)",
-                          opacity: "0.8",
+                          background:
+                            "linear-gradient(135deg, #d4af37, #f4e4bc)",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.4)",
+                          opacity: "0.9",
                         }}
                       />
-                      
+
                       <img
                         src={`/assets/company-logos/${logo}`}
-                        alt={`${logo.replace('.png', '')} Premium Partner`}
+                        alt={`${logo.replace(".png", "")} Premium Partner`}
                         style={{
-                          maxWidth: "100%",
-                          maxHeight: "100%",
+                          maxWidth: "85%",
+                          maxHeight: "80%",
                           objectFit: "contain",
-                          filter: "brightness(0.8) saturate(1.1) contrast(1.2)",
+                          filter: "brightness(1.1) saturate(1.2) contrast(1.1)",
                           transition: "filter 0.3s ease",
                         }}
                         loading="lazy"
@@ -2300,7 +2347,7 @@ function App() {
                 margin: "0",
               }}
             >
-              Her partneri, sektöründe öncü olan markalardan oluşur. Güven, 
+              Her partneri, sektöründe öncü olan markalardan oluşur. Güven,
               kalite ve sürdürülebilir başarı odaklı işbirlikleri kuruyoruz.
             </p>
           </div>

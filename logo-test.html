@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logo Test</title>
+  </head>
+  <body style="padding: 20px; font-family: Arial, sans-serif">
+    <h1>Logo Yükleme Testi</h1>
+
+    <h2>Gülfem Logo (Eski - Türkçe karakter):</h2>
+    <img
+      src="https://doganventures-ftg4r8ekn-yunus-dogans-projects.vercel.app/assets/company-logos/gülfem.png"
+      alt="Gülfem Logo"
+      style="border: 1px solid #ccc; max-width: 200px"
+      onload="console.log('Gülfem (TR) logo yüklendi')"
+      onerror="console.log('Gülfem (TR) logo yüklenemedi'); this.style.border='2px solid red';"
+    />
+
+    <h2>Gulfem Logo (Yeni - ASCII karakter):</h2>
+    <img
+      src="https://doganventures-ftg4r8ekn-yunus-dogans-projects.vercel.app/assets/company-logos/gulfem.png"
+      alt="Gulfem Logo"
+      style="border: 1px solid #ccc; max-width: 200px"
+      onload="console.log('Gulfem (ASCII) logo yüklendi')"
+      onerror="console.log('Gulfem (ASCII) logo yüklenemedi'); this.style.border='2px solid red';"
+    />
+
+    <h2>Karşılaştırma - Artife Logo:</h2>
+    <img
+      src="https://doganventures-ftg4r8ekn-yunus-dogans-projects.vercel.app/assets/company-logos/artife.png"
+      alt="Artife Logo"
+      style="border: 1px solid #ccc; max-width: 200px"
+      onload="console.log('Artife logo yüklendi')"
+      onerror="console.log('Artife logo yüklenemedi'); this.style.border='2px solid red';"
+    />
+
+    <script>
+      // Test sonuçlarını göster
+      setTimeout(() => {
+        const results = document.querySelectorAll("img");
+        results.forEach((img, index) => {
+          const status = img.style.border.includes("red")
+            ? "BAŞARISIZ"
+            : "BAŞARILI";
+          console.log(`Logo ${index + 1}: ${status}`);
+        });
+      }, 3000);
+    </script>
+  </body>
+</html>

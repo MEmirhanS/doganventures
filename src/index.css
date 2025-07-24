@@ -664,6 +664,15 @@ a:hover {
   }
 }
 
+@keyframes marqueeRTL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes marqueeScroll {
   0% {
     transform: translateX(0%);
@@ -776,10 +785,30 @@ a:hover {
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
+  transition: animation-play-state 0.3s ease;
 }
 
+/* Hover durma - marquee container'a mouse gelince animasyon dursun */
 .marquee-container:hover .marquee-content {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
+}
+
+/* Logo kartlarına hover gelince de animasyon dursun */
+.logo-card-marquee:hover ~ .marquee-content,
+.marquee-content:has(.logo-card-marquee:hover) {
+  animation-play-state: paused !important;
+}
+
+/* Premium Logo Card Marquee Styles */
+.logo-card-marquee {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logo-card-marquee:hover {
+  transform: translateY(-5px) scale(1.05);
+  filter: brightness(1.1);
 }
 
 .company-logo {
@@ -1151,5 +1180,113 @@ a:hover {
     bottom: 10px !important;
     left: 10px !important;
     max-width: calc(100% - 20px) !important;
+  }
+}
+
+/* Static Brands Grid Styles */
+.brands-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 2rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.brands-grid .logo-card {
+  height: 120px !important;
+  padding: 1.5rem !important;
+  margin: 0 !important;
+}
+
+.brands-grid .logo-card img {
+  max-width: 90% !important;
+  max-height: 70% !important;
+  object-fit: contain !important;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1200px) {
+  .brands-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .brands-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+    gap: 1rem !important;
+    padding: 0 1rem !important;
+  }
+
+  .brands-grid .logo-card {
+    height: 100px !important;
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brands-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .brands-grid .logo-card {
+    height: 80px !important;
+    padding: 0.75rem !important;
+  }
+}
+
+/* Responsive styles for new marquee layout */
+@media (max-width: 1024px) {
+  .logo-card-marquee {
+    width: 240px !important;
+    min-width: 240px !important;
+    height: 150px !important;
+    padding: 1.8rem !important;
+  }
+
+  .marquee-content {
+    gap: 3rem !important;
+  }
+
+  .marquee-container {
+    height: 170px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-card-marquee {
+    width: 200px !important;
+    min-width: 200px !important;
+    height: 130px !important;
+    padding: 1.5rem !important;
+  }
+
+  .marquee-content {
+    gap: 2.5rem !important;
+    animation: marqueeRTL 24s linear infinite !important;
+  }
+
+  .marquee-container {
+    height: 150px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-card-marquee {
+    width: 180px !important;
+    min-width: 180px !important;
+    height: 120px !important;
+    padding: 1.2rem !important;
+  }
+
+  .marquee-content {
+    gap: 2rem !important;
+    animation: marqueeRTL 26s linear infinite !important;
+  }
+
+  .marquee-container {
+    height: 140px !important;
   }
 }
