@@ -32,10 +32,11 @@
       rel="stylesheet"
     />
 
-    <!-- Facebook Pixel - GARANTİLİ PAGEVIEW -->
+    <!-- Facebook Pixel - ENHANCED TIMING -->
     <script>
       console.log("🔄 Facebook Pixel loading...");
       
+      // Pixel base code
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
@@ -49,32 +50,55 @@
         t = b.createElement(e);
         t.async = !0;
         t.src = v;
+        t.onload = function() {
+          console.log("📦 Pixel script loaded successfully");
+          // Ensure pixel is ready before tracking
+          setTimeout(function() {
+            if (typeof fbq !== 'undefined') {
+              fbq("track", "PageView");
+              console.log("🎯 PageView sent after script load");
+            }
+          }, 100);
+        };
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
       })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
 
-      // İlk PageView tracking
+      // Initialize pixel immediately
       fbq("init", "1049814317342355");
-      fbq("track", "PageView");
-      console.log("✅ Facebook Pixel initialized with PageView!");
+      console.log("✅ Facebook Pixel initialized");
 
-      // Sayfa tam yüklendiğinde ek PageView tracking (güvenlik için)
+      // Send initial PageView
+      fbq("track", "PageView");
+      console.log("🎯 Initial PageView sent");
+
+      // Additional PageView on window load (for safety)
       window.addEventListener('load', function() {
-        console.log("🎯 Page fully loaded - sending additional PageView");
-        if (typeof fbq !== 'undefined') {
-          fbq("track", "PageView");
-          console.log("🔥 Additional PageView sent on window load!");
-        }
+        console.log("🌐 Window loaded - sending additional PageView");
+        setTimeout(function() {
+          if (typeof fbq !== 'undefined') {
+            fbq("track", "PageView");
+            console.log("🔥 Additional PageView sent on window load");
+          }
+        }, 500);
       });
 
-      // DOM hazır olduğunda da kontrol et
+      // Pixel verification
       document.addEventListener('DOMContentLoaded', function() {
-        console.log("📄 DOM ready - verifying pixel");
-        if (typeof fbq !== 'undefined') {
-          console.log("✅ Pixel verified on DOM ready");
-        } else {
-          console.warn("⚠️ Pixel not available on DOM ready");
-        }
+        console.log("📄 DOM ready");
+        setTimeout(function() {
+          if (typeof fbq !== 'undefined') {
+            console.log("✅ Pixel verified and ready");
+            // Test event to ensure pixel is working
+            fbq("trackCustom", "PixelTest", {
+              test_event: true,
+              timestamp: new Date().toISOString()
+            });
+            console.log("🧪 Test event sent");
+          } else {
+            console.warn("⚠️ Pixel not available");
+          }
+        }, 1000);
       });
     </script>
   </head>

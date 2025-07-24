@@ -1122,50 +1122,88 @@ function App() {
 
   // Pixel Tracking Functions
   const trackPageView = () => {
-    // Facebook Pixel
+    // Facebook Pixel with enhanced error handling
     if (typeof fbq !== "undefined") {
-      fbq("track", "PageView");
+      try {
+        fbq("track", "PageView");
+        console.log("🎯 App PageView tracked successfully");
+      } catch (error) {
+        console.warn("⚠️ PageView tracking error:", error);
+      }
+    } else {
+      console.warn("⚠️ fbq not available for PageView");
     }
   };
 
   const trackVideoPlay = () => {
     // Facebook Pixel
     if (typeof fbq !== "undefined") {
-      fbq("track", "ViewContent", {
-        content_type: "video",
-        content_name: "Hero Video - DOGANVENTURES",
-      });
+      try {
+        fbq("track", "ViewContent", {
+          content_type: "video",
+          content_name: "Hero Video - DOGANVENTURES",
+        });
+        console.log("📹 Video play tracked");
+      } catch (error) {
+        console.warn("⚠️ Video tracking error:", error);
+      }
     }
   };
 
   const trackCtaClick = (ctaName) => {
     // Facebook Pixel
     if (typeof fbq !== "undefined") {
-      fbq("track", "InitiateCheckout", {
-        content_name: ctaName,
-        value: 1000,
-        currency: "TRY",
-      });
-
-      // Önemli CTA'lar için Lead Intent tracking
-      if (
-        ctaName.includes("Ücretsiz Analiz") ||
-        ctaName.includes("Strateji Analizi") ||
-        ctaName.includes("Hediye Analiz")
-      ) {
-        fbq("track", "Lead", {
-          content_name: `Lead Intent - ${ctaName}`,
-          value: 500,
+      try {
+        fbq("track", "InitiateCheckout", {
+          content_name: ctaName,
+          value: 1000,
           currency: "TRY",
         });
-        console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
+        console.log(`🛒 CTA tracked: ${ctaName}`);
+
+        // Önemli CTA'lar için Lead Intent tracking
+        if (
+          ctaName.includes("Ücretsiz Analiz") ||
+          ctaName.includes("Strateji Analizi") ||
+          ctaName.includes("Hediye Analiz")
+        ) {
+          fbq("track", "Lead", {
+            content_name: `Lead Intent - ${ctaName}`,
+            value: 500,
+            currency: "TRY",
+          });
+          console.log(`🎯 Lead Intent tracked for: ${ctaName}`);
+        }
+      } catch (error) {
+        console.warn("⚠️ CTA tracking error:", error);
       }
+    } else {
+      console.warn("⚠️ fbq not available for CTA tracking");
     }
   };
 
-  // Component load tracking
+  // Component load tracking with enhanced timing
   useEffect(() => {
-    trackPageView();
+    // Delay to ensure pixel is fully loaded
+    const timer = setTimeout(() => {
+      console.log("🚀 App component mounted - tracking PageView");
+      trackPageView();
+      
+      // Additional test event to verify pixel is working
+      if (typeof fbq !== "undefined") {
+        try {
+          fbq("trackCustom", "AppMounted", {
+            component: "DOGANVENTURES_App",
+            timestamp: new Date().toISOString()
+          });
+          console.log("✅ App mounted event tracked");
+        } catch (error) {
+          console.warn("⚠️ App mounted tracking error:", error);
+        }
+      }
+    }, 1500); // Wait 1.5 seconds for pixel to be ready
+
+    return () => clearTimeout(timer);
   }, []);
 
   const calculateRemainingSlots = () => {
