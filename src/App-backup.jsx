@@ -2609,11 +2609,9 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Bugün başvuran ilk 15 şirket için{" "}
-            <strong style={{ color: "var(--accent-purple)" }}>
-              ₺25.000 değerinde
-            </strong>
-            strategi analizi tamamen ücretsiz!
+            Bugün başvuran işletmeler için <strong style={{ color: "var(--accent-purple)" }}>
+              ücretsiz keşif görüşmesi
+            </strong> ve özel büyüme yol haritası!
           </p>
 
           <button
@@ -3225,9 +3223,8 @@ function App() {
                 <p
                   style={{ color: "var(--text-dark)", marginBottom: "1.5rem" }}
                 >
-                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve
-                  <strong> ₺25.000 değerindeki</strong> ücretsiz strateji
-                  analizinizi hazırlayacak.
+                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve 
+                  işletmenize özel <strong>ücretsiz büyüme yol haritası</strong> hazırlayacak.
                 </p>
                 <div
                   style={{

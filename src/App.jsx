@@ -2658,23 +2658,20 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Bugün başvuran ilk 15 şirket için{" "}
-            <strong style={{ color: "var(--accent-purple)" }}>
-              ₺25.000 değerinde
-            </strong>
-            strategi analizi tamamen ücretsiz!
+            Ücretsiz keşif görüşmesi ile işletmenizin büyüme potansiyelini değerlendiriyoruz. 
+            Size özel çözüm önerilerimizi paylaşıyor, hangi alanlarda gelişim sağlayabileceğinizi birlikte belirliyoruz.
           </p>
 
           <button
             className="btn btn-primary btn-large"
             onClick={() => {
-              trackCtaClick("CTA Section - Hediye Analizimi Hemen Al");
+              trackCtaClick("CTA Section - Ücretsiz Keşif Görüşmesi");
               setShowModal(true);
             }}
             style={{ fontSize: "1.2rem", padding: "1.5rem 3rem" }}
           >
-            <i className="fas fa-gift" style={{ marginRight: "0.5rem" }}></i>
-            Hediye Analizimi Hemen Al
+            <i className="fas fa-calendar-check" style={{ marginRight: "0.5rem" }}></i>
+            Ücretsiz Keşif Görüşmesi Planlayın
           </button>
 
           <div
@@ -2755,12 +2752,12 @@ function App() {
               {
                 question: "Danışmanlık süreciniz nasıl işliyor?",
                 answer:
-                  "Sürecimiz 4 aşamadan oluşuyor: (1) Ücretsiz keşif görüşmesi ile ihtiyaçlarınızı belirliyoruz, (2) Kapsamlı analiz ve strateji planı hazırlıyoruz, (3) Özel çözümler geliştirip uygulamaya alıyoruz, (4) Sürekli izleme ve optimizasyon ile sonuçları maksimize ediyoruz.",
+                  "Sürecimiz 4 aşamadan oluşuyor: (1) İlk olarak kişilerle ihtiyaçlarına yönelik detaylı görüşme yapıyoruz, (2) Sonrasında yüz yüze birebir görüşme planlayıp daha detaylı konuları ele alıyoruz, (3) Karşılıklı anlaşıldığı takdirde sözleşme detayları iletilip süreç başlatılıyor, (4) Proje boyunca sürekli izleme ve optimizasyon ile sonuçları maksimize ediyoruz.",
               },
               {
                 question: "Fiyatlandırma politikanız nasıl?",
                 answer:
-                  "Her işletmenin ihtiyaçları farklı olduğu için özel fiyatlandırma sunuyoruz. Projenin kapsamı, hedefler ve çalışma süresi gibi faktörlere göre şeffaf bir fiyatlandırma planı oluşturuyoruz. Standart paketlerimiz olsa da, size özel çözümler için ücretsiz keşif görüşmesinde detaylı bilgi veriyoruz.",
+                  "Her işletmenin ihtiyaçları farklı olduğu için önce ihtiyaç analizi yapıyoruz. İlk görüşmede projenin kapsamını belirledikten sonra yüz yüze detay görüşmesi planlıyoruz. Karşılıklı uygun görüldükten sonra şeffaf fiyatlandırma planı ve sözleşme detayları paylaşılıyor. Tüm süreç boyunca net ve açık iletişim önceliğimizdir.",
               },
               {
                 question: "Ne kadar sürede sonuç almaya başlayabiliriz?",
@@ -2770,12 +2767,12 @@ function App() {
               {
                 question: "Hangi sektörlerde hizmet veriyorsunuz?",
                 answer:
-                  "E-ticaret, SaaS, fintech, gayrimenkul, sağlık, eğitim ve profesyonel hizmetler başta olmak üzere çok çeşitli sektörlerde deneyimimiz bulunmaktadır. Sektör spesifik zorluklara özel çözümler geliştiriyor, her işletmenin kendi pazarındaki rekabet avantajını artırıyoruz.",
+                  "Çok geniş bir yelpazede hizmet veriyoruz: E-ticaret mağazaları, koçlar ve danışmanlar, dijital ajanslar, kişisel markalar, diş hekimleri ve sağlık profesyonelleri, spor hocaları ve fitness uzmanları, restoran ve kafe işletmeleri, kuaför ve güzellik salonları, emlak danışmanları, avukatlar, muhasebeciler, SaaS şirketleri, fintech firmaları, eğitim kurumları, inşaat şirketleri, üretim firmaları, otomotiv bayileri, turizm acenteleri, teknoloji şirketleri ve daha birçok sektörde faaliyet gösteren işletmelere hizmet veriyoruz. Her sektörün kendine özgü ihtiyaçlarına yönelik özelleştirilmiş çözümler geliştiriyoruz.",
               },
               {
                 question: "Anlaşma süresince nasıl iletişim kuruyoruz?",
                 answer:
-                  "Her müşterimize özel bir proje yöneticisi atıyoruz. Haftalık durum raporları, aylık strateji toplantıları ve acil durumlar için 7/24 destek hattı sunuyoruz. Ayrıca özel portal üzerinden projenizdeki tüm gelişmeleri gerçek zamanlı olarak takip edebilirsiniz.",
+                  "Sözleşme imzalandıktan sonra her müşterimize özel bir proje yöneticisi atıyoruz. Haftalık durum raporları, aylık strateji toplantıları ve acil durumlar için 7/24 destek hattı sunuyoruz. Ayrıca özel portal üzerinden projenizdeki tüm gelişmeleri gerçek zamanlı olarak takip edebilirsiniz. Süreç boyunca şeffaf ve düzenli iletişim garantisi veriyoruz.",
               },
             ].map((faq, index) => (
               <div
@@ -3274,9 +3271,8 @@ function App() {
                 <p
                   style={{ color: "var(--text-dark)", marginBottom: "1.5rem" }}
                 >
-                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve
-                  <strong> ₺25.000 değerindeki</strong> ücretsiz strateji
-                  analizinizi hazırlayacak.
+                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve 
+                  işletmenize özel <strong>ücretsiz büyüme yol haritası</strong> hazırlayacak.
                 </p>
                 <div
                   style={{
