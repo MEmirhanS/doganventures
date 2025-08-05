@@ -583,21 +583,81 @@ const TestimonialCard = memo(({ testimonial, index }) => {
   // Premium colors for each testimonial based on their business sector
   const getTestimonialTheme = (name, index) => {
     const themes = {
-      "Mehmet Özkan": { primary: "#667eea", secondary: "#764ba2", icon: "fas fa-chart-line", accent: "#4c63d2" },
-      "Ayşe Demir": { primary: "#f093fb", secondary: "#f5576c", icon: "fas fa-tshirt", accent: "#e361a8" },
-      "Can Yılmaz": { primary: "#4facfe", secondary: "#00f2fe", icon: "fas fa-heartbeat", accent: "#2196f3" },
-      "Zeynep Kaya": { primary: "#a8edea", secondary: "#fed6e3", icon: "fas fa-graduation-cap", accent: "#81c784" },
-      "Ahmet Yıldız": { primary: "#ffecd2", secondary: "#fcb69f", icon: "fas fa-shopping-cart", accent: "#ff9800" },
-      "Elif Şahin": { primary: "#a8caba", secondary: "#5d4e75", icon: "fas fa-leaf", accent: "#4caf50" },
-      "Burak Demir": { primary: "#89f7fe", secondary: "#66a6ff", icon: "fas fa-coins", accent: "#03a9f4" },
-      "Selin Aydın": { primary: "#fdbb2d", secondary: "#22c1c3", icon: "fas fa-gem", accent: "#ffc107" },
-      "Murat Öztürk": { primary: "#e0c3fc", secondary: "#9bb5ff", icon: "fas fa-car", accent: "#9c27b0" }
+      "Mehmet Özkan": {
+        primary: "#667eea",
+        secondary: "#764ba2",
+        icon: "fas fa-chart-line",
+        accent: "#4c63d2",
+      },
+      "Ayşe Demir": {
+        primary: "#f093fb",
+        secondary: "#f5576c",
+        icon: "fas fa-tshirt",
+        accent: "#e361a8",
+      },
+      "Can Yılmaz": {
+        primary: "#4facfe",
+        secondary: "#00f2fe",
+        icon: "fas fa-heartbeat",
+        accent: "#2196f3",
+      },
+      "Zeynep Kaya": {
+        primary: "#a8edea",
+        secondary: "#fed6e3",
+        icon: "fas fa-graduation-cap",
+        accent: "#81c784",
+      },
+      "Ahmet Yıldız": {
+        primary: "#ffecd2",
+        secondary: "#fcb69f",
+        icon: "fas fa-shopping-cart",
+        accent: "#ff9800",
+      },
+      "Elif Şahin": {
+        primary: "#a8caba",
+        secondary: "#5d4e75",
+        icon: "fas fa-leaf",
+        accent: "#4caf50",
+      },
+      "Burak Demir": {
+        primary: "#89f7fe",
+        secondary: "#66a6ff",
+        icon: "fas fa-coins",
+        accent: "#03a9f4",
+      },
+      "Selin Aydın": {
+        primary: "#fdbb2d",
+        secondary: "#22c1c3",
+        icon: "fas fa-gem",
+        accent: "#ffc107",
+      },
+      "Murat Öztürk": {
+        primary: "#e0c3fc",
+        secondary: "#9bb5ff",
+        icon: "fas fa-car",
+        accent: "#9c27b0",
+      },
     };
 
     const defaultThemes = [
-      { primary: "#ff9a9e", secondary: "#fecfef", icon: "fas fa-star", accent: "#e91e63" },
-      { primary: "#ffeee4", secondary: "#fce2ce", icon: "fas fa-rocket", accent: "#ff5722" },
-      { primary: "#cfd9df", secondary: "#e2ebf0", icon: "fas fa-trophy", accent: "#607d8b" }
+      {
+        primary: "#ff9a9e",
+        secondary: "#fecfef",
+        icon: "fas fa-star",
+        accent: "#e91e63",
+      },
+      {
+        primary: "#ffeee4",
+        secondary: "#fce2ce",
+        icon: "fas fa-rocket",
+        accent: "#ff5722",
+      },
+      {
+        primary: "#cfd9df",
+        secondary: "#e2ebf0",
+        icon: "fas fa-trophy",
+        accent: "#607d8b",
+      },
     ];
 
     return themes[name] || defaultThemes[index % defaultThemes.length];
@@ -608,9 +668,12 @@ const TestimonialCard = memo(({ testimonial, index }) => {
   return (
     <div
       ref={ref}
-      className={`testimonial-card perf-opt ${isVisible ? "fade-in-up visible" : ""}`}
+      className={`testimonial-card perf-opt ${
+        isVisible ? "fade-in-up visible" : ""
+      }`}
       style={{
-        background: "linear-gradient(145deg, rgba(30, 30, 35, 0.98), rgba(25, 25, 30, 0.98))",
+        background:
+          "linear-gradient(145deg, rgba(30, 30, 35, 0.98), rgba(25, 25, 30, 0.98))",
         borderRadius: "24px",
         padding: "2.5rem",
         border: `1px solid rgba(212, 175, 55, 0.25)`,
@@ -659,7 +722,7 @@ const TestimonialCard = memo(({ testimonial, index }) => {
           opacity: 0.7,
         }}
       />
-      
+
       {/* Subtle background pattern */}
       <div
         style={{
@@ -675,7 +738,7 @@ const TestimonialCard = memo(({ testimonial, index }) => {
           borderRadius: "24px",
         }}
       />
-      
+
       {/* Enhanced business icon */}
       <div
         style={{
@@ -696,11 +759,11 @@ const TestimonialCard = memo(({ testimonial, index }) => {
           zIndex: 3,
         }}
       >
-        <i 
-          className={theme.icon} 
-          style={{ 
-            color: "white", 
-            fontSize: "1.1rem" 
+        <i
+          className={theme.icon}
+          style={{
+            color: "white",
+            fontSize: "1.1rem",
           }}
         />
       </div>
@@ -732,7 +795,10 @@ const TestimonialCard = memo(({ testimonial, index }) => {
             letterSpacing: "1px",
           }}
         >
-          {testimonial.name.split(' ').map(n => n[0]).join('')}
+          {testimonial.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}
         </span>
       </div>
 
@@ -790,14 +856,14 @@ const TestimonialCard = memo(({ testimonial, index }) => {
             boxShadow: `0 0 8px ${theme.primary}40`,
           }}
         />
-        <i 
-          className="fas fa-quote-left" 
-          style={{ 
+        <i
+          className="fas fa-quote-left"
+          style={{
             color: theme.primary,
             fontSize: "1.2rem",
             marginRight: "0.5rem",
-            opacity: 0.7
-          }} 
+            opacity: 0.7,
+          }}
         />
         {testimonial.text}
       </blockquote>
@@ -808,9 +874,10 @@ const TestimonialCard = memo(({ testimonial, index }) => {
           display: "inline-flex",
           alignItems: "center",
           padding: "1rem 1.8rem",
-          background: testimonial.result === "10X Büyüme" 
-            ? "linear-gradient(135deg, var(--primary-accent), #f4e4bc)"
-            : `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+          background:
+            testimonial.result === "10X Büyüme"
+              ? "linear-gradient(135deg, var(--primary-accent), #f4e4bc)"
+              : `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
           color: testimonial.result === "10X Büyüme" ? "#000" : "#fff",
           borderRadius: "30px",
           fontSize: "0.95rem",
@@ -827,15 +894,15 @@ const TestimonialCard = memo(({ testimonial, index }) => {
           zIndex: 2,
         }}
       >
-        <i 
-          className="fas fa-trophy" 
-          style={{ 
-            marginRight: "0.6rem", 
-            fontSize: "0.9rem" 
-          }} 
+        <i
+          className="fas fa-trophy"
+          style={{
+            marginRight: "0.6rem",
+            fontSize: "0.9rem",
+          }}
         />
         {testimonial.result}
-        
+
         {testimonial.result === "10X Büyüme" && (
           <div
             style={{
@@ -844,7 +911,8 @@ const TestimonialCard = memo(({ testimonial, index }) => {
               left: "10%",
               right: "10%",
               height: "10px",
-              background: "linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.9), transparent)",
+              background:
+                "linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.9), transparent)",
               borderRadius: "5px",
               animation: "shimmer 2s infinite",
             }}
@@ -1314,10 +1382,10 @@ function App() {
       setShowModal(true);
     };
 
-    window.addEventListener('openContactModal', handleOpenContactModal);
+    window.addEventListener("openContactModal", handleOpenContactModal);
 
     return () => {
-      window.removeEventListener('openContactModal', handleOpenContactModal);
+      window.removeEventListener("openContactModal", handleOpenContactModal);
     };
   }, []);
 
@@ -1740,9 +1808,10 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Ücretsiz ön görüşme ile işletmenizin ihtiyaçlarını belirliyoruz, 
-            size özel büyüme yol haritası çizerek sektörde lider konuma taşıyoruz. 
-            1000+ başarılı projeyle kanıtlanmış yöntemlerimizle garantili büyüme.
+            Ücretsiz ön görüşme ile işletmenizin ihtiyaçlarını belirliyoruz,
+            size özel büyüme yol haritası çizerek sektörde lider konuma
+            taşıyoruz. 1000+ başarılı projeyle kanıtlanmış yöntemlerimizle
+            garantili büyüme.
           </p>
 
           <div
@@ -2373,7 +2442,10 @@ function App() {
         </div>
       </section>
       {/* Başarı Hikayeleri ve Kanıtlar Bölümü - ŞİMDİLİK GİZLENDİ */}
-      <section className="section" style={{ background: "var(--bg-card)", display: "none" }}>
+      <section
+        className="section"
+        style={{ background: "var(--bg-card)", display: "none" }}
+      >
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="mb-3">Başarılarımızı Rakamlarla Görün</h2>
@@ -2660,9 +2732,9 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Ücretsiz ön görüşme randevusunda işletmenizin ihtiyaçlarını dinliyor, 
-            size özel büyüme yol haritasını belirliyoruz. Sonrasında yüz yüze detay görüşmesi 
-            planlanarak süreç netleştiriliyor.
+            Ücretsiz ön görüşme randevusunda işletmenizin ihtiyaçlarını
+            dinliyor, size özel büyüme yol haritasını belirliyoruz. Sonrasında
+            yüz yüze detay görüşmesi planlanarak süreç netleştiriliyor.
           </p>
 
           <button
@@ -2673,7 +2745,10 @@ function App() {
             }}
             style={{ fontSize: "1.2rem", padding: "1.5rem 3rem" }}
           >
-            <i className="fas fa-calendar-check" style={{ marginRight: "0.5rem" }}></i>
+            <i
+              className="fas fa-calendar-check"
+              style={{ marginRight: "0.5rem" }}
+            ></i>
             Ücretsiz Ön Görüşme Randevusu Al
           </button>
 
@@ -3274,9 +3349,10 @@ function App() {
                 <p
                   style={{ color: "var(--text-dark)", marginBottom: "1.5rem" }}
                 >
-                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve 
-                  <strong>ücretsiz ön görüşme randevunuzu</strong> planlayacak. Bu görüşmede 
-                  ihtiyaçlarınız doğrultusunda size özel yol haritası belirlenecek.
+                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve
+                  <strong>ücretsiz ön görüşme randevunuzu</strong> planlayacak.
+                  Bu görüşmede ihtiyaçlarınız doğrultusunda size özel yol
+                  haritası belirlenecek.
                 </p>
                 <div
                   style={{

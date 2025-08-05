@@ -1702,12 +1702,13 @@ function App() {
           </div>
         </div>
       </section>
-      
+
       {/* Bizimle Çalışan Markalar Section */}
       <section
         className="section"
         style={{
-          background: "linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%)",
+          background:
+            "linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -1720,7 +1721,8 @@ function App() {
             right: "5%",
             width: "200px",
             height: "200px",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
             borderRadius: "50%",
             pointerEvents: "none",
           }}
@@ -1732,7 +1734,8 @@ function App() {
             left: "10%",
             width: "150px",
             height: "150px",
-            background: "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)",
             borderRadius: "50%",
             pointerEvents: "none",
           }}
@@ -1743,7 +1746,8 @@ function App() {
             <div
               style={{
                 display: "inline-block",
-                background: "linear-gradient(to right, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.2))",
+                background:
+                  "linear-gradient(to right, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.2))",
                 padding: "0.5rem 2rem",
                 borderRadius: "25px",
                 marginBottom: "1.5rem",
@@ -1757,13 +1761,14 @@ function App() {
             >
               Güvenilen Partner
             </div>
-            
+
             <h2
               style={{
                 fontSize: "2.8rem",
                 marginBottom: "1.5rem",
                 fontWeight: "800",
-                background: "linear-gradient(to right, #ffffff, #d4af37, #ffffff)",
+                background:
+                  "linear-gradient(to right, #ffffff, #d4af37, #ffffff)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
@@ -1771,7 +1776,7 @@ function App() {
             >
               Bizimle Çalışan Markalar
             </h2>
-            
+
             <p
               style={{
                 maxWidth: "700px",
@@ -1782,15 +1787,17 @@ function App() {
                 fontWeight: "400",
               }}
             >
-              Sektöründe öncü olan markaların güvenini kazandık. Her biri kendi alanında lider olan bu şirketlerle birlikte büyüyor, başarılarına ortak oluyoruz.
+              Sektöründe öncü olan markaların güvenini kazandık. Her biri kendi
+              alanında lider olan bu şirketlerle birlikte büyüyor, başarılarına
+              ortak oluyoruz.
             </p>
           </div>
 
           {/* Brands Marquee */}
           <div style={{ padding: "3rem 0" }}>
             <div className="marquee-container">
-              <div 
-                className="marquee-content scroll-left" 
+              <div
+                className="marquee-content scroll-left"
                 style={{ animationDuration: "40s" }}
               >
                 {/* All brands in single row */}
@@ -1863,7 +1870,7 @@ function App() {
                     </div>
                   </div>
                 ))}
-                
+
                 {/* Duplicate set for seamless loop */}
                 {[
                   {
@@ -1960,10 +1967,13 @@ function App() {
                 fontWeight: "700",
               }}
             >
-              <i className="fas fa-handshake" style={{ marginRight: "0.5rem" }}></i>
+              <i
+                className="fas fa-handshake"
+                style={{ marginRight: "0.5rem" }}
+              ></i>
               Güvenilir Ortaklık
             </h3>
-            
+
             <div
               style={{
                 display: "flex",
@@ -1975,11 +1985,13 @@ function App() {
                 margin: "0 auto",
               }}
             >
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  flex: "1 1 200px",
+                  minWidth: "180px",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "2.5rem",
@@ -2001,15 +2013,19 @@ function App() {
                     fontWeight: "500",
                   }}
                 >
-                  Başarılı Marka<br />Ortaklığı
+                  Başarılı Marka
+                  <br />
+                  Ortaklığı
                 </div>
               </div>
-              
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
+
+              <div
+                style={{
+                  textAlign: "center",
+                  flex: "1 1 200px",
+                  minWidth: "180px",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "2.5rem",
@@ -2031,15 +2047,19 @@ function App() {
                     fontWeight: "500",
                   }}
                 >
-                  Müşteri Memnuniyet<br />Oranı
+                  Müşteri Memnuniyet
+                  <br />
+                  Oranı
                 </div>
               </div>
-              
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
+
+              <div
+                style={{
+                  textAlign: "center",
+                  flex: "1 1 200px",
+                  minWidth: "180px",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "2.5rem",
@@ -2061,15 +2081,19 @@ function App() {
                     fontWeight: "500",
                   }}
                 >
-                  Yıllık Deneyim<br />Ortalaması
+                  Yıllık Deneyim
+                  <br />
+                  Ortalaması
                 </div>
               </div>
-              
-              <div style={{ 
-                textAlign: "center", 
-                flex: "1 1 200px",
-                minWidth: "180px",
-              }}>
+
+              <div
+                style={{
+                  textAlign: "center",
+                  flex: "1 1 200px",
+                  minWidth: "180px",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "2.5rem",
@@ -2091,14 +2115,16 @@ function App() {
                     fontWeight: "500",
                   }}
                 >
-                  Destek ve<br />Danışmanlık
+                  Destek ve
+                  <br />
+                  Danışmanlık
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Services & Information Video Section */}
       <section
         className="section-narrow"
@@ -2609,9 +2635,11 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Bugün başvuran işletmeler için <strong style={{ color: "var(--accent-purple)" }}>
+            Bugün başvuran işletmeler için{" "}
+            <strong style={{ color: "var(--accent-purple)" }}>
               ücretsiz keşif görüşmesi
-            </strong> ve özel büyüme yol haritası!
+            </strong>{" "}
+            ve özel büyüme yol haritası!
           </p>
 
           <button
@@ -3223,8 +3251,9 @@ function App() {
                 <p
                   style={{ color: "var(--text-dark)", marginBottom: "1.5rem" }}
                 >
-                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve 
-                  işletmenize özel <strong>ücretsiz büyüme yol haritası</strong> hazırlayacak.
+                  Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve
+                  işletmenize özel <strong>ücretsiz büyüme yol haritası</strong>{" "}
+                  hazırlayacak.
                 </p>
                 <div
                   style={{
