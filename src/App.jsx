@@ -2370,8 +2370,8 @@ function App() {
           </div>
         </div>
       </section>
-      {/* Başarı Hikayeleri ve Kanıtlar Bölümü */}
-      <section className="section" style={{ background: "var(--bg-card)" }}>
+      {/* Başarı Hikayeleri ve Kanıtlar Bölümü - ŞİMDİLİK GİZLENDİ */}
+      <section className="section" style={{ background: "var(--bg-card)", display: "none" }}>
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="mb-3">Başarılarımızı Rakamlarla Görün</h2>
