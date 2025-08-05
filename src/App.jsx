@@ -1197,7 +1197,9 @@ function App() {
         if (
           ctaName.includes("Ücretsiz Analiz") ||
           ctaName.includes("Strateji Analizi") ||
-          ctaName.includes("Hediye Analiz")
+          ctaName.includes("Hediye Analiz") ||
+          ctaName.includes("Ön Görüşme") ||
+          ctaName.includes("Keşif Görüşmesi")
         ) {
           fbq("track", "Lead", {
             content_name: `Lead Intent - ${ctaName}`,
@@ -1645,12 +1647,12 @@ function App() {
           <button
             className="btn btn-primary"
             onClick={() => {
-              trackCtaClick("Header CTA - Ücretsiz Analiz");
+              trackCtaClick("Header CTA - Ücretsiz Ön Görüşme");
               setShowModal(true);
             }}
             style={{ padding: "0.75rem 1.5rem" }}
           >
-            Ücretsiz Analiz Al
+            Ücretsiz Ön Görüşme
           </button>
         </div>
       </nav>
@@ -1738,9 +1740,9 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Türkiye'nin en prestijli danışmanlık şirketi ile işinizi sektörde
-            lider yapın. 1000+ başarılı projeyle kanıtlanmış yöntemlerimizle
-            garantili büyüme.
+            Ücretsiz ön görüşme ile işletmenizin ihtiyaçlarını belirliyoruz, 
+            size özel büyüme yol haritası çizerek sektörde lider konuma taşıyoruz. 
+            1000+ başarılı projeyle kanıtlanmış yöntemlerimizle garantili büyüme.
           </p>
 
           <div
@@ -1755,15 +1757,15 @@ function App() {
             <button
               className="btn btn-primary btn-large"
               onClick={() => {
-                trackCtaClick("Hero CTA - Ücretsiz Strateji Analizi");
+                trackCtaClick("Hero CTA - Ücretsiz Ön Görüşme Randevusu");
                 setShowModal(true);
               }}
             >
               <i
-                className="fas fa-rocket"
+                className="fas fa-calendar-check"
                 style={{ marginRight: "0.5rem" }}
               ></i>
-              Ücretsiz Strateji Analizi Al
+              Ücretsiz Ön Görüşme Randevusu
             </button>
             <button
               className="btn btn-secondary btn-large"
@@ -2658,20 +2660,21 @@ function App() {
               color: "var(--text-light)",
             }}
           >
-            Ücretsiz keşif görüşmesi ile işletmenizin büyüme potansiyelini değerlendiriyoruz. 
-            Size özel çözüm önerilerimizi paylaşıyor, hangi alanlarda gelişim sağlayabileceğinizi birlikte belirliyoruz.
+            Ücretsiz ön görüşme randevusunda işletmenizin ihtiyaçlarını dinliyor, 
+            size özel büyüme yol haritasını belirliyoruz. Sonrasında yüz yüze detay görüşmesi 
+            planlanarak süreç netleştiriliyor.
           </p>
 
           <button
             className="btn btn-primary btn-large"
             onClick={() => {
-              trackCtaClick("CTA Section - Ücretsiz Keşif Görüşmesi");
+              trackCtaClick("CTA Section - Ücretsiz Ön Görüşme Randevusu");
               setShowModal(true);
             }}
             style={{ fontSize: "1.2rem", padding: "1.5rem 3rem" }}
           >
             <i className="fas fa-calendar-check" style={{ marginRight: "0.5rem" }}></i>
-            Ücretsiz Keşif Görüşmesi Planlayın
+            Ücretsiz Ön Görüşme Randevusu Al
           </button>
 
           <div
@@ -2752,7 +2755,7 @@ function App() {
               {
                 question: "Danışmanlık süreciniz nasıl işliyor?",
                 answer:
-                  "Sürecimiz 4 aşamadan oluşuyor: (1) İlk olarak kişilerle ihtiyaçlarına yönelik detaylı görüşme yapıyoruz, (2) Sonrasında yüz yüze birebir görüşme planlayıp daha detaylı konuları ele alıyoruz, (3) Karşılıklı anlaşıldığı takdirde sözleşme detayları iletilip süreç başlatılıyor, (4) Proje boyunca sürekli izleme ve optimizasyon ile sonuçları maksimize ediyoruz.",
+                  "Sürecimiz 6 aşamadan oluşuyor: (1) Ücretsiz ön görüşme randevusu ile işletmenizin temel ihtiyaçlarını dinliyoruz, (2) Bu görüşmede size özel yol haritası belirleniyor, (3) Yüz yüze detaylı görüşme planlanarak proje kapsamı netleştiriliyor, (4) Karşılıklı anlaşma sağlandığında sözleşme detayları paylaşılıyor, (5) Anlaşma imzalandıktan sonra proje süreci başlatılıyor, (6) Süreç boyunca düzenli takip ve optimizasyon yapılıyor.",
               },
               {
                 question: "Fiyatlandırma politikanız nasıl?",
@@ -3188,7 +3191,7 @@ function App() {
                           name="goals"
                           value={formData.goals}
                           onChange={handleInputChange}
-                          placeholder="Şirketinizin hedefleri, karşılaştığınız zorluklar veya beklentilerinizi açıklayabilirsiniz..."
+                          placeholder="Hangi konularda danışmanlık almak istiyorsunuz? Öncelikli hedefleriniz nelerdir? (Bu bilgiler ön görüşmemize hazırlık amacıyla alınmaktadır)"
                           className="form-textarea"
                           rows="4"
                           style={{
@@ -3245,10 +3248,10 @@ function App() {
                         style={{ flex: 1 }}
                       >
                         <i
-                          className="fas fa-paper-plane"
+                          className="fas fa-calendar-check"
                           style={{ marginRight: "0.5rem" }}
                         ></i>
-                        Ücretsiz Analizimi Al
+                        Ön Görüşme Randevum Al
                       </button>
                     )}
                   </div>
@@ -3272,7 +3275,8 @@ function App() {
                   style={{ color: "var(--text-dark)", marginBottom: "1.5rem" }}
                 >
                   Uzman ekibimiz 24 saat içinde sizinle iletişime geçecek ve 
-                  işletmenize özel <strong>ücretsiz büyüme yol haritası</strong> hazırlayacak.
+                  <strong>ücretsiz ön görüşme randevunuzu</strong> planlayacak. Bu görüşmede 
+                  ihtiyaçlarınız doğrultusunda size özel yol haritası belirlenecek.
                 </p>
                 <div
                   style={{
