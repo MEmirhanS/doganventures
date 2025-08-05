@@ -3,9 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect, memo, useRef } from "react";
 import Slider from "react-slick";
-import PremiumBrandsSection from "./components/PremiumBrandsSection";
+import PremiumBrandsSection from "./components/PremiumBrandsSection_New";
 import NotificationSystem from "./components/NotificationSystem";
-import { sendTelegramNotification } from "./lib/sendTelegramNotification";
+import InfoVideoSection from "./components/InfoVideoSection";
 import { supabase } from "./lib/supabaseClient";
 
 const ServiceCarousel = memo(({ services }) => {
@@ -1188,13 +1188,13 @@ function App() {
     const timer = setTimeout(() => {
       console.log("🚀 App component mounted - tracking PageView");
       trackPageView();
-      
+
       // Additional test event to verify pixel is working
       if (typeof fbq !== "undefined") {
         try {
           fbq("trackCustom", "AppMounted", {
             component: "DOGANVENTURES_App",
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
           });
           console.log("✅ App mounted event tracked");
         } catch (error) {
@@ -1398,16 +1398,20 @@ function App() {
           "⚠️ Facebook Pixel bulunamadı - Lead tracking çalışmıyor!"
         );
       }
-      // Send Telegram notification
-      try {
-        const { sendTelegramNotification } = await import(
-          "./lib/sendTelegramNotification"
-        );
-        await sendTelegramNotification(payload);
-      } catch (telegramErr) {
-        // Telegram error is not fatal for user
-        console.warn("Telegram bildirimi gönderilemedi:", telegramErr);
-      }
+      // Send Telegram notification (non-blocking)
+      setTimeout(async () => {
+        try {
+          const { sendTelegramNotification } = await import(
+            "./lib/sendTelegramNotification"
+          );
+          await sendTelegramNotification(payload);
+          console.log("✅ Telegram notification sent successfully");
+        } catch (telegramErr) {
+          // Telegram error is not fatal for user
+          console.warn("⚠️ Telegram bildirimi gönderilemedi:", telegramErr);
+        }
+      }, 100); // Delay to ensure UI responsiveness
+
       // Bildirim veya alert gösterme, sadece formu gönder ve teşekkür ekranı göster
     } catch (err) {
       alert("Hata: " + err.message);
@@ -1498,7 +1502,7 @@ function App() {
       title: "Pazarlama Stratejisi",
       description:
         "Kapsamlı pazar araştırması ve rekabet analizi ile markanızı sektörde öne çıkaracak güçlü stratejiler geliştiriyoruz.",
-      icon: "fas fa-bullhorn",
+      icon: "fas fa-bullseye",
       features: [
         "360° Marka Konumlandırma",
         "Detaylı Rekabet Analizi",
@@ -1511,7 +1515,7 @@ function App() {
       title: "Dijital Pazarlama",
       description:
         "Entegre dijital pazarlama çözümleri ile online varlığınızı güçlendiriyor, dönüşüm oranlarınızı artırıyoruz.",
-      icon: "fas fa-mobile-alt",
+      icon: "fas fa-globe-americas",
       features: [
         "Social Media Marketing",
         "Google Ads Optimizasyonu",
@@ -1537,7 +1541,7 @@ function App() {
       title: "Ekip Geliştirme",
       description:
         "İnsan kaynaklarınızın potansiyelini açığa çıkaran gelişmiş eğitim ve koçluk programları sunuyoruz.",
-      icon: "fas fa-users",
+      icon: "fas fa-users-cog",
       features: [
         "Liderlik Gelişim Programı",
         "Yetenek Yönetimi",
@@ -1550,7 +1554,7 @@ function App() {
       title: "İnovasyon Danışmanlığı",
       description:
         "Sektörünüzde öncü olmanızı sağlayacak yenilikçi çözümler ve dijital dönüşüm stratejileri geliştiriyoruz.",
-      icon: "fas fa-lightbulb",
+      icon: "fas fa-brain",
       features: [
         "Dijital Dönüşüm Planı",
         "AR/VR Çözümleri",
@@ -1574,7 +1578,7 @@ function App() {
           background: "rgba(10, 10, 10, 0.95)",
           backdropFilter: "blur(10px)",
           zIndex: 100,
-          padding: "1rem 0",
+          padding: "0.75rem 0",
           borderBottom: "1px solid var(--border-color)",
         }}
       >
@@ -1588,16 +1592,16 @@ function App() {
         >
           <div
             style={{
-              height: "80px",
+              height: "90px",
               display: "flex",
               alignItems: "center",
             }}
           >
             <img
-              src="/logo.jpg"
+              src="/logo.png"
               alt="DOGANVENTURES Logo"
               style={{
-                height: "100%",
+                height: "80px",
                 objectFit: "contain",
               }}
             />
@@ -1618,7 +1622,7 @@ function App() {
       <section
         className="section"
         style={{
-          paddingTop: "8rem",
+          paddingTop: "6rem",
           background:
             "linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%)",
           position: "relative",
@@ -1639,6 +1643,7 @@ function App() {
               borderRadius: "50px",
               display: "inline-flex",
               alignItems: "center",
+              marginTop: "2rem",
               marginBottom: "2rem",
               fontWeight: "800",
               fontSize: "1.1rem",
@@ -1768,152 +1773,25 @@ function App() {
         </div>
       </section>
       {/* Services & Information Video Section */}
-      <section
-        className="section-narrow"
-        style={{ background: "var(--bg-card)" }}
-      >
-        <div className="container text-center">
-          <h2 className="mb-4">Verdiğimiz Hizmetler & Biz Kimiz</h2>
-          <p
-            style={{
-              maxWidth: "700px",
-              margin: "0 auto 2rem",
-              color: "var(--text-light)",
-              fontSize: "1.1rem",
-              lineHeight: "1.6",
-            }}
-          >
-            Profesyonel ekibimiz ve benzersiz yaklaşımımızla, dijital pazarlama
-            ve iş geliştirme alanında doğru bilinen yanlışları düzeltiyoruz.
-            İşte fark yaratan metodolojimiz:
-          </p>
-          <div
-            style={{
-              maxWidth: "800px",
-              margin: "0 auto",
-              borderRadius: "20px",
-              overflow: "hidden",
-              boxShadow: "var(--shadow-heavy)",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                paddingBottom: "56.25%",
-                height: 0,
-              }}
-            >
-              <video
-                controls
-                autoPlay={false}
-                muted
-                preload="metadata"
-                poster="/assets/proofs/funnel-1.gif"
-                onPlay={() => trackVideoPlay()}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                }}
-              >
-                <source
-                  src="/assets/videos/satis-egitimi.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              gap: "2rem",
-              marginTop: "3rem",
-            }}
-          >
-            <div
-              style={{
-                maxWidth: "350px",
-                padding: "1.5rem",
-                background: "rgba(30, 30, 35, 0.6)",
-                borderRadius: "16px",
-                border: "1px solid rgba(212, 175, 55, 0.2)",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
-                textAlign: "left",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "1.2rem",
-                  color: "var(--primary-accent)",
-                  marginBottom: "1rem",
-                }}
-              >
-                <i
-                  className="fas fa-check-circle"
-                  style={{ marginRight: "8px" }}
-                ></i>
-                Doğru Bilinen Yanlışlar
-              </h3>
-              <p
-                style={{
-                  color: "var(--text-light)",
-                  fontSize: "0.95rem",
-                  lineHeight: "1.6",
-                }}
-              >
-                Dijital pazarlamada sadece reklam harcaması yapmanın yeterli
-                olduğu, hızlı sonuçlar alabileceğiniz ve herkesin aynı
-                stratejilerle başarılı olabileceği gibi yaygın yanılgıları
-                ortadan kaldırıyoruz.
-              </p>
-            </div>
-            <div
-              style={{
-                maxWidth: "350px",
-                padding: "1.5rem",
-                background: "rgba(30, 30, 35, 0.6)",
-                borderRadius: "16px",
-                border: "1px solid rgba(212, 175, 55, 0.2)",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
-                textAlign: "left",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "1.2rem",
-                  color: "var(--primary-accent)",
-                  marginBottom: "1rem",
-                }}
-              >
-                <i
-                  className="fas fa-lightbulb"
-                  style={{ marginRight: "8px" }}
-                ></i>
-                Benzersiz Yaklaşımımız
-              </h3>
-              <p
-                style={{
-                  color: "var(--text-light)",
-                  fontSize: "0.95rem",
-                  lineHeight: "1.6",
-                }}
-              >
-                Veri odaklı stratejilerimiz, sektör uzmanlığımız ve
-                kişiselleştirilmiş çözümlerimizle işletmenizin gerçek
-                potansiyelini ortaya çıkarıyor, sürdürülebilir büyüme
-                sağlıyoruz.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <InfoVideoSection
+        title="Verdiğimiz Hizmetler & Biz Kimiz"
+        description="Profesyonel ekibimiz ve benzersiz yaklaşımımızla, dijital pazarlama ve iş geliştirme alanında doğru bilinen yanlışları düzeltiyoruz. İşte fark yaratan metodolojimiz:"
+        videoUrl=""
+        cards={[
+          {
+            icon: "fas fa-check-circle",
+            title: "Doğru Bilinen Yanlışlar",
+            description:
+              "Dijital pazarlamada sadece reklam harcaması yapmanın yeterli olduğu, hızlı sonuçlar alabileceğiniz ve herkesin aynı stratejilerle başarılı olabileceği gibi yaygın yanılgıları ortadan kaldırıyoruz.",
+          },
+          {
+            icon: "fas fa-lightbulb",
+            title: "Benzersiz Yaklaşımımız",
+            description:
+              "Veri odaklı stratejilerimiz, sektör uzmanlığımız ve kişiselleştirilmiş çözümlerimizle işletmenizin gerçek potansiyelini ortaya çıkarıyor, sürdürülebilir büyüme sağlıyoruz.",
+          },
+        ]}
+      />
       {/* Premium Brands Section - Danışmanlık Hizmetleri */}
       <PremiumBrandsSection />
 
@@ -2609,27 +2487,18 @@ function App() {
               {activeProofTab === 2 && (
                 <div className="proof-grid">
                   <div className="proof-item">
-                    <div className="proof-media video">
-                      <video
-                        controls
-                        autoPlay={false}
-                        muted
-                        preload="metadata"
-                        poster="/assets/proofs/funnel-1.gif"
-                        onPlay={() => trackVideoPlay()}
+                    <div className="proof-media">
+                      <img
+                        src="/assets/proofs/funnel-1.gif"
+                        alt="Satış Ekibi Eğitimi"
+                        loading="lazy"
                         style={{
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
                           borderRadius: "8px",
                         }}
-                      >
-                        <source
-                          src="/assets/videos/satis-egitimi.mp4"
-                          type="video/mp4"
-                        />
-                        Your browser does not support the video tag.
-                      </video>
+                      />
                     </div>
                     <div className="proof-info">
                       <h4>Satış Ekibi Eğitimi</h4>
@@ -3025,14 +2894,14 @@ function App() {
         <div className="container text-center">
           <div
             style={{
-              height: "100px",
+              height: "150px",
               display: "flex",
               justifyContent: "center",
               marginBottom: "1rem",
             }}
           >
             <img
-              src="/logo.jpg"
+              src="/logo.png"
               alt="DOGANVENTURES Logo"
               style={{
                 height: "100%",

@@ -5,6 +5,7 @@
 ### 1️⃣ **VERCEL DASHBOARD'DA DOMAIN EKLEME**
 
 #### Adım 1: Vercel'e Login
+
 ```
 1. vercel.com → Login
 2. doganventures projesini seç
@@ -12,6 +13,7 @@
 ```
 
 #### Adım 2: Domain Ekle
+
 ```
 Domain alanına yaz: doganventures.net
 Add butonuna bas
@@ -22,7 +24,9 @@ Add butonuna bas
 ```
 
 #### Adım 3: DNS Kayıtları Al
+
 Vercel size şu bilgileri verecek:
+
 ```
 doganventures.net için:
 Type: A
@@ -38,6 +42,7 @@ Value: cname.vercel-dns.com
 ### 2️⃣ **DOMAIN SAĞLAYICINIZDA DNS AYARLARI**
 
 #### GoDaddy İçin:
+
 ```
 1. GoDaddy.com → My Products → Domains
 2. doganventures.net → DNS yönetimi
@@ -55,6 +60,7 @@ CNAME Record:
 ```
 
 #### Namecheap İçin:
+
 ```
 1. Namecheap.com → Domain List
 2. doganventures.net → Manage → Advanced DNS
@@ -72,6 +78,7 @@ CNAME Record:
 ```
 
 #### Cloudflare İçin:
+
 ```
 1. Cloudflare.com → doganventures.net
 2. DNS → Records
@@ -90,6 +97,7 @@ CNAME Record:
 ### 3️⃣ **VERCEL'DE DOMAIN DOĞRULAMA**
 
 #### Status Kontrolü:
+
 ```
 Vercel Dashboard → Settings → Domains
 
@@ -99,6 +107,7 @@ Görmeli:
 ```
 
 #### SSL Sertifika Kontrolü:
+
 ```
 Vercel otomatik olarak:
 - SSL sertifikası oluşturur
@@ -109,6 +118,7 @@ Vercel otomatik olarak:
 ### 4️⃣ **WWW YÖNLENDİRME AYARI**
 
 #### Primary Domain Belirleme:
+
 ```
 Vercel Dashboard → Settings → Domains
 www.doganventures.net → Set as Primary Domain
@@ -121,6 +131,7 @@ Bu ayar:
 ### 5️⃣ **TEST AŞAMASI**
 
 #### 1. DNS Propagation Test:
+
 ```bash
 # Terminal'de test et:
 nslookup doganventures.net
@@ -131,6 +142,7 @@ nslookup www.doganventures.net
 ```
 
 #### 2. Browser Test:
+
 ```
 ✅ https://doganventures.net → https://www.doganventures.net yönlendirir
 ✅ https://www.doganventures.net direkt açılır
@@ -138,6 +150,7 @@ nslookup www.doganventures.net
 ```
 
 #### 3. SSL Test:
+
 ```
 ✅ Kilit simgesi görünür
 ✅ "Connection is secure" mesajı
@@ -149,18 +162,21 @@ nslookup www.doganventures.net
 ## ⚡ HIZLI KONTROL LİSTESİ
 
 ### Vercel'de Tamamlanacaklar:
+
 - [ ] doganventures.net domain eklendi
 - [ ] www.doganventures.net domain eklendi
 - [ ] DNS kayıtları alındı
 - [ ] www.doganventures.net primary domain olarak ayarlandı
 
 ### Domain Sağlayıcısında:
+
 - [ ] A record eklendi (@)
 - [ ] CNAME record eklendi (www)
 - [ ] Eski kayıtlar silindi/güncellendi
 - [ ] TTL ayarlandı
 
 ### Test Sonuçları:
+
 - [ ] DNS propagation tamamlandı
 - [ ] SSL sertifikası aktif
 - [ ] Tüm yönlendirmeler çalışıyor
@@ -171,15 +187,18 @@ nslookup www.doganventures.net
 ## 🕐 BEKLENTİLER
 
 ### DNS Propagation:
+
 - **Hızlı**: 10-30 dakika
-- **Normal**: 2-6 saat  
+- **Normal**: 2-6 saat
 - **Maksimum**: 24-48 saat
 
 ### SSL Sertifika:
+
 - Vercel otomatik oluşturur
 - 5-10 dakika içinde aktif
 
 ### Yönlendirme:
+
 - DNS propagation tamamlandıktan hemen sonra
 - Vercel otomatik yönlendirme yapar
 
@@ -188,16 +207,19 @@ nslookup www.doganventures.net
 ## 🚨 SORUN GİDERME
 
 ### Domain Status "Invalid Configuration":
+
 1. DNS kayıtlarını kontrol et
 2. TTL süresini bekle
 3. DNS cache temizle: `ipconfig /flushdns` (Windows) / `sudo dscacheutil -flushcache` (Mac)
 
 ### Yönlendirme Çalışmıyor:
+
 1. Primary domain ayarını kontrol et
 2. Browser cache temizle (Ctrl+F5)
 3. Incognito mode'da test et
 
 ### SSL Hatası:
+
 1. Vercel'de SSL status kontrol et
 2. 24 saat bekle
 3. Vercel support'a ticket aç
@@ -207,15 +229,17 @@ nslookup www.doganventures.net
 ## 🎉 BAŞARILI YÖNLENDİRME SİNYALLERİ
 
 ### Browser Test:
+
 ```
 ✅ doganventures.vercel.app → www.doganventures.net
-✅ doganventures.net → www.doganventures.net  
+✅ doganventures.net → www.doganventures.net
 ✅ www.doganventures.net direkt açılır
 ✅ HTTPS kilit simgesi aktif
 ✅ Sayfa hızlı yüklenir
 ```
 
 ### Console Test:
+
 ```
 ✅ Facebook Pixel initialized successfully
 🎯 Facebook Pixel loaded on production!
@@ -229,18 +253,21 @@ nslookup www.doganventures.net
 ## 📋 SONRAKİ ADIMLAR
 
 ### 1. Facebook Pixel Domain Update:
+
 ```
 Meta Business Manager → Events Manager → Pixels → Settings → Domains
 www.doganventures.net domain'ini ekle
 ```
 
 ### 2. Google Analytics Update:
+
 ```
 GA4 → Admin → Property Settings → Property Details
 Website URL: https://www.doganventures.net
 ```
 
 ### 3. Search Console:
+
 ```
 Google Search Console'a www.doganventures.net ekle
 Sitemap gönder: https://www.doganventures.net/sitemap.xml

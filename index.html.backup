@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="shortcut icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="apple-touch-icon" href="/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Domain Verification for Facebook -->
+    <meta
+      name="facebook-domain-verification"
+      content="xdquvg1vicuyjzanpx1b82uo14f5g2"
+    />
+
+    <!-- Automatic WWW Redirect Script -->
+    <script>
+      // Redirect non-www to www for consistent domain
+      if (
+        window.location.hostname === "doganventures.net" &&
+        !window.location.hostname.startsWith("www.") &&
+        !window.location.hostname.includes("localhost") &&
+        !window.location.hostname.includes("vercel.app")
+      ) {
+        console.log("🔄 Redirecting to www subdomain for consistency");
+        window.location.replace(
+          "https://www.doganventures.net" +
+            window.location.pathname +
+            window.location.search
+        );
+      }
+    </script>
+
+    <!-- Domain specific metadata for doganventures.net -->
+    <meta property="og:url" content="https://www.doganventures.net" />
+    <meta property="og:site_name" content="Doğan Ventures" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.doganventures.net" />
+
+    <title>DOGANVENTURES - Şirketinizi 10X Büyütün | Premium Danışmanlık</title>
+    <meta
+      name="description"
+      content="Türkiye'nin #1 danışmanlık şirketi DOGANVENTURES. 1000+ başarılı projeyle şirketinizi dijitalde 10X büyütüyoruz. Hemen ücretsiz analiz için başvurun!"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Facebook Pixel - DOMAIN-AWARE -->
+    <script>
+      console.log("🔄 Facebook Pixel loading...");
+      console.log("🌍 Current domain:", window.location.hostname);
+
+      // Domain consistency check
+      const isWWW = window.location.hostname.startsWith("www.");
+      const isDogventures =
+        window.location.hostname.includes("doganventures.net");
+
+      if (isDogventures && !isWWW) {
+        console.log("⚠️ Non-www domain detected - this may cause pixel issues");
+        console.log(
+          "🔄 Pixel will still initialize but recommend using www subdomain"
+        );
+      }
+
+      // Pixel base code
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        t.onload = function () {
+          console.log("📦 Pixel script loaded successfully");
+          // Ensure pixel is ready before tracking
+          setTimeout(function () {
+            if (typeof fbq !== "undefined") {
+              fbq("track", "PageView", {
+                source: window.location.hostname,
+                domain_type: isWWW ? "www" : "non-www",
+              });
+              console.log(
+                "🎯 PageView sent after script load with domain info"
+              );
+            }
+          }, 100);
+        };
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+
+      // Initialize pixel immediately
+      fbq("init", "1049814317342355");
+      console.log("✅ Facebook Pixel initialized on", window.location.hostname);
+
+      // Send initial PageView with domain info
+      fbq("track", "PageView", {
+        source: window.location.hostname,
+        domain_type: isWWW ? "www" : "non-www",
+        canonical_url: "https://www.doganventures.net",
+      });
+      console.log("🎯 Initial PageView sent with domain context");
+
+      // Additional PageView on window load (for safety)
+      window.addEventListener("load", function () {
+        console.log("🌐 Window loaded - sending additional PageView");
+        setTimeout(function () {
+          if (typeof fbq !== "undefined") {
+            fbq("track", "PageView", {
+              source: window.location.hostname,
+              event_type: "window_load",
+            });
+            console.log("🔥 Additional PageView sent on window load");
+          }
+        }, 500);
+      });
+
+      // Pixel verification
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("📄 DOM ready");
+        setTimeout(function () {
+          if (typeof fbq !== "undefined") {
+            console.log("✅ Pixel verified and ready");
+            // Test event to ensure pixel is working
+            fbq("trackCustom", "PixelTest", {
+              test_event: true,
+              timestamp: new Date().toISOString(),
+              domain: window.location.hostname,
+              is_www: isWWW,
+            });
+            console.log("🧪 Test event sent with domain info");
+          } else {
+            console.warn("⚠️ Pixel not available");
+          }
+        }, 1000);
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Facebook Pixel noscript -->
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1049814317342355&ev=PageView&noscript=1"
+      />
+    </noscript>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

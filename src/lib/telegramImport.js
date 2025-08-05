@@ -1,1 +1,1 @@
-import { sendTelegramNotification } from "./lib/sendTelegramNotification";
+import { sendTelegramNotification } from "./sendTelegramNotification";

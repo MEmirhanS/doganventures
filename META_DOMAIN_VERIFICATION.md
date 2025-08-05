@@ -3,9 +3,11 @@
 ## 🚨 SORUN: Pixel Çalışmıyor Çünkü Domain Verification Eksik
 
 ### ❌ **Mevcut Durum:**
+
 ```html
 <meta name="facebook-domain-verification" content="pending_verification" />
 ```
+
 Bu sadece placeholder - gerçek verification kodu değil!
 
 ---
@@ -13,6 +15,7 @@ Bu sadece placeholder - gerçek verification kodu değil!
 ## 🎯 **META DOMAIN VERIFICATION ADIM ADIM**
 
 ### 1️⃣ **Meta Business Suite'e Git**
+
 ```
 1. business.facebook.com → Login
 2. Business Settings → Brand Safety → Domains
@@ -20,12 +23,14 @@ Bu sadece placeholder - gerçek verification kodu değil!
 ```
 
 ### 2️⃣ **Domain Ekle**
+
 ```
 Domain: doganventures.net
 "Add Domain" butonuna bas
 ```
 
 ### 3️⃣ **Verification Method Seç**
+
 ```
 "HTML tag" yöntemini seç (en kolay)
 Meta size özel bir kod verecek:
@@ -35,7 +40,9 @@ Meta size özel bir kod verecek:
 ```
 
 ### 4️⃣ **Verification Code'u Al**
+
 Meta size şuna benzer bir kod verecek:
+
 ```html
 <meta name="facebook-domain-verification" content="1a2b3c4d5e6f7g8h9i0j" />
 ```
@@ -45,6 +52,7 @@ Meta size şuna benzer bir kod verecek:
 ## 🔧 **CODE'U ALMAK İÇİN HIZLI YOL**
 
 ### Meta Business Manager:
+
 1. **business.facebook.com** → Login
 2. **Business Settings** (sol menü)
 3. **Brand Safety** → **Domains**
@@ -67,12 +75,14 @@ Meta size şuna benzer bir kod verecek:
 ## 🎯 **VERIFICATION NEDEN ÖNEMLİ:**
 
 ### Verification Olmadan:
+
 - ❌ Pixel events kaybolabilir
 - ❌ Tracking tutarsız çalışır
 - ❌ Conversion optimization çalışmaz
 - ❌ Retargeting audienceları oluşmaz
 
 ### Verification Tamamlandıktan Sonra:
+
 - ✅ Pixel events %100 güvenilir
 - ✅ Real-time tracking
 - ✅ Conversion optimization aktif
@@ -83,7 +93,7 @@ Meta size şuna benzer bir kod verecek:
 ## 📋 **YAPILACAK:**
 
 1. **Şimdi Meta'ya gidin** → Domain verification başlatın
-2. **Verification kodunu alın** 
+2. **Verification kodunu alın**
 3. **Bana kodu verin** → Ben index.html'i güncelleyeceğim
 4. **Deploy edeceğim** → 24-48 saat bekleyeceğiz
 

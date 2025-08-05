@@ -6,61 +6,119 @@
     <link rel="shortcut icon" type="image/jpeg" href="/logo.jpg" />
     <link rel="apple-touch-icon" href="/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
+    <!-- FontAwesome removed - now using inline SVG icons for better performance -->
+
     <!-- Domain Verification for Facebook -->
-    <meta name="facebook-domain-verification" content="xdquvg1vicuyjzanpx1b82uo14f5g2" />
-    
+    <meta
+      name="facebook-domain-verification"
+      content="xdquvg1vicuyjzanpx1b82uo14f5g2"
+    />
+
     <!-- Automatic WWW Redirect Script -->
     <script>
       // Redirect non-www to www for consistent domain
-      if (window.location.hostname === 'doganventures.net' && 
-          !window.location.hostname.startsWith('www.')) {
-        console.log('🔄 Redirecting to www subdomain for consistency');
-        window.location.replace('https://www.doganventures.net' + window.location.pathname + window.location.search);
+      if (
+        window.location.hostname === "doganventures.net" &&
+        !window.location.hostname.startsWith("www.") &&
+        !window.location.hostname.includes("localhost") &&
+        !window.location.hostname.includes("vercel.app")
+      ) {
+        console.log("🔄 Redirecting to www subdomain for consistency");
+        window.location.replace(
+          "https://www.doganventures.net" +
+            window.location.pathname +
+            window.location.search
+        );
       }
     </script>
-    
-    <!-- Domain specific metadata for doganventures.net -->
-    <meta property="og:url" content="https://www.doganventures.net" />
-    <meta property="og:site_name" content="Doğan Ventures" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.doganventures.net" />
-    
-    <title>DOGANVENTURES - Şirketinizi 10X Büyütün | Premium Danışmanlık</title>
+
+    <title>
+      DOGANVENTURES - Türkiye'nin En Prestijli Danışmanlık Şirketi | Premium İş
+      Geliştirme Çözümleri
+    </title>
+
+    <!-- Primary Meta Tags -->
+    <meta
+      name="title"
+      content="DOGANVENTURES - Türkiye'nin En Prestijli Danışmanlık Şirketi | Premium İş Geliştirme Çözümleri"
+    />
     <meta
       name="description"
-      content="Türkiye'nin #1 danışmanlık şirketi DOGANVENTURES. 1000+ başarılı projeyle şirketinizi dijitalde 10X büyütüyoruz. Hemen ücretsiz analiz için başvurun!"
+      content="Sektörünüzde öncü olmak için DOGANVENTURES ile tanışın. Premium danışmanlık hizmetleri ile işinizi 10X büyütün. 1000+ başarılı proje, %98.5 müşteri memnuniyeti. Ücretsiz analiz için hemen başvurun!"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
+    <meta
+      name="keywords"
+      content="danışmanlık, iş geliştirme, dijital pazarlama, stratejik danışmanlık, operasyonel verimlilik, satış artışı, marka konumlandırma, premium danışmanlık, Türkiye"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Turkish" />
+    <meta name="author" content="DOGANVENTURES" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://doganventures.net" />
+    <meta
+      property="og:title"
+      content="DOGANVENTURES - Türkiye'nin En Prestijli Danışmanlık Şirketi"
+    />
+    <meta
+      property="og:description"
+      content="Premium danışmanlık hizmetleri ile işinizi 10X büyütün. 1000+ başarılı proje, %98.5 müşteri memnuniyeti. Ücretsiz analiz için hemen başvurun!"
+    />
+    <meta property="og:image" content="https://doganventures.net/logo.jpg" />
+    <meta property="og:site_name" content="DOGANVENTURES" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://doganventures.net" />
+    <meta
+      property="twitter:title"
+      content="DOGANVENTURES - Türkiye'nin En Prestijli Danışmanlık Şirketi"
+    />
+    <meta
+      property="twitter:description"
+      content="Premium danışmanlık hizmetleri ile işinizi 10X büyütün. 1000+ başarılı proje, %98.5 müşteri memnuniyeti."
+    />
+    <meta
+      property="twitter:image"
+      content="https://doganventures.net/logo.jpg"
     />
 
-    <!-- Facebook Pixel - DOMAIN-AWARE -->
-    <script>
-      console.log("🔄 Facebook Pixel loading...");
-      console.log("🌍 Current domain:", window.location.hostname);
-      
-      // Domain consistency check
-      const isWWW = window.location.hostname.startsWith('www.');
-      const isDogventures = window.location.hostname.includes('doganventures.net');
-      
-      if (isDogventures && !isWWW) {
-        console.log("⚠️ Non-www domain detected - this may cause pixel issues");
-        console.log("🔄 Pixel will still initialize but recommend using www subdomain");
+    <!-- Additional SEO Tags -->
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Türkiye" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="1 days" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "DOGANVENTURES",
+        "url": "https://doganventures.net",
+        "logo": "https://doganventures.net/logo.jpg",
+        "description": "Türkiye'nin en prestijli danışmanlık şirketi. Premium iş geliştirme çözümleri.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": "Turkish"
+        },
+        "sameAs": ["https://doganventures.net"]
       }
-      
-      // Pixel base code
+    </script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
         };
         if (!f._fbq) f._fbq = n;
         n.push = n;
@@ -70,70 +128,96 @@
         t = b.createElement(e);
         t.async = !0;
         t.src = v;
-        t.onload = function() {
-          console.log("📦 Pixel script loaded successfully");
-          // Ensure pixel is ready before tracking
-          setTimeout(function() {
-            if (typeof fbq !== 'undefined') {
-              fbq("track", "PageView", {
-                source: window.location.hostname,
-                domain_type: isWWW ? 'www' : 'non-www'
-              });
-              console.log("🎯 PageView sent after script load with domain info");
-            }
-          }, 100);
-        };
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
-      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-
-      // Initialize pixel immediately
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
       fbq("init", "1049814317342355");
-      console.log("✅ Facebook Pixel initialized on", window.location.hostname);
-
-      // Send initial PageView with domain info
-      fbq("track", "PageView", {
-        source: window.location.hostname,
-        domain_type: isWWW ? 'www' : 'non-www',
-        canonical_url: 'https://www.doganventures.net'
-      });
-      console.log("🎯 Initial PageView sent with domain context");
-
-      // Additional PageView on window load (for safety)
-      window.addEventListener('load', function() {
-        console.log("🌐 Window loaded - sending additional PageView");
-        setTimeout(function() {
-          if (typeof fbq !== 'undefined') {
-            fbq("track", "PageView", {
-              source: window.location.hostname,
-              event_type: 'window_load'
-            });
-            console.log("🔥 Additional PageView sent on window load");
-          }
-        }, 500);
-      });
-
-      // Pixel verification
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log("📄 DOM ready");
-        setTimeout(function() {
-          if (typeof fbq !== 'undefined') {
-            console.log("✅ Pixel verified and ready");
-            // Test event to ensure pixel is working
-            fbq("trackCustom", "PixelTest", {
-              test_event: true,
-              timestamp: new Date().toISOString(),
-              domain: window.location.hostname,
-              is_www: isWWW
-            });
-            console.log("🧪 Test event sent with domain info");
-          } else {
-            console.warn("⚠️ Pixel not available");
-          }
-        }, 1000);
-      });
+      fbq("track", "PageView");
     </script>
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <style>
+      :root {
+        --primary-bg: #0a0a0a;
+        --secondary-bg: #1a1a1a;
+        --primary-white: #ffffff;
+        --text-light: rgba(255, 255, 255, 0.8);
+        --text-dark: #333;
+        --primary-accent: #d4af37;
+        --accent-purple: #7c3aed;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --gradient-primary: linear-gradient(135deg, #d4af37 0%, #f4e4bc 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: var(--primary-bg);
+        color: var(--primary-white);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      /* Loading Screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
   </head>
+
   <body>
     <!-- Facebook Pixel noscript -->
     <noscript>
@@ -141,7 +225,7 @@
         height="1"
         width="1"
         style="display: none"
-        src="https://www.facebook.com/tr?id=1049814317342355&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=1049814317342355&amp;ev=PageView&amp;noscript=1"
       />
     </noscript>
 
