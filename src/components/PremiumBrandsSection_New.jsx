@@ -4,37 +4,53 @@ import Slider from "react-slick";
 // Basit SVG iconlar - deployment'ta kesinlikle çalışır
 const ServiceIcon = ({ type, isActive }) => {
   const iconColor = isActive ? "#D4AF37" : "rgba(212, 175, 55, 0.8)";
-  
+
   const icons = {
     strategy: (
-      <svg viewBox="0 0 24 24" fill={iconColor} style={{ width: '48px', height: '48px' }}>
-        <path d="M7 14l5-5 5 5z"/>
-        <path d="M2 12h3l1-1v-1h12v1l1 1h3v8H2v-8z"/>
-        <path d="M5 4h14v4H5z"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill={iconColor}
+        style={{ width: "48px", height: "48px" }}
+      >
+        <path d="M7 14l5-5 5 5z" />
+        <path d="M2 12h3l1-1v-1h12v1l1 1h3v8H2v-8z" />
+        <path d="M5 4h14v4H5z" />
       </svg>
     ),
     leadership: (
-      <svg viewBox="0 0 24 24" fill={iconColor} style={{ width: '48px', height: '48px' }}>
-        <circle cx="12" cy="8" r="3"/>
-        <path d="M12 11c-3 0-8 1.5-8 4.5V20h16v-4.5c0-3-5-4.5-8-4.5z"/>
-        <circle cx="18" cy="8" r="2"/>
-        <path d="M18 11c1.5 0 4 .75 4 2.25V16h-3v-2.5c0-1-1.5-2-3-2.5z"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill={iconColor}
+        style={{ width: "48px", height: "48px" }}
+      >
+        <circle cx="12" cy="8" r="3" />
+        <path d="M12 11c-3 0-8 1.5-8 4.5V20h16v-4.5c0-3-5-4.5-8-4.5z" />
+        <circle cx="18" cy="8" r="2" />
+        <path d="M18 11c1.5 0 4 .75 4 2.25V16h-3v-2.5c0-1-1.5-2-3-2.5z" />
       </svg>
     ),
     innovation: (
-      <svg viewBox="0 0 24 24" fill={iconColor} style={{ width: '48px', height: '48px' }}>
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
-        <path d="M9 19h6v1c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1v-1z"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill={iconColor}
+        style={{ width: "48px", height: "48px" }}
+      >
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z" />
+        <path d="M9 19h6v1c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1v-1z" />
       </svg>
     ),
     excellence: (
-      <svg viewBox="0 0 24 24" fill={iconColor} style={{ width: '48px', height: '48px' }}>
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        <circle cx="12" cy="12" r="3"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill={iconColor}
+        style={{ width: "48px", height: "48px" }}
+      >
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        <circle cx="12" cy="12" r="3" />
       </svg>
-    )
+    ),
   };
-  
+
   return icons[type] || icons.strategy;
 };
 
@@ -46,7 +62,8 @@ const PremiumBrandsSection = () => {
   const services = [
     {
       title: "Stratejik Büyüme",
-      description: "Pazarlama, satış ve dijital dönüşümde sektörünüze özel, ölçülebilir büyüme stratejileri.",
+      description:
+        "Pazarlama, satış ve dijital dönüşümde sektörünüze özel, ölçülebilir büyüme stratejileri.",
       iconType: "strategy",
       features: [
         "Hedef pazar ve müşteri analizi",
@@ -58,7 +75,8 @@ const PremiumBrandsSection = () => {
     },
     {
       title: "Yönetici & Ekip Gelişimi",
-      description: "Liderlik, ekip motivasyonu ve kurumsal kültürde sürdürülebilir gelişim programları.",
+      description:
+        "Liderlik, ekip motivasyonu ve kurumsal kültürde sürdürülebilir gelişim programları.",
       iconType: "leadership",
       features: [
         "Yönetici koçluğu ve mentorluk",
@@ -70,7 +88,8 @@ const PremiumBrandsSection = () => {
     },
     {
       title: "İnovasyon & Dijitalleşme",
-      description: "Yeni nesil iş modelleri, dijitalleşme ve inovasyon odaklı dönüşüm projeleri.",
+      description:
+        "Yeni nesil iş modelleri, dijitalleşme ve inovasyon odaklı dönüşüm projeleri.",
       iconType: "innovation",
       features: [
         "İnovasyon kültürü ve Ar-Ge danışmanlığı",
@@ -82,7 +101,8 @@ const PremiumBrandsSection = () => {
     },
     {
       title: "Operasyonel Mükemmellik",
-      description: "Süreç optimizasyonu, verimlilik ve teknoloji entegrasyonu ile maksimum performans.",
+      description:
+        "Süreç optimizasyonu, verimlilik ve teknoloji entegrasyonu ile maksimum performans.",
       iconType: "excellence",
       features: [
         "İş süreçleri analizi ve yeniden tasarımı",
@@ -123,7 +143,8 @@ const PremiumBrandsSection = () => {
       <div style={{ padding: "0 15px" }}>
         <div
           style={{
-            background: "linear-gradient(145deg, rgba(30, 30, 40, 0.95), rgba(20, 20, 30, 0.95))",
+            background:
+              "linear-gradient(145deg, rgba(30, 30, 40, 0.95), rgba(20, 20, 30, 0.95))",
             borderRadius: "20px",
             padding: "2.5rem 2rem",
             height: "auto",
@@ -148,7 +169,8 @@ const PremiumBrandsSection = () => {
               left: 0,
               right: 0,
               height: "3px",
-              background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
+              background:
+                "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent)",
             }}
           />
 
@@ -246,7 +268,8 @@ const PremiumBrandsSection = () => {
   return (
     <section
       style={{
-        background: "linear-gradient(135deg, rgba(5, 5, 15, 0.98) 0%, rgba(25, 25, 35, 0.98) 100%)",
+        background:
+          "linear-gradient(135deg, rgba(5, 5, 15, 0.98) 0%, rgba(25, 25, 35, 0.98) 100%)",
         padding: "6rem 0",
         position: "relative",
         borderTop: "1px solid rgba(212, 175, 55, 0.15)",
@@ -263,7 +286,8 @@ const PremiumBrandsSection = () => {
             style={{
               display: "inline-block",
               padding: "8px 20px",
-              background: "linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.9))",
+              background:
+                "linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(244, 228, 188, 0.9))",
               color: "#000",
               fontSize: "0.8rem",
               fontWeight: "bold",
@@ -311,11 +335,13 @@ const PremiumBrandsSection = () => {
         {/* Services Carousel */}
         <div
           style={{
-            background: "linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(25, 25, 40, 0.9), rgba(10, 10, 15, 0.9))",
+            background:
+              "linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(25, 25, 40, 0.9), rgba(10, 10, 15, 0.9))",
             borderRadius: "24px",
             padding: "3rem 2rem",
             border: "1px solid rgba(212, 175, 55, 0.3)",
-            boxShadow: "0 30px 100px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)",
+            boxShadow:
+              "0 30px 100px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)",
           }}
         >
           <Slider ref={sliderRef} {...sliderSettings}>
@@ -354,11 +380,11 @@ const PremiumBrandsSection = () => {
         .slick-track {
           display: flex !important;
         }
-        
+
         .slick-slide {
           height: inherit !important;
         }
-        
+
         .slick-slide > div {
           height: 100%;
         }

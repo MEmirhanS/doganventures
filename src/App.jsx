@@ -577,247 +577,279 @@ const ServiceCard = memo(({ service }) => {
   );
 });
 
-const TestimonialCard = memo(({ testimonial }) => {
+const TestimonialCard = memo(({ testimonial, index }) => {
   const [ref, isVisible] = useIntersectionObserver();
 
-  // Professional business photos array for random backgrounds
-  const professionalBackgrounds = [
-    // Use existing testimonial photos as base (different combinations)
-    "/testimonials/mehmet-ozkan.jpg",
-    "/testimonials/ayse-demir.jpg",
-    "/testimonials/can-yilmaz.jpg",
-    "/testimonials/zeynep-kaya.jpg",
-    "/testimonials/ahmet-yildiz.jpg",
-    "/testimonials/elif-sahin.jpg",
-    "/testimonials/burak-demir.jpg",
-    "/testimonials/selin-aydin.jpg",
-    "/testimonials/murat-ozturk.jpg",
-    // Add business/office themed images from other assets
-    "/assets/proofs/training-1.jpg",
-    "/assets/proofs/training-2.jpg",
-    // Professional stock images for variety
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face",
-    // Additional professional variety
-    "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=150&h=150&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1584999734482-0361aecad844?w=150&h=150&fit=crop&crop=face",
-  ];
+  // Premium colors for each testimonial based on their business sector
+  const getTestimonialTheme = (name, index) => {
+    const themes = {
+      "Mehmet Özkan": { primary: "#667eea", secondary: "#764ba2", icon: "fas fa-chart-line", accent: "#4c63d2" },
+      "Ayşe Demir": { primary: "#f093fb", secondary: "#f5576c", icon: "fas fa-tshirt", accent: "#e361a8" },
+      "Can Yılmaz": { primary: "#4facfe", secondary: "#00f2fe", icon: "fas fa-heartbeat", accent: "#2196f3" },
+      "Zeynep Kaya": { primary: "#a8edea", secondary: "#fed6e3", icon: "fas fa-graduation-cap", accent: "#81c784" },
+      "Ahmet Yıldız": { primary: "#ffecd2", secondary: "#fcb69f", icon: "fas fa-shopping-cart", accent: "#ff9800" },
+      "Elif Şahin": { primary: "#a8caba", secondary: "#5d4e75", icon: "fas fa-leaf", accent: "#4caf50" },
+      "Burak Demir": { primary: "#89f7fe", secondary: "#66a6ff", icon: "fas fa-coins", accent: "#03a9f4" },
+      "Selin Aydın": { primary: "#fdbb2d", secondary: "#22c1c3", icon: "fas fa-gem", accent: "#ffc107" },
+      "Murat Öztürk": { primary: "#e0c3fc", secondary: "#9bb5ff", icon: "fas fa-car", accent: "#9c27b0" }
+    };
 
-  // Get consistent random background for each testimonial
-  const getConsistentBackground = (name) => {
-    // Use name hash to get consistent random selection
-    let hash = 0;
-    for (let i = 0; i < name.length; i++) {
-      const char = name.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash; // Convert to 32bit integer
-    }
+    const defaultThemes = [
+      { primary: "#ff9a9e", secondary: "#fecfef", icon: "fas fa-star", accent: "#e91e63" },
+      { primary: "#ffeee4", secondary: "#fce2ce", icon: "fas fa-rocket", accent: "#ff5722" },
+      { primary: "#cfd9df", secondary: "#e2ebf0", icon: "fas fa-trophy", accent: "#607d8b" }
+    ];
 
-    // Filter out the testimonial's own image path
-    const normalizedName = name
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/ş/g, "s")
-      .replace(/ç/g, "c")
-      .replace(/ğ/g, "g")
-      .replace(/ü/g, "u")
-      .replace(/ö/g, "o")
-      .replace(/ı/g, "i");
-
-    const availablePhotos = professionalBackgrounds.filter(
-      (photo) => !photo.includes(normalizedName)
-    );
-
-    const index = Math.abs(hash) % availablePhotos.length;
-    return availablePhotos[index];
+    return themes[name] || defaultThemes[index % defaultThemes.length];
   };
 
-  const backgroundImage = getConsistentBackground(testimonial.name);
-
-  // State for image loading
-  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
-  const [testimonialLoaded, setTestimonialLoaded] = useState(false);
+  const theme = getTestimonialTheme(testimonial.name, index);
 
   return (
     <div
       ref={ref}
-      className={`testimonial-card card card-white perf-opt ${
-        isVisible ? "fade-in-up visible" : ""
-      }`}
+      className={`testimonial-card perf-opt ${isVisible ? "fade-in-up visible" : ""}`}
       style={{
-        boxShadow:
-          "0 15px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(212, 175, 55, 0.2)",
-        borderRadius: "16px",
-        overflow: "hidden",
+        background: "linear-gradient(145deg, rgba(30, 30, 35, 0.98), rgba(25, 25, 30, 0.98))",
+        borderRadius: "24px",
+        padding: "2.5rem",
+        border: `1px solid rgba(212, 175, 55, 0.25)`,
+        boxShadow: `
+          0 25px 50px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(212, 175, 55, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12)
+        `,
         position: "relative",
+        overflow: "hidden",
+        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        transform: isVisible ? "translateY(0)" : "translateY(30px)",
+        opacity: isVisible ? 1 : 0,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-8px) scale(1.02)";
+        e.currentTarget.style.boxShadow = `
+          0 35px 70px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(212, 175, 55, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.25),
+          0 0 40px rgba(212, 175, 55, 0.25)
+        `;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0) scale(1)";
+        e.currentTarget.style.boxShadow = `
+          0 25px 50px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(212, 175, 55, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12)
+        `;
       }}
     >
-      <div className="testimonial-header">
-        <div
+      {/* Premium corner accent with gradient */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "80px",
+          height: "80px",
+          background: `linear-gradient(135deg, ${theme.primary}25, ${theme.secondary}25)`,
+          borderRadius: "0 24px 0 80px",
+          opacity: 0.7,
+        }}
+      />
+      
+      {/* Subtle background pattern */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: `
+            radial-gradient(circle at 20% 80%, ${theme.primary}08 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, ${theme.secondary}08 0%, transparent 50%)
+          `,
+          borderRadius: "24px",
+        }}
+      />
+      
+      {/* Enhanced business icon */}
+      <div
+        style={{
+          position: "absolute",
+          top: "1.5rem",
+          right: "1.5rem",
+          width: "48px",
+          height: "48px",
+          borderRadius: "50%",
+          background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: `
+            0 6px 20px rgba(0, 0, 0, 0.4),
+            0 0 0 2px rgba(255, 255, 255, 0.1)
+          `,
+          zIndex: 3,
+        }}
+      >
+        <i 
+          className={theme.icon} 
+          style={{ 
+            color: "white", 
+            fontSize: "1.1rem" 
+          }}
+        />
+      </div>
+
+      {/* Avatar placeholder with initials */}
+      <div
+        style={{
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          background: `linear-gradient(135deg, ${theme.accent}, ${theme.primary})`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: "1.5rem",
+          boxShadow: `
+            0 8px 25px rgba(0, 0, 0, 0.3),
+            0 0 0 3px rgba(255, 255, 255, 0.1)
+          `,
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <span
           style={{
-            position: "relative",
-            width: "60px",
-            height: "60px",
-            marginRight: "1rem",
-            borderRadius: "50%",
-            overflow: "hidden",
-            border: "2px solid var(--primary-accent)",
-            boxShadow: "0 0 15px rgba(212, 175, 55, 0.3)",
+            color: "white",
+            fontSize: "1.4rem",
+            fontWeight: "700",
+            letterSpacing: "1px",
           }}
         >
-          {/* Background layer with professional image */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              zIndex: 1,
-              filter: "brightness(0.9) contrast(1.1)",
-              opacity: backgroundLoaded ? 1 : 0,
-              transition: "opacity 0.3s ease",
-            }}
-            onLoad={() => setBackgroundLoaded(true)}
-          />
-
-          {/* Loading placeholder */}
-          {!backgroundLoaded && (
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                background:
-                  "linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(30, 30, 35, 0.2))",
-                zIndex: 1,
-              }}
-            />
-          )}
-
-          {/* Hidden image for loading detection */}
-          <img
-            src={backgroundImage}
-            alt=""
-            style={{ display: "none" }}
-            onLoad={() => setBackgroundLoaded(true)}
-            onError={() => setBackgroundLoaded(true)}
-          />
-
-          {/* Color overlay for brand consistency */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background:
-                "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 30, 35, 0.25) 100%)",
-              zIndex: 2,
-            }}
-          />
-
-          {/* Blurred testimonial photo overlay */}
-          <img
-            src={testimonial.image}
-            alt={testimonial.name}
-            loading="lazy"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              filter: "blur(4px) brightness(0.7) saturate(0.8)",
-              transform: "scale(1.2)",
-              zIndex: 3,
-              opacity: testimonialLoaded ? 0.5 : 0, // More transparency to show background blend
-              mixBlendMode: "soft-light", // Softer blend for more natural look
-              transition: "opacity 0.3s ease",
-            }}
-            onLoad={() => setTestimonialLoaded(true)}
-            onError={() => setTestimonialLoaded(true)}
-          />
-
-          {/* Final glow accent */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background:
-                "radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.3) 0%, transparent 60%)",
-              zIndex: 4,
-              opacity: 0.6,
-            }}
-          />
-        </div>
-        <div className="testimonial-info">
-          <div className="testimonial-name">{testimonial.name}</div>
-          <div className="testimonial-company">{testimonial.company}</div>
-        </div>
+          {testimonial.name.split(' ').map(n => n[0]).join('')}
+        </span>
       </div>
-      <div className="testimonial-content">
-        <p className="testimonial-text">"{testimonial.text}"</p>
-        <div
-          className="testimonial-result"
-          style={
-            testimonial.result === "10X Büyüme"
-              ? {
-                  position: "relative",
-                  backgroundColor: "var(--primary-accent)",
-                  color: "var(--primary-white)",
-                  padding: "0.75rem 1.5rem",
-                  borderRadius: "20px",
-                  fontSize: "1rem",
-                  fontWeight: "700",
-                  textAlign: "center",
-                  marginTop: "auto",
-                  textDecoration: "none",
-                  paddingBottom: "10px",
-                  display: "inline-block",
-                }
-              : {}
-          }
+
+      {/* Header with name and company */}
+      <div style={{ marginBottom: "1.5rem", position: "relative", zIndex: 2 }}>
+        <h4
+          style={{
+            color: "var(--primary-white)",
+            fontSize: "1.4rem",
+            fontWeight: "700",
+            marginBottom: "0.5rem",
+            letterSpacing: "0.5px",
+            lineHeight: "1.3",
+          }}
         >
-          {testimonial.result}
-          {testimonial.result === "10X Büyüme" && (
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-2px",
-                left: "15%",
-                right: "15%",
-                height: "12px",
-                backgroundImage:
-                  'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,10 Q15,17 30,5 T60,12 T90,8 T100,15" stroke="%23ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" /></svg>\')',
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                opacity: 0.85,
-                zIndex: 2,
-                transform: "scale(1.05)",
-                filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.2))",
-              }}
-            ></div>
-          )}
-        </div>
+          {testimonial.name}
+        </h4>
+        <p
+          style={{
+            color: "var(--primary-accent)",
+            fontSize: "1rem",
+            fontWeight: "600",
+            margin: 0,
+            opacity: 0.9,
+            letterSpacing: "0.3px",
+          }}
+        >
+          {testimonial.company}
+        </p>
+      </div>
+
+      {/* Quote text with enhanced styling */}
+      <blockquote
+        style={{
+          color: "rgba(255, 255, 255, 0.85)",
+          fontSize: "1.1rem",
+          lineHeight: "1.7",
+          fontStyle: "italic",
+          margin: "0 0 2rem 0",
+          position: "relative",
+          paddingLeft: "1.5rem",
+          flex: 1,
+          zIndex: 2,
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "4px",
+            height: "100%",
+            background: `linear-gradient(to bottom, ${theme.primary}, ${theme.secondary})`,
+            borderRadius: "2px",
+            boxShadow: `0 0 8px ${theme.primary}40`,
+          }}
+        />
+        <i 
+          className="fas fa-quote-left" 
+          style={{ 
+            color: theme.primary,
+            fontSize: "1.2rem",
+            marginRight: "0.5rem",
+            opacity: 0.7
+          }} 
+        />
+        {testimonial.text}
+      </blockquote>
+
+      {/* Enhanced result badge */}
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          padding: "1rem 1.8rem",
+          background: testimonial.result === "10X Büyüme" 
+            ? "linear-gradient(135deg, var(--primary-accent), #f4e4bc)"
+            : `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`,
+          color: testimonial.result === "10X Büyüme" ? "#000" : "#fff",
+          borderRadius: "30px",
+          fontSize: "0.95rem",
+          fontWeight: "700",
+          textTransform: "uppercase",
+          letterSpacing: "0.8px",
+          boxShadow: `
+            0 6px 20px rgba(0, 0, 0, 0.25),
+            0 0 0 1px rgba(255, 255, 255, 0.1)
+          `,
+          position: "relative",
+          overflow: "hidden",
+          alignSelf: "flex-start",
+          zIndex: 2,
+        }}
+      >
+        <i 
+          className="fas fa-trophy" 
+          style={{ 
+            marginRight: "0.6rem", 
+            fontSize: "0.9rem" 
+          }} 
+        />
+        {testimonial.result}
+        
+        {testimonial.result === "10X Büyüme" && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-2px",
+              left: "10%",
+              right: "10%",
+              height: "10px",
+              background: "linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.9), transparent)",
+              borderRadius: "5px",
+              animation: "shimmer 2s infinite",
+            }}
+          />
+        )}
       </div>
     </div>
   );
@@ -1274,6 +1306,19 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
+  // Custom event listener for opening contact modal
+  useEffect(() => {
+    const handleOpenContactModal = () => {
+      setShowModal(true);
+    };
+
+    window.addEventListener('openContactModal', handleOpenContactModal);
+
+    return () => {
+      window.removeEventListener('openContactModal', handleOpenContactModal);
+    };
+  }, []);
+
   // Format timer
   const formatTime = (seconds) => {
     const hrs = Math.floor(seconds / 3600);
@@ -1422,63 +1467,54 @@ function App() {
     {
       name: "Mehmet Özkan",
       company: "TechStart A.Ş.",
-      image: "/testimonials/mehmet-ozkan.jpg",
       text: "DOGANVENTURES ile çalıştıktan sonra satışlarımız 280% arttı. RO'imiz hiç bu kadar yüksek olmamıştı.",
       result: "280% Satış Artışı",
     },
     {
       name: "Ayşe Demir",
       company: "Fashion Plus",
-      image: "/testimonials/ayse-demir.jpg",
       text: "3 ayda 50.000 yeni müşteri kazandık. Profesyonel yaklaşımları ve sonuç odaklı stratejileri mükemmel.",
       result: "50K Yeni Müşteri",
     },
     {
       name: "Can Yılmaz",
       company: "HealthCare Pro",
-      image: "/testimonials/can-yilmaz.jpg",
       text: "Dijital dönüşümümüzü başarıyla tamamladık. Artık sektörde lider konumdayız.",
       result: "Sektör Lideri",
     },
     {
       name: "Zeynep Kaya",
       company: "EduTech Solutions",
-      image: "/testimonials/zeynep-kaya.jpg",
       text: "Online eğitim platformumuzun kullanıcı sayısı 6 ayda 10 katına çıktı. Müthiş bir büyüme stratejisi!",
       result: "10X Büyüme",
     },
     {
       name: "Ahmet Yıldız",
       company: "SmartRetail",
-      image: "/testimonials/ahmet-yildiz.jpg",
       text: "E-ticaret operasyonlarımız tamamen optimize edildi. Kâr marjımız %150 artış gösterdi.",
       result: "150% Kâr Artışı",
     },
     {
       name: "Elif Şahin",
       company: "GreenEnergy Ltd.",
-      image: "/testimonials/elif-sahin.jpg",
       text: "Sürdürülebilir enerji projelerimizin verimliliği inanılmaz arttı. Pazar payımız 3 kat büyüdü.",
       result: "3X Pazar Payı",
     },
     {
       name: "Burak Demir",
       company: "FinTech Plus",
-      image: "/testimonials/burak-demir.jpg",
       text: "Finansal teknoloji çözümlerimiz sayesinde işlem hacmimiz %400 büyüdü. Rakiplerimizden açık ara öndeyiz.",
       result: "400% Hacim Artışı",
     },
     {
       name: "Selin Aydın",
       company: "BeautyBox",
-      image: "/testimonials/selin-aydin.jpg",
       text: "Kozmetik markamızın online satışları 5 kat arttı. Sosyal medya stratejimiz tam isabet oldu.",
       result: "5X Online Satış",
     },
     {
       name: "Murat Öztürk",
       company: "AutoTech",
-      image: "/testimonials/murat-ozturk.jpg",
       text: "Otomotiv teknolojileri sektöründe 1 numaraya yükseldik. Bayi ağımız %200 genişledi.",
       result: "200% Ağ Büyümesi",
     },
@@ -1776,7 +1812,7 @@ function App() {
       <InfoVideoSection
         title="Verdiğimiz Hizmetler & Biz Kimiz"
         description="Profesyonel ekibimiz ve benzersiz yaklaşımımızla, dijital pazarlama ve iş geliştirme alanında doğru bilinen yanlışları düzeltiyoruz. İşte fark yaratan metodolojimiz:"
-        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&controls=1&showinfo=0"
+        videoUrl="/DOGANVENTURES.mp4"
         cards={[
           {
             icon: "fas fa-check-circle",
@@ -2327,7 +2363,7 @@ function App() {
             >
               {testimonials.map((testimonial, index) => (
                 <div key={index} style={{ padding: "1rem" }}>
-                  <TestimonialCard testimonial={testimonial} />
+                  <TestimonialCard testimonial={testimonial} index={index} />
                 </div>
               ))}
             </Slider>

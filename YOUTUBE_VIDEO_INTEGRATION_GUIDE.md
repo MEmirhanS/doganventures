@@ -5,11 +5,13 @@
 ### 📹 **YouTube URL Formatları**
 
 #### **Normal YouTube URL:**
+
 ```
 https://www.youtube.com/watch?v=VIDEO_ID
 ```
 
 #### **Embed URL (Önerilen):**
+
 ```
 https://www.youtube.com/embed/VIDEO_ID
 ```
@@ -26,11 +28,18 @@ https://www.youtube.com/embed/VIDEO_ID
 4. Çıkan kodu kopyala veya URL'i al
 
 **Örnek:**
+
 ```html
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" ...>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+  ...
+></iframe>
 ```
 
 **Sadece URL kısmını al:**
+
 ```
 https://www.youtube.com/embed/dQw4w9WgXcQ
 ```
@@ -51,21 +60,25 @@ https://www.youtube.com/embed/dQw4w9WgXcQ
 ## ⚙️ **Gelişmiş YouTube Parametreleri**
 
 ### **Autoplay (Otomatik Oynatma):**
+
 ```
 https://www.youtube.com/embed/VIDEO_ID?autoplay=1
 ```
 
 ### **HD Kalite:**
+
 ```
 https://www.youtube.com/embed/VIDEO_ID?quality=hd720
 ```
 
 ### **Kontrolleri Gizle:**
+
 ```
 https://www.youtube.com/embed/VIDEO_ID?controls=0
 ```
 
 ### **Birden Fazla Parametre:**
+
 ```
 https://www.youtube.com/embed/VIDEO_ID?autoplay=1&controls=1&quality=hd720
 ```
@@ -75,11 +88,13 @@ https://www.youtube.com/embed/VIDEO_ID?autoplay=1&controls=1&quality=hd720
 ## 🎨 **Görünüm Özellikleri**
 
 ### **Responsive Design:**
+
 - ✅ **16:9 aspect ratio** korunur
 - ✅ **Mobile uyumlu** - tüm cihazlarda düzgün
 - ✅ **Premium styling** - yuvarlak köşeler, gölgeler
 
 ### **Loading States:**
+
 - ✅ **Video varsa:** YouTube player gösterir
 - ✅ **Video yoksa:** "Video Yakında Gelecek" placeholder
 - ✅ **Error handling:** Bozuk URL'lerde düzgün çalışır
@@ -89,17 +104,20 @@ https://www.youtube.com/embed/VIDEO_ID?autoplay=1&controls=1&quality=hd720
 ## 📱 **Test Etme**
 
 ### **1️⃣ Local Test:**
+
 ```bash
 npm run dev
 ```
 
 ### **2️⃣ Production Test:**
+
 ```bash
 npm run build
 vercel --prod
 ```
 
 ### **3️⃣ Tarayıcı Kontrolü:**
+
 - Desktop'ta video oynatılıyor mu?
 - Mobile'da responsive çalışıyor mu?
 - Farklı tarayıcılarda sorun var mı?
@@ -109,18 +127,21 @@ vercel --prod
 ## 🚀 **Örnekler**
 
 ### **Şirket Tanıtımı:**
+
 ```jsx
-videoUrl="https://www.youtube.com/embed/ABC123XYZ"
+videoUrl = "https://www.youtube.com/embed/ABC123XYZ";
 ```
 
 ### **Hizmetler Videosu:**
+
 ```jsx
-videoUrl="https://www.youtube.com/embed/DEF456ABC"
+videoUrl = "https://www.youtube.com/embed/DEF456ABC";
 ```
 
 ### **Müşteri Hikayesi:**
+
 ```jsx
-videoUrl="https://www.youtube.com/embed/GHI789DEF"
+videoUrl = "https://www.youtube.com/embed/GHI789DEF";
 ```
 
 ---
@@ -128,6 +149,7 @@ videoUrl="https://www.youtube.com/embed/GHI789DEF"
 ## 🎯 **Hangi Video Türü Eklemeli?**
 
 ### **İdeal Video İçerikleri:**
+
 1. 🏢 **Şirket tanıtımı** (2-3 dakika)
 2. 🎯 **Hizmetler overview** (3-5 dakika)
 3. 👥 **Ekip ve ofis turu** (1-2 dakika)
@@ -135,6 +157,7 @@ videoUrl="https://www.youtube.com/embed/GHI789DEF"
 5. 🎓 **Eğitim içerikleri** (5-10 dakika)
 
 ### **Video Kalite Kriterleri:**
+
 - ✅ **Professional çekim**
 - ✅ **Temiz ses kalitesi**
 - ✅ **Marka kimliği uyumlu**
@@ -145,7 +168,7 @@ videoUrl="https://www.youtube.com/embed/GHI789DEF"
 ## 📝 **Şu Anda Kullanılan URL:**
 
 ```jsx
-videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
 ```
 
 **Bu örnek bir URL'dir. Kendi videonuzla değiştirin!**
