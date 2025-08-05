@@ -32,37 +32,61 @@ const InfoVideoSection = ({ title, description, videoUrl, cards, className = "" 
           }}
         >
           {/* YouTube Embed veya Video */}
-          {videoUrl.includes('youtube') || videoUrl.includes('embed') ? (
-            <iframe
-              src={videoUrl}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title="YouTube video"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                borderRadius: "20px",
-              }}
-            ></iframe>
+          {videoUrl && videoUrl.trim() ? (
+            videoUrl.includes('youtube') || videoUrl.includes('embed') ? (
+              <iframe
+                src={videoUrl}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="YouTube video"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "20px",
+                }}
+              ></iframe>
+            ) : (
+              <video
+                src={videoUrl}
+                controls
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "20px",
+                }}
+              >
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            )
           ) : (
-            <video
-              src={videoUrl}
-              controls
+            <div
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "100%",
                 height: "100%",
+                background: "linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05))",
                 borderRadius: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "2px dashed rgba(212, 175, 55, 0.3)",
               }}
             >
-              Tarayıcınız video etiketini desteklemiyor.
-            </video>
+              <div style={{ textAlign: "center", color: "rgba(255, 255, 255, 0.7)" }}>
+                <i className="fas fa-play-circle" style={{ fontSize: "4rem", marginBottom: "1rem", color: "rgba(212, 175, 55, 0.8)" }}></i>
+                <p style={{ fontSize: "1.1rem", fontWeight: "500" }}>Video Yakında Gelecek</p>
+                <p style={{ fontSize: "0.9rem", opacity: "0.8" }}>Premium içeriklerimizi hazırlıyoruz...</p>
+              </div>
+            </div>
           )}
         </div>
       </div>

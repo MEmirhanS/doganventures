@@ -1776,7 +1776,7 @@ function App() {
       <InfoVideoSection
         title="Verdiğimiz Hizmetler & Biz Kimiz"
         description="Profesyonel ekibimiz ve benzersiz yaklaşımımızla, dijital pazarlama ve iş geliştirme alanında doğru bilinen yanlışları düzeltiyoruz. İşte fark yaratan metodolojimiz:"
-        videoUrl=""
+        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&controls=1&showinfo=0"
         cards={[
           {
             icon: "fas fa-check-circle",
