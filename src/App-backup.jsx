@@ -1540,12 +1540,12 @@ function App() {
           <button
             className="btn btn-primary"
             onClick={() => {
-              trackCtaClick("Header CTA - Ücretsiz Analiz");
+              trackCtaClick("Header CTA - Ücretsiz Ön Görüşme");
               setShowModal(true);
             }}
             style={{ padding: "0.75rem 1.5rem" }}
           >
-            Ücretsiz Analiz Al
+            Ücretsiz Ön Görüşme
           </button>
         </div>
       </nav>
@@ -1654,10 +1654,10 @@ function App() {
               }}
             >
               <i
-                className="fas fa-rocket"
+                className="fas fa-calendar-check"
                 style={{ marginRight: "0.5rem" }}
               ></i>
-              Ücretsiz Strateji Analizi Al
+              Ücretsiz Ön Görüşme Randevusu
             </button>
             <button
               className="btn btn-secondary btn-large"
@@ -2704,7 +2704,7 @@ function App() {
               {
                 question: "Danışmanlık süreciniz nasıl işliyor?",
                 answer:
-                  "Sürecimiz 4 aşamadan oluşuyor: (1) Ücretsiz keşif görüşmesi ile ihtiyaçlarınızı belirliyoruz, (2) Kapsamlı analiz ve strateji planı hazırlıyoruz, (3) Özel çözümler geliştirip uygulamaya alıyoruz, (4) Sürekli izleme ve optimizasyon ile sonuçları maksimize ediyoruz.",
+                  "Sürecimiz 6 aşamadan oluşuyor: (1) Ücretsiz ön görüşme randevusu ile işletmenizin temel ihtiyaçlarını dinliyoruz, (2) Bu görüşmede size özel yol haritası belirleniyor, (3) Yüz yüze detaylı görüşme planlanarak proje kapsamı netleştiriliyor, (4) Karşılıklı anlaşma sağlandığında sözleşme detayları paylaşılıyor, (5) Anlaşma imzalandıktan sonra proje süreci başlatılıyor, (6) Süreç boyunca düzenli takip ve optimizasyon yapılıyor.",
               },
               {
                 question: "Fiyatlandırma politikanız nasıl?",
@@ -3197,10 +3197,10 @@ function App() {
                         style={{ flex: 1 }}
                       >
                         <i
-                          className="fas fa-paper-plane"
+                          className="fas fa-calendar-check"
                           style={{ marginRight: "0.5rem" }}
                         ></i>
-                        Ücretsiz Analizimi Al
+                        Ön Görüşme Randevum Al
                       </button>
                     )}
                   </div>
